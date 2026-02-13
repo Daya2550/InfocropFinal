@@ -1,0 +1,521 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .badge-admin { background-color: var(--primary-color) !important; }
+    .badge-cs { background-color: #3498db !important; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+</style>
+<div class="dashboard-container" style="display: flex; height: calc(100vh - 70px);">
+    <!-- Sidebar -->
+    <div class="sidebar" style="width: 250px; background-color: #2d2d2d; padding: 1rem; border-right: 1px solid #3d3d3d;">
+        <h3 style="margin-bottom: 2rem; color: #fff;">Admin Panel</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li class="nav-item active" onclick="showSection('overview')" style="padding: 0.8rem; cursor: pointer; border-radius: 5px; margin-bottom: 0.5rem; background-color: #3d3d3d;">
+                <i class="fas fa-chart-line" style="width: 25px;"></i> Overview
+            </li>
+            <li class="nav-item" onclick="showSection('requests')" style="padding: 0.8rem; cursor: pointer; border-radius: 5px; margin-bottom: 0.5rem;">
+                <i class="fas fa-tasks" style="width: 25px;"></i> Requests
+            </li>
+            <li class="nav-item" onclick="showSection('feedback')" style="padding: 0.8rem; cursor: pointer; border-radius: 5px; margin-bottom: 0.5rem;">
+                <i class="fas fa-star" style="width: 25px;"></i> Feedback & Performance
+            </li>
+            <li class="nav-item" onclick="showSection('users')" style="padding: 0.8rem; cursor: pointer; border-radius: 5px; margin-bottom: 0.5rem;">
+                <i class="fas fa-users" style="width: 25px;"></i> User Management
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" style="flex: 1; padding: 2rem; overflow-y: auto;">
+        
+        <!-- Overview Section -->
+        <div id="overview" class="section">
+            <h2>System Overview</h2>
+            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div class="card">
+                    <h3>Active (Unsolved)</h3>
+                    <p style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">{{ unsolved_requests|length }}</p>
+                </div>
+                <div class="card">
+                    <h3>Solved</h3>
+                    <p style="font-size: 2.5rem; font-weight: bold; color: var(--secondary-color);">{{ solved_requests|length }}</p>
+                </div>
+                 <div class="card">
+                    <h3>Pending</h3>
+                    <p style="font-size: 2.5rem; font-weight: bold; color: #f39c12;">{{ pending_requests|length }}</p>
+                </div>
+                <div class="card">
+                    <h3>CS Agents</h3>
+                    <p style="font-size: 2.5rem; font-weight: bold; color: #3498db;">{{ cs_agents|length }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requests Section -->
+        <div id="requests" class="section" style="display: none;">
+            <h2 style="margin-bottom: 1rem;">Service Requests</h2>
+            
+            <div class="tabs" style="margin-bottom: 1rem; border-bottom: 1px solid #3d3d3d;">
+                <button class="tab-btn active" onclick="showTab('tab-unsolved')" style="background:none; border:none; color:white; padding: 10px 20px; cursor:pointer; font-size: 1rem; border-bottom: 2px solid var(--primary-color);">Active / Unsolved</button>
+                <button class="tab-btn" onclick="showTab('tab-solved')" style="background:none; border:none; color:white; padding: 10px 20px; cursor:pointer; font-size: 1rem;">Solved</button>
+                <button class="tab-btn" onclick="showTab('tab-transferred')" style="background:none; border:none; color:white; padding: 10px 20px; cursor:pointer; font-size: 1rem;">Transferred</button>
+                <button class="tab-btn" onclick="showTab('tab-pending')" style="background:none; border:none; color:white; padding: 10px 20px; cursor:pointer; font-size: 1rem;">Pending</button>
+            </div>
+
+            <div id="tab-unsolved" class="tab-content">
+                {% if unsolved_requests %}
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead><tr style="border-bottom: 1px solid #4d4d4d; color: var(--text-muted);"><th>ID</th><th>Farmer</th><th>Assigned CS</th><th>Created</th><th>Actions</th></tr></thead>
+                    <tbody>
+                        {% for req in unsolved_requests %}
+                        <tr style="border-bottom: 1px solid #3d3d3d;">
+                            <td style="padding: 1rem;">#{{ req.id }}</td>
+                            <td style="padding: 1rem;">{{ req.farmer.username if req.farmer else 'Unknown' }}</td>
+                            <td style="padding: 1rem;">{{ req.cs_agent.username if req.cs_agent else 'Unassigned' }}</td>
+                            <td style="padding: 1rem;">{{ req.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td style="padding: 1rem;">
+                                <span class="badge" style="background: var(--primary-color); padding: 2px 8px; border-radius: 4px;">In Progress</span>
+                                <button class="btn btn-edit-request" 
+                                        data-id="{{ req.id }}" 
+                                        data-status="{{ req.status }}" 
+                                        data-csid="{{ req.cs_id if req.cs_id else '' }}"
+                                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem; margin-left: 0.5rem;">
+                                    Edit
+                                </button>
+                                <button class="btn btn-release-request" 
+                                        data-id="{{ req.id }}" 
+                                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem; margin-left: 0.5rem; background-color: #e67e22;">
+                                    Release
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}<p style="color: var(--text-muted);">No active requests.</p>{% endif %}
+            </div>
+
+            <div id="tab-solved" class="tab-content" style="display: none;">
+                {% if solved_requests %}
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead><tr style="border-bottom: 1px solid #4d4d4d; color: var(--text-muted);"><th>ID</th><th>Farmer</th><th>Resolved By</th><th>Closed At</th><th>Actions</th></tr></thead>
+                    <tbody>
+                        {% for req in solved_requests %}
+                         <tr style="border-bottom: 1px solid #3d3d3d;">
+                            <td style="padding: 1rem;">#{{ req.id }}</td>
+                            <td style="padding: 1rem;">{{ req.farmer.username if req.farmer else 'Unknown' }}</td>
+                            <td style="padding: 1rem;">{{ req.cs_agent.username if req.cs_agent else 'Unknown' }}</td>
+                            <td style="padding: 1rem;">{{ req.closed_at.strftime('%Y-%m-%d') if req.closed_at else 'N/A' }}</td>
+                            <td style="padding: 1rem;">
+                                <a href="{{ url_for('generate_pdf', request_id=req.id) }}" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; background-color: #3498db; text-decoration: none;">PDF</a>
+                                <button class="btn btn-edit-request" 
+                                        data-id="{{ req.id }}" 
+                                        data-status="{{ req.status }}" 
+                                        data-csid="{{ req.cs_id if req.cs_id else '' }}"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.8rem; background-color: #f39c12; margin-left: 0.5rem;">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}<p style="color: var(--text-muted);">No solved requests.</p>{% endif %}
+            </div>
+            
+            <div id="tab-transferred" class="tab-content" style="display: none;">
+                {% if transferred_requests %}
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead><tr style="border-bottom: 1px solid #4d4d4d; color: var(--text-muted);"><th>ID</th><th>Farmer</th><th>Previous Agent</th><th>Transferred At</th><th>Status</th></tr></thead>
+                    <tbody>
+                        {% for req in transferred_requests %}
+                        <tr style="border-bottom: 1px solid #3d3d3d;">
+                            <td style="padding: 1rem;">#{{ req.id }}</td>
+                            <td style="padding: 1rem;">{{ req.farmer.username if req.farmer else 'Unknown' }}</td>
+                            <td style="padding: 1rem;">-</td>
+                            <td style="padding: 1rem;">-</td> <!-- Add updated_at to model if needed -->
+                            <td style="padding: 1rem;">
+                                <span class="badge" style="background: #e67e22; padding: 2px 8px; border-radius: 4px;">Transferred</span>
+                                <button class="btn btn-edit-request" 
+                                        data-id="{{ req.id }}" 
+                                        data-status="{{ req.status }}" 
+                                        data-csid="{{ req.cs_id if req.cs_id else '' }}"
+                                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem; margin-left: 0.5rem;">
+                                    Edit
+                                </button>
+                                <button class="btn btn-release-request" 
+                                        data-id="{{ req.id }}"
+                                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem; margin-left: 0.5rem; background-color: #e67e22;">
+                                    Release
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}<p style="color: var(--text-muted);">No transferred requests.</p>{% endif %}
+            </div>
+
+             <div id="tab-pending" class="tab-content" style="display: none;">
+                {% if pending_requests %}
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead><tr style="border-bottom: 1px solid #4d4d4d; color: var(--text-muted);"><th>ID</th><th>Farmer</th><th>Created At</th><th>Status</th></tr></thead>
+                    <tbody>
+                        {% for req in pending_requests %}
+                        <tr style="border-bottom: 1px solid #3d3d3d;">
+                            <td style="padding: 1rem;">#{{ req.id }}</td>
+                            <td style="padding: 1rem;">{{ req.farmer.username if req.farmer else 'Unknown' }}</td>
+                            <td style="padding: 1rem;">{{ req.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td style="padding: 1rem;">
+                                <span class="badge" style="background: #e74c3c; padding: 2px 8px; border-radius: 4px;">Pending</span>
+                                <button class="btn btn-edit-request" 
+                                        data-id="{{ req.id }}" 
+                                        data-status="{{ req.status }}" 
+                                        data-csid="{{ req.cs_id if req.cs_id else '' }}"
+                                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem; margin-left: 0.5rem;">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}<p style="color: var(--text-muted);">No pending requests.</p>{% endif %}
+            </div>
+        </div>
+
+        <!-- Feedback & Performance Section -->
+        <div id="feedback" class="section" style="display: none;">
+            <h2 style="margin-bottom: 1.5rem;">Feedback & CS Performance</h2>
+            
+            <!-- CS Performance Rankings -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">
+                    <i class="fas fa-trophy"></i> CS Agent Performance Rankings
+                </h3>
+                <div style="background: #3d3d3d; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    <em>Ranked by average customer feedback score (1-5 stars)</em>
+                </div>
+                
+                {% if cs_performance %}
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #4d4d4d; color: var(--text-muted);">
+                            <th style="padding: 1rem;">Rank</th>
+                            <th>CS Agent</th>
+                            <th>Average Rating</th>
+                            <th>Total Feedback</th>
+                            <th>Total Resolved</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for perf in cs_performance %}
+                        <tr style="border-bottom: 1px solid #3d3d3d;">
+                            <td style="padding: 1rem; font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">{{ loop.index }}</td>
+                            <td style="padding: 1rem;">{{ perf.agent.username }}</td>
+                            <td style="padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 1.2rem; font-weight: bold; color: #f39c12;">{{ perf.avg_rating }}</span>
+                                    <div style="color: #f39c12;">
+                                        {% for i in range(5) %}
+                                            {% if i < perf.avg_rating %}
+                                                <i class="fas fa-star"></i>
+                                            {% else %}
+                                                <i class="far fa-star"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 1rem;">{{ perf.total_feedback }}</td>
+                            <td style="padding: 1rem;">{{ perf.total_resolved }}</td>
+                            <td style="padding: 1rem;">
+                                {% if perf.avg_rating >= 4.5 %}
+                                    <span class="badge" style="background: #27ae60; padding: 4px 10px; border-radius: 12px;">Excellent</span>
+                                {% elif perf.avg_rating >= 4.0 %}
+                                    <span class="badge" style="background: var(--primary-color); padding: 4px 10px; border-radius: 12px;">Good</span>
+                                {% elif perf.avg_rating >= 3.0 %}
+                                    <span class="badge" style="background: #f39c12; padding: 4px 10px; border-radius: 12px;">Average</span>
+                                {% elif perf.avg_rating > 0 %}
+                                    <span class="badge" style="background: #e74c3c; padding: 4px 10px; border-radius: 12px;">Needs Improvement</span>
+                                {% else %}
+                                    <span class="badge" style="background: #95a5a6; padding: 4px 10px; border-radius: 12px;">No Feedback Yet</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p style="color: var(--text-muted);">No CS agents found.</p>
+                {% endif %}
+            </div>
+
+            <!-- All Feedback Entries -->
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--secondary-color);">
+                    <i class="fas fa-comments"></i> All Customer Feedback
+                </h3>
+                
+                {% if all_feedbacks %}
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #4d4d4d; color: var(--text-muted);">
+                            <th style="padding: 1rem;">Request ID</th>
+                            <th>Farmer</th>
+                            <th>CS Agent</th>
+                            <th>Rating</th>
+                            <th>Comments</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for feedback, req, farmer in all_feedbacks %}
+                        <tr style="border-bottom: 1px solid #3d3d3d;">
+                            <td style="padding: 1rem;">#{{ req.id }}</td>
+                            <td style="padding: 1rem;">{{ farmer.username if farmer else 'Unknown' }}</td>
+                            <td style="padding: 1rem;">{{ req.cs_agent.username if req.cs_agent else 'Unassigned' }}</td>
+                            <td style="padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.3rem; color: #f39c12;">
+                                    <strong style="margin-right: 0.3rem;">{{ feedback.rating }}</strong>
+                                    {% for i in range(5) %}
+                                        {% if i < feedback.rating %}
+                                            <i class="fas fa-star" style="font-size: 0.9rem;"></i>
+                                        {% else %}
+                                            <i class="far fa-star" style="font-size: 0.9rem;"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td style="padding: 1rem; max-width: 300px;">
+                                {% if feedback.comments %}
+                                    <span style="color: var(--text-color);">{{ feedback.comments }}</span>
+                                {% else %}
+                                    <em style="color: var(--text-muted);">No comments</em>
+                                {% endif %}
+                            </td>
+                            <td style="padding: 1rem;">{{ feedback.created_at.strftime('%Y-%m-%d') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p style="color: var(--text-muted);">No feedback received yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div id="users" class="section" style="display: none;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <h3>Staff Management</h3>
+                <button class="btn" onclick="$('#createCsForm').toggle()">Create New Staff User</button>
+            </div>
+            
+            <div id="createCsForm" style="display: none; background: #3d3d3d; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <form action="{{ url_for('create_staff_user') }}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap;">
+                    <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 150px;">
+                        <label>Username</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 150px;">
+                        <label>Email</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 150px;">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 120px;">
+                        <label>Role</label>
+                        <select name="role" style="width: 100%; padding: 0.8rem; background: #2d2d2d; color: white; border: 1px solid #4d4d4d; border-radius: 4px;">
+                            <option value="cs">CS Agent</option>
+                            {% if current_user.username == 'admin' %}
+                            <option value="admin">Administrator</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="background-color: var(--secondary-color);">Create</button>
+                </form>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #4d4d4d;">
+                        <th style="padding: 1rem;">ID</th>
+                        <th style="padding: 1rem;">Username</th>
+                        <th style="padding: 1rem;">Email</th>
+                        <th style="padding: 1rem;">Role</th>
+                        <th style="padding: 1rem;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for agent in staff_users %}
+                    <tr style="border-bottom: 1px solid #3d3d3d;">
+                        <td style="padding: 1rem;">{{ agent.id }}</td>
+                        <td style="padding: 1rem;">{{ agent.username }}</td>
+                        <td style="padding: 1rem;">{{ agent.email if agent.email else 'N/A' }}</td>
+                        <td style="padding: 1rem;">
+                            <span class="badge {% if agent.role == 'admin' %}badge-admin{% else %}badge-cs{% endif %}" style="padding: 2px 8px; border-radius: 4px;">
+                                {{ agent.role.upper() }}
+                            </span>
+                        </td>
+                        <td style="padding: 1rem;">
+                            <button class="btn {% if agent.username != 'admin' %}btn-edit-staff{% endif %}" 
+                                    data-id="{{ agent.id }}" 
+                                    data-username="{{ agent.username }}" 
+                                    data-email="{{ agent.email if agent.email else '' }}" 
+                                    data-role="{{ agent.role }}"
+                                    style="padding: 0.3rem 0.6rem; font-size: 0.8rem; background-color: #e67e22;"
+                                    {% if agent.username == 'admin' %}disabled title="Root admin cannot be edited"{% endif %}>
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- End Main Content -->
+        
+    <!-- Request Edit Modal -->
+    <div id="editRequestModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background: #2d2d2d; padding: 2rem; border-radius: 8px; width: 400px; color: #fff;">
+            <h3>Edit Request</h3>
+            <form id="editRequestForm" method="POST" action="">
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="status" id="reqStatus" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #3d3d3d; color: #fff; border: 1px solid #4d4d4d;">
+                        <option value="pending">Pending</option>
+                        <option value="active">Active</option>
+                        <option value="transferred">Transferred</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Assign to CS Agent</label>
+                    <select name="cs_id" id="reqCS" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #3d3d3d; color: #fff; border: 1px solid #4d4d4d;">
+                        <option value="">Unassigned</option>
+                        {% for agent in cs_agents %}
+                        <option value="{{ agent.id }}">{{ agent.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn" onclick="$('#editRequestModal').css('display', 'none')" style="background: #e74c3c;">Cancel</button>
+                    <button type="submit" class="btn" style="background: var(--primary-color);">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CS User Edit Modal -->
+    <div id="editCsModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background: #2d2d2d; padding: 2rem; border-radius: 8px; width: 400px; color: #fff;">
+            <h3>Edit Staff User</h3>
+            <form id="editCsForm" method="POST" action="">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" id="editCsUsername" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #3d3d3d; color: #fff; border: 1px solid #4d4d4d;">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" id="editCsEmail" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #3d3d3d; color: #fff; border: 1px solid #4d4d4d;">
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select name="role" id="editCsRole" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #3d3d3d; color: #fff; border: 1px solid #4d4d4d;" {% if current_user.username != 'admin' %}disabled{% endif %}>
+                        <option value="cs">CS Agent</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                    {% if current_user.username != 'admin' %}
+                    <small style="color: #e74c3c; display: block; margin-top: -0.5rem; margin-bottom: 1rem;">Only root admin can change roles</small>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label>New Password (leave blank to keep)</label>
+                    <input type="password" name="password" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: #3d3d3d; color: #fff; border: 1px solid #4d4d4d;">
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn" onclick="$('#editCsModal').css('display', 'none')" style="background: #e74c3c;">Cancel</button>
+                    <button type="submit" class="btn" style="background: var(--primary-color);">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function showSection(sectionId) {
+        $('.section').hide();
+        $('#' + sectionId).show();
+        $('.nav-item').css('background-color', 'transparent');
+        $('.nav-item').each(function() {
+            if($(this).attr('onclick').includes(sectionId)) {
+                 $(this).css('background-color', '#3d3d3d');
+            }
+        });
+    }
+
+    function showTab(tabId) {
+        $('.tab-content').hide();
+        $('#' + tabId).show();
+        $('.tab-btn').css('border-bottom', 'none');
+        $('.tab-btn').each(function() {
+            if($(this).attr('onclick').includes(tabId)) {
+                $(this).css('border-bottom', '2px solid var(--primary-color)');
+            }
+        });
+    }
+
+    function openCsEdit(id, username, email, role) {
+        $('#editCsForm').attr('action', '/admin/staff_user/' + id + '/edit');
+        $('#editCsUsername').val(username);
+        $('#editCsEmail').val(email);
+        $('#editCsRole').val(role);
+        $('#editCsModal').css('display', 'flex');
+    }
+
+    $(document).on('click', '.btn-edit-staff', function() {
+        const id = $(this).data('id');
+        const username = $(this).data('username');
+        const email = $(this).data('email');
+        const role = $(this).data('role');
+        openCsEdit(id, username, email, role);
+    });
+
+    function openRequestEdit(id, status, csId) {
+        $('#editRequestForm').attr('action', '/admin/request/' + id + '/edit');
+        $('#reqStatus').val(status);
+        $('#reqCS').val(csId ? csId : "");
+        $('#editRequestModal').css('display', 'flex');
+    }
+
+    $(document).on('click', '.btn-edit-request', function() {
+        const id = $(this).data('id');
+        const status = $(this).data('status');
+        const csid = $(this).data('csid');
+        openRequestEdit(id, status, csid);
+    });
+
+    $(document).on('click', '.btn-release-request', function() {
+        const id = $(this).data('id');
+        releaseRequest(id);
+    });
+
+    function releaseRequest(reqId) {
+        if(!confirm('Release this request back to the queue (unassign and set to transferred)?')) return;
+        $.post(`/api/request/${reqId}/transfer`, function() {
+            alert('Request Released successfully');
+            location.reload(); 
+        }).fail(function(xhr) {
+             alert('Error releasing request: ' + (xhr.responseJSON ? xhr.responseJSON.error : 'Unknown error'));
+        });
+    }
+</script>
+{% endblock %}

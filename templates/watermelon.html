@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <title> </title>
+  <meta content="" name="Watermelon is a juicy and refreshing fruit known for its high water content and sweet flavor. It's rich in vitamins A and C, as well as antioxidants like lycopene, which may promote heart health and protect against certain diseases. Watermelon is typically enjoyed fresh as a snack or used in salads, smoothies, and desserts.">
+  <meta content="" name="Here's a formatted list of keywords related to watermelon:
+
+  - Watermelon
+  - Fruit
+  - Juicy
+  - Refreshing
+  - High water content
+  - Sweet flavor
+  - Vitamins
+  - Vitamin A
+  - Vitamin C
+  - Antioxidants
+  - Lycopene
+  - Heart health
+  - Disease prevention
+  - Snack
+  - Salad ingredient
+  - Smoothie ingredient
+  - Dessert
+  - Summer fruit
+  - Red flesh
+  - Black seeds
+">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="style.css" rel="stylesheet">
+<style >@media (min-width: 1200px) {
+
+  #main,.sizea
+  #footer {
+    margin-left: 300px;
+  }
+}</style>
+</head>
+<style>
+  @media (max-width: 768px) {
+.serch1234{
+  display: none;
+}
+
+  }
+</style>
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: rgb(93, 180, 137);">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" alt="image">
+      </a>
+
+  
+    </div><!-- End Logo -->
+
+    <center class="serch1234">
+      <div>
+      <label for="searchInput"></label>
+  <input type="text" id="searchInput" style="border-radius: 20px;">
+      <button style="border-radius: 20px;" onclick="searchAndScroll()">🔍</button> </div></center>
+      <!-- search -->
+
+    
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+        
+          <div id="google_translate_element"></div>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              Today's Important Notifications.  
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Weather</h4>
+                <p>Cloudy</p>
+                <p>Rain Possibility</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Market</h4>
+                <p>All the markets are closed .</p>
+                <p>Today</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Prediction </h4>
+                <p>In this month prices of markets are increases  </p>
+                <p>For 15 days</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Government </h4>
+                <p>All the benefits schemes are open</p>
+                <p>Apply Now !!</p>
+              </div>
+            </li>
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " onclick="goBack()">
+          <i class="bi bi-grid"></i>
+          <span>HOME</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>CROPS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/barley">
+              <i class="bi bi-circle"></i><span>BARLEY(JOW)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/maize">
+              <i class="bi bi-circle"></i><span>MAIZE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/rice">
+              <i class="bi bi-circle"></i><span>RICE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/soybean">
+              <i class="bi bi-circle"></i><span>SOYBEAN</span>
+            </a>
+          </li>
+          <li>
+            <a href="/cotton">
+              <i class="bi bi-circle"></i><span>COTTON</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sugarcane">
+              <i class="bi bi-circle"></i><span>SUGARCANE</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>FRUITS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/grapes">
+              <i class="bi bi-circle"></i><span>GRAPES</span>
+            </a>
+          </li>
+          <li>
+            <a href="/pomegranate">
+              <i class="bi bi-circle"></i><span>POMEGRANATE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/banana">
+              <i class="bi bi-circle"></i><span>BANANA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mango">
+              <i class="bi bi-circle"></i><span>MANGO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/guava">
+              <i class="bi bi-circle"></i><span>GUAVA</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/watermelon">
+              <i class="bi bi-circle"></i><span>WATERMELON</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>FLOWERS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/rose">
+              <i class="bi bi-circle"></i><span>ROSE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/marigold">
+              <i class="bi bi-circle"></i><span>MARIGOLD</span>
+            </a>
+          </li>
+          <li>
+            <a href="/jasmine">
+              <i class="bi bi-circle"></i><span>JASMINE</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>VEGETABLES</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/brinjal">
+              <i class="bi bi-circle"></i><span>BRINJAL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/potato">
+              <i class="bi bi-circle"></i><span>POTATO</span>
+            </a>
+          </li>
+          <li>
+            <a href="/chilli">
+              <i class="bi bi-circle"></i><span>CHILLI</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/tomato">
+              <i class="bi bi-circle"></i><span>TOMATO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/spinach">
+              <i class="bi bi-circle"></i><span>SPINACH</span>
+            </a>
+          </li>
+          <li>
+            <a href="/carrot">
+              <i class="bi bi-circle"></i><span>CARROT</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>MEDICINAL PLANTS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/aloevera">
+              <i class="bi bi-circle"></i><span>ALOE VERA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/amla">
+              <i class="bi bi-circle"></i><span>AMLA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ashwagandha">
+              <i class="bi bi-circle"></i><span>ASHWAGANDHA</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+      <li class="nav-heading">Pages</li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://ofrf.org/">
+          <i class="bi bi-card-list"></i>
+          <span>ORGANIC FARMING</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/home">
+          <i class="bi bi-card-list"></i>
+          <span>LEAF DISEASE DETECTION</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.accuweather.com/en/in/mh/maharashtra-weather">
+          <i class="bi bi-card-list"></i>
+          <span>WEATHER INFO</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.apnikheti.com/en/pn/govt-schemes">
+          <i class="bi bi-card-list"></i>
+          <span>GOVERNMENT SCHEMES</span>
+        </a>
+      </li>
+      
+
+
+
+  
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-register">
+          <i class="bi bi-card-list"></i>
+          <span>FEEDBACK</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://docs.google.com/forms/d/e/1FAIpQLScUzeRmbCPwJZXV1hd6tUBfSz2CNn_8rYjEg7fv-oo0-mXgzw/viewform?usp=sf_link">
+          <i class="bi bi-card-list"></i>
+          <span>YourDoubt</span>
+        </a>
+      </li>
+      
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <div id="main" class="main">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style >@media (min-width: 1200px) {
+
+      #main,.sizea
+      #footer {
+        margin-left: 300px;
+      }
+    }</style>
+    <style>
+      .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        overflow: hidden;
+      }
+    
+      .image-container img {
+        display: block;
+        width: 300px; /* Adjust as needed */
+        transition: transform 0.3s ease;
+      }
+    
+      .image-container:hover img {
+        transform: scale(5); /* Zoom effect */
+      }
+    
+      .zoom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        display: none;
+      }
+    
+      .image-container:hover .zoom-overlay {
+        display: block;
+      }
+
+      
+    </style>
+    
+
+    <div id="pdf-container">
+      <div id="pdf-viewer">
+        <button id="close-btn" onclick="closePDF()">Close</button>
+        <iframe id="pdf-iframe" src="" width="100%" height="100%"></iframe>
+      </div>
+    </div>
+     <!-- onclick="openVideo('')"-->
+     <div id="video-container" class="video-container">
+      <iframe id="video-iframe" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
+          <center><div class="close-button" onclick="closeVideo()">Close</div></center>
+    </div>
+    <nav class="navbar navbar-light " >
+      <div class="container-fluid" style="background-color: rgb(184, 247, 244); display: flex ; justify-content: center;text-align: center;" >
+        <h3>TOMATO </h3>
+      </div>
+    </nav>
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">TOMATO</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Content</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#GENERAL INFORMATION">GENERAL INFORMATION</a></li>
+          <li><a class="dropdown-item" href="#climet">CLIMATE</a></li>
+          <li><a class="dropdown-item" href="#FERTILIZER">FERTILIZER</a></li>
+          
+          <li><a class="dropdown-item" href="#PLANT PROTECTION">PLANT PROTECTION</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+
+
+
+<!-- image slider--> 
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="https://i.postimg.cc/jSx4GtNP/w1.webp" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.postimg.cc/CL20XQTM/w3.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/g0gbySDP/w2.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+   
+
+  <br>
+  <nav class="navbar navbar-light " >
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 id="GENERAL INFORMATION">GENERAL INFORMATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container1">
+     
+        <img src="https://i.postimg.cc/GtC0dW3G/w4.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+    <pr>Watermelon is originated in South Africa. It is an important cucurbitaceous vegetable in India. It is an excellent desert fruit and its juice contain 92% water along with proteins, minerals and carbohydrates. In Japan, cubic shape watermelon are popular, they grow watermelon in glass box and give cubic shape. Watermelons are mainly cultivated in Maharashtra, Karnataka, Tamil Nadu, Punjab, Rajasthan, Madhya Pradesh, and Uttar Pradesh.
+
+
+ </pr>
+      <br><br>
+  </div>
+  <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('T7GVUWF5tZc?si=QU8K-nHXwoDdstCk')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container1')" style="border: none;">Show more</button><br><br>
+
+
+
+
+    <div id="climet" class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 >CLIMATE</h4>
+    </div>
+    <br>
+    <div style="display: inline-flex; gap: 10px; justify-content: center; text-align: center; flex-wrap: wrap; ">
+
+      <div class="card" style="width: 14rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">20-30°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Rainfall</h2>
+          <h6 class="card-subtitle mb-2 text-muted">50-75mm</h6>
+          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Sowing Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">25-30°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Harvesting Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">20-25°C</h6>          
+        </div>
+      </div>
+
+
+
+
+    </div>
+  <br><br>
+
+
+
+  <nav class="navbar navbar-light " >
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOIL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container2">
+      
+        <img src=https://i.postimg.cc/cCXF22vs/w2.webp" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+     <p>It can be grown in varied type of soil ranging from sandy loam to clay, black soil and red soil having proper drainage. It gives best result when grown under well drained sandy soil with high organic content. For good growth pH of soil should be 7-8.5. It can tolerate moderate acidic and saline soil. Avoid cultivation in high acidic soils. For early crops, light soil is beneficial where for heavy yields clay loam and silt-loam soils are useful.</p>
+      <br><br>
+     
+    </div>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+      <div style=" height: 30px; width: 30px; " >
+        <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+         style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+    <div style=" height: 30px; width: 30px;"  onclick="openVideo('ARvrUJnefeI?si=qGFY-zoHj9ZCPCp9')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+  </div><br> <button onclick="toggleContent('')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>POPULAR VARIETIES WITH THEIR YIELD</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container3">
+      
+        <img src="https://i.postimg.cc/Kjq5JTWj/w3.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+     
+      <pr>
+       <b> Improved Shipper:</b> It is developed by PAU, Ludhiana. Fruits are large size, skin color is dark green. These are moderately sweet with TSS 8-9%.the average yield is 70-80qtl per acre.
+       <br><br>
+<b>Special No.1: </b>It is developed by PAU, Ludhiana. Fruits are round and small in size, flesh is of red color. These are early maturing varieties. TSS is lower than Improved Shipper. 
+<br><br>
+<b>Sugar Baby (Before 1962):</b> This variety yields small to medium-sized fruits with dark green skin. The flesh of the fruit is deep red and very sweet, containing 9-10% TSS. It produces 72 q/acre.
+
+POPULAR VARIETIES DEVELOPED BY ICAR IIHR BANGLORE
+<br><br>
+<b>Arka Muthu:</b> Shorter inter nodal length and early maturing type (75-80 days). It has round fruits with dark green stripes and deep red flesh ice box type average fruit weight is 2.5-3 kg with TSS ranging from 12 to 14 0 Brix. Fruit yield 240q/acre. Suitable for precision farming and also high density planting.
+<br><br>
+<b>Arka Aiswarya:</b> F1 hybrid fruit are oblong and have a high TSS of 12-13 brix. It gives 320q/acre yield, and has red flesh with sweet taste.
+<br><br>
+<b>Arka Manik: </b>Fruits are oval with light green rind to dark green stripes. Deep crimson flesh with granular texture, pleasant aroma, very sweet, TSS 12-150 brix. Average fruit weight is 6 kg. Seeds small with dark brown specks on the test Triple resistant to powdery mildew, Downey mildew and anthracnose. Yield 240q/acre.
+<br><br>
+<b>Other state varieties:</b>
+
+<b>Exotic Varieties:</b> China - Watermelon Hybrid Yellow Doll, Water Melon Hybrid Red Doll. USA - Regency, Royal Flush, Royal Majesty, Royal Sweet, Paradise, Ferrari, Sunrise etc.
+<br><br>
+<b></b> Developed by IARI, New Delhi. This variety gives medium sized fruits with weight of 6-8kg. The variety is ready to harvest in 95days. Flesh is of deep pink color. The fruits contain 11-13% of TSS content.
+
+Varun, Yuvaraj, Aayesha, Madhubala, Chetan, NS 295, NS 34, NS 450, Arjun, Sumo, KSP 1081, Lalima and Raja.
+      </pr>
+        
+
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('UxveyPXJ8_0?si=Xito1qp_dX-lGBpq')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+      <button  id="toggleButton" onclick="toggleContent('container3')" style="border: none;">Show more</button>
+  </div>
+
+  
+  
+  <br>
+  <nav class="navbar navbar-light " >
+ <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>LAND PREPARATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container4">
+      
+        <img src="https://i.postimg.cc/hGBV8MGM/w5.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      
+      <pr>
+        Plough land and bring to fine tilth. In North India, sowing is done February - March month. In North east and west India sowing is done during November to January. Watermelon can be direct seeded or transplant in nursery and then transplanted to main field.
+      </pr>
+      <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('ARvrUJnefeI?si=qGFY-zoHj9ZCPCp9')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container4')" style="border: none;">Show more</button>
+
+     </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+  <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOWING</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container5">
+      
+        <img src="https://i.postimg.cc/nL3Ms19X/w6.webp" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+       <pr><b>Time of sowing</b>
+        In north it is sown during middle of January to March and in November to December.
+        
+       <b> Spacing</b>
+        Depending upon sowing method spacing may get vary. In pit method use row to row spacing of 2-3.5m and 60 cm between two plant.
+        <br><br>
+        <b>Sowing Depth</b>
+        Plant seed about 2-3cm deep.
+        <br><br>
+       <b> Method of sowing</b>
+        For sowing different methods of planting like furrow method, Pit method and hill method can be used depending upon climate and season.  
+        <br><br>
+        <b>Furrow Method:</b> Sowing is done on either side of furrows. Sow 3-4 seeds (After germination keep only healthy seedling) at a time and keep plant to plant distance of 60-90cm.
+        <br><br>
+        <b>Pit Method:</b> Sow 4 seeds in pit. For that make pit of 60x60x60cm at distance of 2-3.5m between two rows and 0.6-1.2m between plants. Fill pit with well decomposed cow dung and soil. After germination keep only one seedling.
+        
+        Hill method: Similar to pit method. In this, pit of 30x30x30cm pits are made at distance of 1-1.5m. Two seeds are sown per hill.
+        
+        
+        
+        </pr>
+        
+        
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('263144z1ZoU?si=ZtxjxCYxIgMrOv56')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container5')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " id="FERTILIZER">
+  <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>FERTILIZER</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container6">
+      
+        <img src="https://i.postimg.cc/5y2ckZx3/AH7.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        
+        <div class="zoom-overlay"></div>
+     
+      <pr>Apply Farm Yard Manure or well decomposed cowdung@8-10tonnes per acre. Apply Nitrogen@25kg, Phosphorus@16kg and Potash@15kg in form of Urea@55kg, Single Super Phosphate@100kg and Muriate of Potash@25kg per acre. Apply whole amount of Phosphorus, Potash and one third amount of Nitrogen before sowing seed. Apply remaining dose of Nitrogen near vines base, avoid touching it and mixed well in soil during initial growth period.   
+        <br><br>
+        When crop is of 10-15 days old, for good growth of crop along with good quality, take spray of 19:19:19+Micro-nutrients@ 2-3gm/Ltr of water. Prevent flower drop and increase yield up to 10% take spray of Humic acid@3ml + MAP(12:61:00)@5gm/Ltr of water at flowering stage. Spray Salicylic Acid(4-5 tabs of Aspirin Tablet 350mg)/15Ltr water at initial flowering, fruiting and maturity stage, One or two times with 30days interval. After 55days of sowing spray 13:00:45@100gm + Hexaconazole @250ml/150Ltr water for fast development of fruits and protection against powdery mildew. 65days after sowing to increase in fruit size, sweetness and colour take spray with 00:00:50 @1.5kg/acre using 100gm/15Ltr of water.
+        
+        
+
+        
+        </pr>
+      <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('G7Ee8ZH3awQ?si=kEjyBB-29ItJ7Hm8')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container6')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+ <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>WEED CONTROL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container7">
+      
+        <img src="https://i.postimg.cc/hGc2rV48/w4.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+        <br>
+        <pr>Keep bed weed free during early stage of growth. In absence of proper control measures, weed can cause yield loss of 30%. 15-20days after sowing carry out intercultural operations. Depending upon severity and intensity of weeds, two to three weeding are required.</pr>
+      
+        <br><br>
+     
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('86IpEvZlD2w?si=GbosYWTrP646BExq')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container7')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+   <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>IRRIGATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container8">
+      
+        <img src="https://i.postimg.cc/85qKL97c/w7.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      
+     <pr>Apply irrigation, every week in summer season. At time of maturity give irrigation only when needed. Avoid over flooding in watermelon field. At time of applying irrigation, should not wet the vines or vegetative parts, especially during flowering and fruit-set. Avoid frequent irrigation in heavy soil as it will promote excessive vegetative growth. For better sweetness and flavour, stop irrigation or reduce watering 3-6days before harvesting.
+
+
+
+     </pr>
+      <br><br>  
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('4Z7AnCkH2yI?si=GXjfy2ulobCnGqFG')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container8')" style="border: none;">Show more</button>
+  </div>
+
+  <br><br>
+  <nav class="navbar navbar-light " >
+  <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>HARVESTING</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container10">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/qMGw7zxz/w7.webp" alt="Image 2">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      </div>
+      <br><br>
+      <pr>If tendril near stem gets dried also whitish color of fruit which touch to ground get yellowish then assume that fruit is ready for harvesting. On thumping melon if it sounds hollow (usually as a dull thump or thud) then it is ready for harvest and immature fruit sounds dense. Dont pick immature fruits as they ripe only when attached to vine. Immature fruit don’t have rich sugar content or color. To harvest ripe fruit, cut stem 1" from fruit with a pair of sharp pruners or knife. Fruit can be stored in a cool humid environment.
+
+      </pr>
+      <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('HPYz2QtqgP4?si=u_GR-aCBnsihScpT')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container10')" style="border: none;">Show more</button>
+  </div>
+
+  <br id="PLANT PROTECTION">
+  
+  <nav class="navbar navbar-light "  >
+ <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>PLANT PROTECTION </h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container11">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/0N5yqH2z/w1.jpg" alt="Image 2">
+        <div class="zoom-overlay"></div>
+      </div>
+      <br><br>
+     <pr><b>Aphid and Thrips:</b> They suck the sap from the leaves resulting in yellowing and dropping of leaves. Thrips results in curling of leaves, leaves become cup shaped or curved upward.
+
+        If infestation is observed in field, to control spray the crop with Thiamethoxam@5gm/15Ltr of water. If infestation of sucking pest and powdery/downy mildew is observed, take spray of Thiamethoxam and 15days after spraying, spray with Dimethoate@250ml+Tridemorph@100ml/200Ltr of water.
+      
+       </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('v8qnbx1SHf0?si=iLIvCM-mmqF4vtSG')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container11')" style="border: none;">Show more</button>
+  </div>
+
+  
+  <div class="card">
+    <div class="container" id="container12">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/Zn8Gn4w4/w2.jpg" alt="Image 2">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      </div>
+      <br><br>
+      
+      <pr><b>Fruit fly:</b> It is serious pest. Females lay eggs below epidermis of young fruits. Later on maggots feed on pulp afterward fruits starts rotting.
+        
+        Remove and destroyed infected fruits away from field. If infestation is observed, at initial stage take spray of Neem seed kernal extracts@50gm/Ltr of water. Take spray of Malathion@300ml + Jaggery@100gm in 200litre of water 3-4times at 10 days interval.
+      
+    </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('9LKEis1opT0?si=JIX9d2QHCPvpG7p9')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div> 
+  </nav>
+  
+  
+  <div class="card">
+    <div class="container" id="container13">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/dQjNhHqs/w3.jpg" alt="Image 2">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      </div>
+      <br><br>
+    
+     <pr><b>Anthracnose: </b>Anthracnose affected foliage appears scorched appearance.  
+
+        As a preventive measure, treat seed with Carbendazim@2gm/kg of seed. If infestation is observed in field, take spray of Mancozeb@400gm or Carbendazim@400gm/200liter of water.
+        
+        
+      
+      
+    </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('BSAhZYR7QLA?si=1_Ud2Pr-QPrgw6v1')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div> 
+  </nav>
+
+
+
+    
+  <div class="card">
+    <div class="container" id="container14">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/T20QdK9h/w4.jpg" alt="Image 2">
+        
+        <br><br>
+        
+        <div class="zoom-overlay"></div>
+      </div>
+
+      <br><br>
+     <pr><b>Powdery Mildew:</b> Patchy, white powdery growth appears on upper surface of leaves also on main stem of infected plant. It parasitizes the plant using it as a food source. In severe infestation it causes defoliation and premature fruit ripening.
+
+        If infestation is observed take spray of water soluble Sulphur@20gm/10Ltr of water 2-3 times with interval of 10 days.
+      
+    </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('hayEitRBGsM?si=3JHtplzpsVKJjQ8J')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div> 
+  </nav>
+
+
+
+
+
+
+  
+<div class="cards" style="display: flex; justify-content: center; align-items: center;">
+  <div class="card" style="width: 18rem;" >
+    <img src="https://i.postimg.cc/9QCQn7jX/3.jpg" class="card-img-top" alt="..." style="height: 200px; ">
+    <div class="card-body">
+      <h5 class="card-title">Fertilizers</h5>
+      <p class="card-text">In order to buy the fertilizers that are required for    WATERMELON crop just click on the below button . </p>
+      <a href="https://www.amazon.in/s?k=amazon+fertilizer&adgrpid=58082751599&ext_vrnc=hi&gclid=CjwKCAiAuYuvBhApEiwAzq_YiTf4Ah-KZJSEs56kT_9PiiXt4zPx-atpUAsiSYrfUt0pizFMdEzNTBoC9SwQAvD_BwE&hvadid=590712074606&hvdev=c&hvlocphy=9181376&hvnetw=g&hvqmt=e&hvrand=17421580216572443258&hvtargid=kwd-447374980733&hydadcr=24566_2265454&tag=googinhydr1-21&ref=pd_sl_174os0xfco_e" class="btn btn-primary">Click</a>
+    </div>
+  </div>
+    
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>InfoCrop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+     
+      Designed by <a href="">InfoCrop.</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="main.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,pa,ml,or,as,kok,ne,sa,mni,sd,ks,doi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+
+
+    //zoom image 
+document.querySelectorAll('.image-container').forEach(function(container) {
+  container.addEventListener('mousemove', function(event) {
+    const img = container.querySelector('img');
+    const boundingRect = container.getBoundingClientRect();
+    const offsetX = event.clientX - boundingRect.left;
+    const offsetY = event.clientY - boundingRect.top;
+    const percentX = offsetX / boundingRect.width * 100;
+    const percentY = offsetY / boundingRect.height * 100;
+    img.style.transformOrigin = percentX + '% ' + percentY + '%';
+  });
+});
+
+    
+// images sliding 
+let slideIndex = 1;
+showSlide(slideIndex);
+
+function changeSlide(n) {
+  showSlide(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlide(slideIndex = n);
+}
+
+function showSlide(n) {
+  const slides = document.getElementsByClassName("slide");
+  const dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].classList.add("active");
+
+  setTimeout(() => {
+    changeSlide(1);
+  }, 10000); // Change slide every 5 seconds
+}
+
+
+//video slider 
+const videoWrapper = document.querySelector(".video-wrapper");
+const videoSlides = document.querySelectorAll(".video-slide");
+const points = document.querySelectorAll(".point");
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+
+let currentIndex = 0;
+
+// Function to slide to the given index
+function slideTo(index) {
+  videoWrapper.style.transform = `translateX(-${index * 100}%)`;
+  points.forEach((point, i) => {
+    point.classList.toggle("active", i === index);
+  });
+}
+
+// Function to slide left
+function slideLeft() {
+  currentIndex = (currentIndex - 1 + videoSlides.length) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Function to slide right
+function slideRight() {
+  currentIndex = (currentIndex + 1) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Navigate using arrow buttons
+arrowLeft.addEventListener("click", slideLeft);
+arrowRight.addEventListener("click", slideRight);
+
+// Navigate using points
+points.forEach((point, index) => {
+  point.addEventListener("click", () => slideTo(index));
+});
+
+// Auto slide every 5 seconds
+setInterval(slideRight, 60000);
+
+
+
+
+
+//youtube
+function openVideo(videoId) {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+  videoContainer.style.display = 'block';
+}
+
+function closeVideo() {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = '';
+  videoContainer.style.display = 'none';
+}
+
+//scrolling text
+function toggleContent(containerId) {
+  var container = document.getElementById(containerId);
+  var button = container.nextElementSibling; // Getting the button element next to the container
+  if (container.style.maxHeight) {
+    container.style.maxHeight = null;
+    button.textContent = 'Show Content';
+  } else {
+    container.style.maxHeight = container.scrollHeight + "px";
+    button.textContent = 'Hide Content';
+  } 
+}
+
+
+//serch
+function searchAndScroll() {
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  const headings = document.querySelectorAll('h4, p');
+  
+  let found = false;
+  for (const heading of headings) {
+  const headingText = heading.textContent.toLowerCase();
+  if (headingText.includes(searchText)) {
+  heading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  found = true;
+  break; } }
+  if (!found) {
+  alert('Information not Found.');
+}
+}
+
+//pdf
+function openPDF(url) {
+  var fileId = extractFileId(url);
+  var pdfViewer = document.getElementById('pdf-iframe');
+  var pdfContainer = document.getElementById('pdf-container');
+  var pdfURL = 'https://drive.google.com/file/d/' + fileId + '/preview';
+  
+  pdfViewer.src = pdfURL;
+  pdfContainer.style.display = 'block';
+}
+
+function closePDF() {
+  var pdfContainer = document.getElementById('pdf-container');
+  pdfContainer.style.display = 'none';
+}
+
+function extractFileId(url) {
+  var match = url.match(/\/file\/d\/(.+?)\//);
+  return match ? match[1] : null;
+}
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <script>
+      !function(w, d, s, ...args){
+        var div = d.createElement('div');
+        div.id = 'aichatbot';
+        d.body.appendChild(div);
+        w.chatbotConfig = args;
+      
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s);
+        j.defer = true;
+        j.type = 'module';
+        j.src = 'https://aichatbot.sendbird.com/index.js';
+        f.parentNode.insertBefore(j, f);
+      }(window, document, 'script', '461D5D41-1ECB-4152-975E-00AEFF10A8B8', 'onboarding_bot');
+      </script>
+    
+</body>
+
+</html> 

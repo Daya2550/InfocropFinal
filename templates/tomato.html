@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <title> </title>
+  <meta content="" name="Tomato is a versatile fruit commonly used as a vegetable in cooking. It's rich in vitamins C and K, as well as antioxidants like lycopene, which is linked to various health benefits including heart health and cancer prevention. Tomatoes come in different colors, shapes, and sizes, and they are used in a wide range of culinary dishes, from salads to sauces.">
+  <meta content="" name="Here's a formatted list of keywords related to tomatoes:
+
+  - Tomato
+  - Fruit
+  - Vegetable
+  - Vitamins
+  - Vitamin C
+  - Vitamin K
+  - Antioxidants
+  - Lycopene
+  - Health benefits
+  - Heart health
+  - Cancer prevention
+  - Culinary uses
+  - Salads
+  - Sauces
+  - Soups
+  - Pasta dishes
+  - Pizza topping
+  - Red
+  - Round
+  - Solanum lycopersicum">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <style>
+    @media (max-width: 768px) {
+  .serch1234{
+    display: none;
+  }
+  
+    }
+  </style>
+
+  <!-- Template Main CSS File -->
+  <link href="style.css" rel="stylesheet">
+<style >@media (min-width: 1200px) {
+
+  #main,.sizea
+  #footer {
+    margin-left: 300px;
+  }
+}</style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: rgb(93, 180, 137);">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" alt="image">
+      </a>
+
+  
+    </div><!-- End Logo -->
+
+    <center class="serch1234">
+      <div>
+      <label for="searchInput"></label>
+  <input type="text" id="searchInput" style="border-radius: 20px;">
+      <button style="border-radius: 20px;" onclick="searchAndScroll()">🔍</button> </div></center>
+      <!-- search -->
+
+    
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+        
+          <div id="google_translate_element"></div>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              Today's Important Notifications.  
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Weather</h4>
+                <p>Cloudy</p>
+                <p>Rain Possibility</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Market</h4>
+                <p>All the markets are closed .</p>
+                <p>Today</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Prediction </h4>
+                <p>In this month prices of markets are increases  </p>
+                <p>For 15 days</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Government </h4>
+                <p>All the benefits schemes are open</p>
+                <p>Apply Now !!</p>
+              </div>
+            </li>
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " onclick="goBack()">
+          <i class="bi bi-grid"></i>
+          <span>HOME</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>CROPS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/barley">
+              <i class="bi bi-circle"></i><span>BARLEY(JOW)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/maize">
+              <i class="bi bi-circle"></i><span>MAIZE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/rice">
+              <i class="bi bi-circle"></i><span>RICE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/soybean">
+              <i class="bi bi-circle"></i><span>SOYBEAN</span>
+            </a>
+          </li>
+          <li>
+            <a href="/cotton">
+              <i class="bi bi-circle"></i><span>COTTON</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sugarcane">
+              <i class="bi bi-circle"></i><span>SUGARCANE</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>FRUITS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/grapes">
+              <i class="bi bi-circle"></i><span>GRAPES</span>
+            </a>
+          </li>
+          <li>
+            <a href="/pomegranate">
+              <i class="bi bi-circle"></i><span>POMEGRANATE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/banana">
+              <i class="bi bi-circle"></i><span>BANANA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mango">
+              <i class="bi bi-circle"></i><span>MANGO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/guava">
+              <i class="bi bi-circle"></i><span>GUAVA</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/watermelon">
+              <i class="bi bi-circle"></i><span>WATERMELON</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>FLOWERS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/rose">
+              <i class="bi bi-circle"></i><span>ROSE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/marigold">
+              <i class="bi bi-circle"></i><span>MARIGOLD</span>
+            </a>
+          </li>
+          <li>
+            <a href="/jasmine">
+              <i class="bi bi-circle"></i><span>JASMINE</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>VEGETABLES</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/brinjal">
+              <i class="bi bi-circle"></i><span>BRINJAL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/potato">
+              <i class="bi bi-circle"></i><span>POTATO</span>
+            </a>
+          </li>
+          <li>
+            <a href="/chilli">
+              <i class="bi bi-circle"></i><span>CHILLI</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/tomato">
+              <i class="bi bi-circle"></i><span>TOMATO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/spinach">
+              <i class="bi bi-circle"></i><span>SPINACH</span>
+            </a>
+          </li>
+          <li>
+            <a href="/carrot">
+              <i class="bi bi-circle"></i><span>CARROT</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>MEDICINAL PLANTS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/aloevera">
+              <i class="bi bi-circle"></i><span>ALOE VERA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/amla">
+              <i class="bi bi-circle"></i><span>AMLA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ashwagandha">
+              <i class="bi bi-circle"></i><span>ASHWAGANDHA</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-heading">Pages</li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://ofrf.org/">
+          <i class="bi bi-card-list"></i>
+          <span>ORGANIC FARMING</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/home">
+          <i class="bi bi-card-list"></i>
+          <span>LEAF DISEASE DETECTION</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.accuweather.com/en/in/mh/maharashtra-weather">
+          <i class="bi bi-card-list"></i>
+          <span>WEATHER INFO</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.apnikheti.com/en/pn/govt-schemes">
+          <i class="bi bi-card-list"></i>
+          <span>GOVERNMENT SCHEMES</span>
+        </a>
+      </li>
+      
+
+
+
+  
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-register">
+          <i class="bi bi-card-list"></i>
+          <span>FEEDBACK</span>
+        </a>
+      </li>
+        
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://docs.google.com/forms/d/e/1FAIpQLScUzeRmbCPwJZXV1hd6tUBfSz2CNn_8rYjEg7fv-oo0-mXgzw/viewform?usp=sf_link">
+          <i class="bi bi-card-list"></i>
+          <span>YourDoubt</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <div id="main" class="main">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style >@media (min-width: 1200px) {
+
+      #main,.sizea
+      #footer {
+        margin-left: 300px;
+      }
+    }</style>
+    <style>
+      .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        overflow: hidden;
+      }
+    
+      .image-container img {
+        display: block;
+        width: 300px; /* Adjust as needed */
+        transition: transform 0.3s ease;
+      }
+    
+      .image-container:hover img {
+        transform: scale(5); /* Zoom effect */
+      }
+    
+      .zoom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        display: none;
+      }
+    
+      .image-container:hover .zoom-overlay {
+        display: block;
+      }
+
+      
+    </style>
+    
+
+    <div id="pdf-container">
+      <div id="pdf-viewer">
+        <button id="close-btn" onclick="closePDF()">Close</button>
+        <iframe id="pdf-iframe" src="" width="100%" height="100%"></iframe>
+      </div>
+    </div>
+     <!-- onclick="openVideo('')"-->
+     <div id="video-container" class="video-container">
+      <iframe id="video-iframe" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
+          <center><div class="close-button" onclick="closeVideo()">Close</div></center>
+    </div>
+    <nav class="navbar navbar-light " >
+      <div class="container-fluid" style="background-color: rgb(184, 247, 244); display: flex ; justify-content: center;text-align: center;" >
+        <h3>TOMATO </h3>
+      </div>
+    </nav>
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">TOMATO</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Content</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#GENERAL INFORMATION">GENERAL INFORMATION</a></li>
+          <li><a class="dropdown-item" href="#climet">CLIMATE</a></li>
+          <li><a class="dropdown-item" href="#FERTILIZER">FERTILIZER</a></li>
+          
+          <li><a class="dropdown-item" href="#PLANT PROTECTION">PLANT PROTECTION</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+
+
+
+<!-- image slider--> 
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="https://i.postimg.cc/QNpnS9Nd/t2.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.postimg.cc/28RDZyNm/t2.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/jSTvP0jL/t2.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+   
+
+  <br>
+  <nav class="navbar navbar-light " >
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 id="GENERAL INFORMATION">GENERAL INFORMATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container1">
+     
+        <img src="https://i.postimg.cc/dVBMT9Jc/t3.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+    <pr>Tomato is originated in Peru of South America. It is important commercial vegetable crop of India. It is the second most important crop of world after potato. Fruits are eaten raw or in cooked form. It is rich source of vitamin A, C, potassium and minerals. It is used in soup, juice and ketch up, powder. The major tomato producing states are Bihar, Karnataka, Uttar Pradesh, Orissa, Maharashtra, Andhra Pradesh, Madhya Pradesh and West Bengal. In Punjab state, Amritsar, Ropar, Jalandhar, Hoshiarpur are tomato growing districts.
+ </pr>
+      <br><br>
+  </div>
+  <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('NJJErPfQ-W0?si=C78jL-mPOZyRll9s')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container1')" style="border: none;">Show more</button><br><br>
+
+
+
+
+    <div id="climet" class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 >CLIMATE</h4>
+    </div>
+    <br>
+    <div style="display: inline-flex; gap: 10px; justify-content: center; text-align: center; flex-wrap: wrap; ">
+
+      <div class="card" style="width: 14rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">10-25°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Rainfall</h2>
+          <h6 class="card-subtitle mb-2 text-muted">400-600mm</h6>
+          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Sowing Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">15-25°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Harvesting Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">10-15°C</h6>          
+        </div>
+      </div>
+
+
+
+
+    </div>
+  <br><br>
+
+
+
+  <nav class="navbar navbar-light " >
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOIL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container2">
+      
+        <img src="https://i.postimg.cc/FFDJGMGY/t4.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+     <p>It can be grown in varied type of soil ranging from sandy loam to clay, black soil and red soil having proper drainage. It gives best result when grown under well drained sandy soil with high organic content. For good growth pH of soil should be 7-8.5. It can tolerate moderate acidic and saline soil. Avoid cultivation in high acidic soils. For early crops, light soil is beneficial where for heavy yields clay loam and silt-loam soils are useful.</p>
+      <br><br>
+     
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('TGmYy7P80V8?si=oVBl4T_0ReIMtIhM')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container2')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>POPULAR VARIETIES WITH THEIR YIELD</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container3">
+      
+        <img src="https://i.postimg.cc/HLnpYNXh/t1.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <pr><b>Punjab Ratta:</b> Ready for first picking in 125days from transplanting. Gives average yield of 225qtl/acre. This variety is suitable for processing.
+
+        Punjab Chhuhara: Fruits are seedless, pear shape, red and firm with thick wall or skin. Marketable quality remains for 7days after harvesting and thus suitable for long distance transportation and processing. It gives average yield of 325qtl/acre.
+        <br><br>
+       <b> Punjab Tropic:</b> Plant height is about 100cm. Ready to harvest in 141days. Fruits are of large size and round shape, they borne in cluster. Gives average yield of 90-95qtl/acre.
+       <br><br>
+       <b>Punjab Upma:</b> Suitable for cultivation in rainy season. Fruits are oval shape, medium size and of firm deep red color. Gives average yield of 220qtl/acre.
+       <br><br>
+       <b> Punjab NR -7:</b> Dwarf variety having medium size juicy fruits. It is highly resistant to fusarium wilt and root knot nematodes. Gives average yield of 175-180qtl/acre.
+       <br><br>
+        <b>Punjab Red cherry:</b> Developed by Punjab Agricultural University. These cherry tomatoes are used in salads. These are of deep red color and in future it will be available in yellow, orange and pink color. Sowing is done in August or September and plant is ready to harvest in February and gives yield up to July. Its early yield is 150 qtl/acre and total yield is 430-440 qtl per acre.
+        <br><br>
+       <b> Punjab Varkha Bahar 2:</b> Ready to harvest in 100days after transplanting. It is resistant to leaf curl virus. Gives average yield of 215 qtl/acre.
+       <br><br>
+       <b> Punjab Varkha Bahar 1:</b> After transplanting, ready to harvest in 90days. It is suitable for sowing in rainy season. It gives resistance to leaf curl virus. Gives average yield of 215qtl/acre.  
+       <br><br>
+       <b> Punjab Swarna:</b> Released in 2018. It has dark green color foliage. It has oval shaped fruits which is orange in color and medium in size. First picking should be done after 120 days of transplanting. It gives an average yield of 166qtl/acre till end-March and gives total yield of 1087qtl/acre. The variety is suitable for table purpose. 
+       <br><br>
+       <b> Punjab Sona Cherry:</b> Released in 2016. It gives an average yield of 425qtl/acre. The fruits are yellow in color and bears in bunches. The average weight of the fruit is approximately 11gm. It contains 7.5% sucrose content. 
+       <br><br>
+       <b> Punjab Kesari Cherry: </b>Released in 2016. It gives an average yield of 405qtl/acre. The average weight of the fruit is approximately 11gm. It contains 7.6% sucrose content.
+       <br><br>
+       <b> Punjab Kesar Cherry:</b> Released in 2016. It gives an average yield of 405qtl/acre. The average weight of the fruit is approximately 11gm. It contains 7.6% sucrose content.
+       <br><br>
+        <b>Punjab Varkha Bahar-4:</b> Released in 2015. It gives an average yield of 245qtl/acre. It contains 3.8% sucrose content. 
+        <br><br>
+       <b> Punjab Gaurav:</b> Released in 2015. It gives an average yield of 934qtl/acre. It contains 5.5% sucrose content.
+       <br><br>
+       <b> Punjab Sartaj:</b> Released in 2009. It has round shape fruit, moderate and hard. Suitable for rainy season. It gives an average yield of 898qtl/acre. 
+       <br><br>
+        <b>TH-1:</b> Released in 2003. The fruits are dark red in color, round hard and approximately 85gm weight. It gives an average yield of 245qtl/acre.
+        <br><br>
+       <b> Punjab Swarna:</b> Released in 2018. It has dark green color foliage. It has oval shaped fruits which is orange in color and medium in size. First picking should be done after 120 days of transplanting. It gives an average yield of 166qtl/acre till end-March and gives total yield of 1087qtl/acre. The variety is suitable for table purpose.  
+        Other States Variety
+        <br><br>
+       <b> HS 101:</b> Suitable for growing in north India during winter condition. Plants are dwarf. Fruits are round and medium size and juicy. Fruits are borne in cluster. It is resistant to Tomato Leaf Curl Virus.
+       <br><br>
+       <b> HS 102:</b> Early maturing variety. Fruits are small to medium in size, round and juicy.
+       <br><br>
+       <b> Swarna Baibhav Hybrid:</b> Recommended for cultivation in Punjab, Uttarakhand, Jharkhand, Bihar and Uttar Pradesh. It is sown in September- October. Fruits keeping quality is good so suitable for long distance transport and processing. Gives yield of 360-400qtl/acre.
+       <br><br>
+        <b>Swarna Sampada Hybrid:</b> Recommended for cultivation in Punjab, Uttarakhand, Jharkhand, Bihar and Uttar Pradesh. Suitable timing for sowing is August - September and February-May. It is resistant to bacterial wilt and early blight. It gives yield of 400-420qtl/acre.
+        <br><br>
+      <b>  Keekruth:</b> Plant height is about 100cm. Ready to harvest in 136days. Fruits are medium to large size, round shape, deep red color.
+      <br><br>
+      <b>  Keekruth Ageti: </b>Plant height is about 100cm.  Fruits are medium to large size, round shape having green shoulder which disappears on ripening.
+        
+        </pr>
+
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('lrxJxQIgrf8?si=2eUJgm1G7BdZ9wYy')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+      <button  id="toggleButton" onclick="toggleContent('container3')" style="border: none;">Show more</button>
+  </div>
+
+  
+  
+  <br>
+  <nav class="navbar navbar-light " >
+ <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>LAND PREPARATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container4">
+      
+        <img src="https://i.postimg.cc/6pf0F3ML/t16.webp" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      
+      <pr>
+        For tomato plantation, it required well pulverise and levelled soil. To bring soil to fine tilth, plough land for 4-5times, then planking is done to make soil level. At time of last ploughing add well decomposed cow dung and Carbofuron@5kg or Neem cake@8kg per acre should be applied. Transplantation of tomato is done on raised bed. For that prepared raised bed of 80-90cm width. To destroy harmful soil borne pathogen, pest and organism, soil solarization is carried out. It can be done by using transparent plastic film as mulch. This sheet absorb radiation and thus increases soil temperature and kill pathogen.
+
+
+      </pr>
+      <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('lYNHdEq0Wqk?si=CNzjQX5I3DuI7-Gs')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container4')" style="border: none;">Show more</button>
+
+     </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+  <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOWING</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container5">
+      
+        <img src="https://i.postimg.cc/Y9zv9z7P/240-F-647424157-gjc-Ad-F1044lhsh4g-Qf-Wa-Hhjzzj-MMAOc-F.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+       <pr><b>Time of sowing:-</b>
+        For northern state, tomato cultivation for spring season is done in late November and transplanted in second fortnight of January. For autumn crop, sowing is done in July - August and transplanted in August - September. In hilly areas sowing is done in March- April and transplantation is done in April -May.
+        <br><br>
+        <b>Spacing:-</b>
+        Depending upon variety use and its growth habit, use spacing of 60x30cm or 75x60cm or 75x75cm. In Punjab, for dwarf variety use spacing of 75cm x 30cm and for rainy season use spacing of 120-150 x 30cm.
+        <br><br>
+       <b> Sowing Depth:-</b>
+        In nursery sow seeds at depth of 4cm and then covered with soil.  
+        <br><br>
+       <b> Method of sowing</b>
+        Transplanting of seedling in main field.
+        
+        
+        </pr>
+        
+        
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('shorts/_YYF1Gm6NYI?si=k42EEUTU1fNQ6o8Q')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container5')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " id="FERTILIZER">
+  <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>FERTILIZER</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container6">
+      
+        <img src="https://i.postimg.cc/HxY51k8X/t12.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+        <br><br>
+     
+      <pr>At the time of land preparation, apply well rotten cow dung@10ton/acre and mix well in the soil. Apply fertilizer dose of N:P:K @60:25:25kg/acre in form of Urea@130kg/acre, Single Super Phosphate@155kg/acre and MOP@45kg/acre. Apply half dose of Nitrogen, full dose of Phosphorus and Potash applied as basal dose, apply it before transplanting. 20 to 30days after transplantation apply remaining 1/4th dose of nitrogen. Two month after transplantation, apply remaining dose of Urea.
+        <br><br>
+        <b>WSF:-</b> 10-15days after transplanting, take spray of 19:19:19 along with micronutrient@2.5 to 3gm/ltr of water. Due to low temperature, plant absorbs fewer nutrients and growth get affected. In such cases foliar spray helps in growth of plants. In vegetative growth stage take spray of 19:19:19 or 12:61:00 @ 4-5 gm/Ltr. For better growth and more yield, spray with 50ml Brassinolide per acre in 150ltr of water at 40-50 days after transplanting for two times at 10days intervals.
+        <br><br>
+        Obtain good fruit quality along with good yield, take spray of 12:61:00 (Mono Ammonium Phosphate)@10 gm/Ltr before flowering.  When flowering starts in initial days, take spray of Boron@25gm/10litre of water. It will help to control flower and fruit dropping.  Sometime black spots are observed on fruits, these are due to calcium deficiency. Take spray of calcium nitrate@2gm/ltr of water. In high temperature flower drop is seen, spray with NAA@50 ppm (50ml/10L water) when crop is in flowering stage. Give one spray of sulphate of potash (00:00:50+18S) during fruit development stage@3-5 gm/ltr of water. It will give good fruit development and colour. Fruit cracking reduces fruit quality and lowers prices up to 20%. Take spray of chelated boron (Solubor)@200gm/acre/200Ltr water at fruit ripening stage. To improve plant growth, flowering and fruit set, spray with sea weed extract (Biozyme/Dhanzyme)@3-4 ml/Ltr water twice a month. Maintain good soil moisture.
+        
+        
+
+        
+        </pr>
+      <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('gHQGDd42riI?si=s6BAR0lMSVaAjgZb')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container6')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+ <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>WEED CONTROL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container7">
+      
+        <img src="https://i.postimg.cc/tJv1FdT4/t12.png" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+        <br>
+        <pr>Do frequent weeding, hoeing and earthing up and keep field weed free till 45 days. If weed left uncontrolled then it will reduce crop yield upto 70-90%. Two to three days of after transplantation take spray of Fluchloralin (Basalin) @800ml/200Ltr water as pre-emergence weedicide. If weed intensity is high, take post emergence spray of Sencor@300g/acre. Mulching is also an effective way to reduce soil temperature along with weed control.</pr>
+      
+        <br><br>
+     
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('Mcqy6Tmpk_I?si=vaNgfhHWyJ6tH9UV')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container7')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+   <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>IRRIGATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container8">
+      
+        <img src="https://i.postimg.cc/cHzbv2S9/t13.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      
+     <pr>In winter, apply irrigation with interval of 6 to 7days and in summer month, apply with interval of 10-15days depending upon soil moisture. Period of drought follow by heavy watering leads to cracking of fruits. Flowering stage is critical for irrigation, water stress during this stage can leads to flower drop and adversely affecting fruiting and productivity. According to various researches, it is found that, half inch irrigation at every fortnight causes maximum penetration of roots and thus gives high yield.
+
+
+     </pr>
+      <br><br>  
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('Z9HAy9EYKKs?si=sgCdF8WpcGFEodhN')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container8')" style="border: none;">Show more</button>
+  </div>
+
+  <br><br>
+  <nav class="navbar navbar-light " >
+  <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>HARVESTING</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container10">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/d1v9pD32/t11.jpg" alt="Image 2">
+        <br><br>
+        <div class="zoom-overlay"></div>
+      </div>
+      <br><br>
+      <pr>Plant starts yielding by 70days after transplantation. Harvesting is done depending upon purpose like for fresh market, long distance transport etc. Mature green tomatoes, 1/4th fruits portion gives pink color are harvested for long distance markets. Almost all fruits turn into pink or red color but having firm flesh are harvested for local markets. For processing and seed extraction purpose, fully ripe fruits with soft flesh are used.</pr>
+      <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('C-d5_qLX6FE?si=ezjJmt4sZB0DtmHe')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container10')" style="border: none;">Show more</button>
+  </div>
+
+  <br id="PLANT PROTECTION">
+  
+  <nav class="navbar navbar-light "  >
+ <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>PLANT PROTECTION </h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container11">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/ZYjCr0hG/t1.jpg" alt="Image 2">
+        <div class="zoom-overlay"></div>
+      </div>
+      <br><br>
+     <pr><b>Pest and their control:</b>
+      Leaf Miner: Maggots of leaf miner feed on leaf and make serpentine mines into leaf. It affects the photosynthesis and fruit formation.
+      <br><br>
+      At initial stage, take spray of Neem Seed Kernel Extract@5%, 50gm/Ltr of water. To control leaf miner, spray with Dimethoate 30EC@250ml or Spinosad@80ml in 200Ltr of water or Triazophos@200ml/200Ltr of water.
+      
+      
+       </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('R924jtni8_0?si=0zuuWhhAg6Msobze')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container11')" style="border: none;">Show more</button>
+  </div>
+
+  
+  <div class="card">
+    <div class="container" id="container12">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/zDwPpZtZ/t2.jpg" alt="Image 2">
+        
+        <div class="zoom-overlay"></div>
+      </div>
+
+      
+     <pr><b>White fly:</b> The nymphs and adults of white fly suck the cell sap from the leaves and weaken the plants. They secrete honey dew on which black sooty mould develops on leaves. They also transmit leaf curl diseases.
+      <br><br>
+      After sowing of seeds in nursery, cover bed with 400mesh nylon net or thin white cloth. It helps to protect seedlings from pest-disease attack. To check infestation use yellow sticky traps coated with grease and sticky oils. To control spread of whiteflies, uproot and destroy affected plants. In case of severe infestation, take spray of Acetamiprid 20SP@80gm/200Ltr of water or Triazophos@250ml/200litre or Profenophos@200ml/200litre of water. Repeat the spray after 15 days.
+      
+      
+    </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('SbMjVTFG_uI?si=EEoEzPAzSeFj4pOD')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div> 
+  </nav>
+  
+  
+  <div class="card">
+    <div class="container" id="container13">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/52t4bmYy/t3.jpg" alt="Image 2">
+      
+        <div class="zoom-overlay"></div>
+      </div>
+
+    
+     <pr><b>Thrips:</b> Commonly observed pest. Mostly observed in dry weather. They suck sap from the foliage and results in curling of leaves, leaves become cup shaped or curved upward. Also causes flower drop.
+      <br><br>
+      To check severity of thrips incidence, keep blue sticky traps @6-8 per acre. Also to reduce the incidence of this disease, spray Verticillium lecani@5gm/Ltr water. If incidence of thrips is more, then take spray of Imidacloprid 17.8SL @60ml or Fipronil@200ml/200Ltr of water or Acephate 75% WP@600 gm/200Ltr or Spinosad@80ml/acre in 200Ltr water.
+      
+      s.
+      
+      
+    </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('gadBwZqkMu8?si=V-SRANl4G-Qc_R87')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div> 
+  </nav>
+
+
+
+    
+  <div class="card">
+    <div class="container" id="container14">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/rst4nkc6/t4.jpg" alt="Image 2">
+        
+        <div class="zoom-overlay"></div>
+      </div>
+
+      
+     <pr>Gram Pod borer or Heliothis armigera: It is a major pest of tomato. Crop loss due to Helicoverpa is about 22-37% if not controlled at proper stage. It feeds on leaves also on flower and fruits. On fruits they make circular holes and feed on flesh.
+      <br><br>
+      In case of initial infestation, handpicked grown up larvae. At early stage use HNPV or Neem extract@50gm/Litre of water. To control fruit borer, put 16 pheromone traps/acre at equal distance after 20 days of transplanting. Change lure in every 20 days interval. Destroy infested parts. If pest population is high, spray Spinosad@80ml+sticker@400ml/200Ltr of water. To control shoot and fruit borer, spray Rynaxypyr(Coragen)@60ml/200Ltr water.
+      
+    </pr>
+        <br><br>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('SbMjVTFG_uI?si=EEoEzPAzSeFj4pOD')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div> 
+  </nav>
+
+
+
+
+
+
+  
+<div class="cards" style="display: flex; justify-content: center; align-items: center;">
+  <div class="card" style="width: 18rem;" >
+    <img src="https://i.postimg.cc/9QCQn7jX/3.jpg" class="card-img-top" alt="..." style="height: 200px; ">
+    <div class="card-body">
+      <h5 class="card-title">Fertilizers</h5>
+      <p class="card-text">In order to buy the fertilizers that are required for TOMATO crop just click on the below button . </p>
+      <a href="https://www.amazon.in/s?k=amazon+fertilizer&adgrpid=58082751599&ext_vrnc=hi&gclid=CjwKCAiAuYuvBhApEiwAzq_YiTf4Ah-KZJSEs56kT_9PiiXt4zPx-atpUAsiSYrfUt0pizFMdEzNTBoC9SwQAvD_BwE&hvadid=590712074606&hvdev=c&hvlocphy=9181376&hvnetw=g&hvqmt=e&hvrand=17421580216572443258&hvtargid=kwd-447374980733&hydadcr=24566_2265454&tag=googinhydr1-21&ref=pd_sl_174os0xfco_e" class="btn btn-primary">Click</a>
+    </div>
+  </div>
+    
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>InfoCrop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+     
+      Designed by <a href="">InfoCrop.</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="main.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,pa,ml,or,as,kok,ne,sa,mni,sd,ks,doi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+
+
+    //zoom image 
+document.querySelectorAll('.image-container').forEach(function(container) {
+  container.addEventListener('mousemove', function(event) {
+    const img = container.querySelector('img');
+    const boundingRect = container.getBoundingClientRect();
+    const offsetX = event.clientX - boundingRect.left;
+    const offsetY = event.clientY - boundingRect.top;
+    const percentX = offsetX / boundingRect.width * 100;
+    const percentY = offsetY / boundingRect.height * 100;
+    img.style.transformOrigin = percentX + '% ' + percentY + '%';
+  });
+});
+
+    
+// images sliding 
+let slideIndex = 1;
+showSlide(slideIndex);
+
+function changeSlide(n) {
+  showSlide(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlide(slideIndex = n);
+}
+
+function showSlide(n) {
+  const slides = document.getElementsByClassName("slide");
+  const dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].classList.add("active");
+
+  setTimeout(() => {
+    changeSlide(1);
+  }, 10000); // Change slide every 5 seconds
+}
+
+
+//video slider 
+const videoWrapper = document.querySelector(".video-wrapper");
+const videoSlides = document.querySelectorAll(".video-slide");
+const points = document.querySelectorAll(".point");
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+
+let currentIndex = 0;
+
+// Function to slide to the given index
+function slideTo(index) {
+  videoWrapper.style.transform = `translateX(-${index * 100}%)`;
+  points.forEach((point, i) => {
+    point.classList.toggle("active", i === index);
+  });
+}
+
+// Function to slide left
+function slideLeft() {
+  currentIndex = (currentIndex - 1 + videoSlides.length) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Function to slide right
+function slideRight() {
+  currentIndex = (currentIndex + 1) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Navigate using arrow buttons
+arrowLeft.addEventListener("click", slideLeft);
+arrowRight.addEventListener("click", slideRight);
+
+// Navigate using points
+points.forEach((point, index) => {
+  point.addEventListener("click", () => slideTo(index));
+});
+
+// Auto slide every 5 seconds
+setInterval(slideRight, 60000);
+
+
+
+
+
+//youtube
+function openVideo(videoId) {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+  videoContainer.style.display = 'block';
+}
+
+function closeVideo() {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = '';
+  videoContainer.style.display = 'none';
+}
+
+//scrolling text
+function toggleContent(containerId) {
+  var container = document.getElementById(containerId);
+  var button = container.nextElementSibling; // Getting the button element next to the container
+  if (container.style.maxHeight) {
+    container.style.maxHeight = null;
+    button.textContent = 'Show Content';
+  } else {
+    container.style.maxHeight = container.scrollHeight + "px";
+    button.textContent = 'Hide Content';
+  } 
+}
+
+
+//serch
+function searchAndScroll() {
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  const headings = document.querySelectorAll('h4, p');
+  
+  let found = false;
+  for (const heading of headings) {
+  const headingText = heading.textContent.toLowerCase();
+  if (headingText.includes(searchText)) {
+  heading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  found = true;
+  break; } }
+  if (!found) {
+  alert('Information not Found.');
+}
+}
+
+//pdf
+function openPDF(url) {
+  var fileId = extractFileId(url);
+  var pdfViewer = document.getElementById('pdf-iframe');
+  var pdfContainer = document.getElementById('pdf-container');
+  var pdfURL = 'https://drive.google.com/file/d/' + fileId + '/preview';
+  
+  pdfViewer.src = pdfURL;
+  pdfContainer.style.display = 'block';
+}
+
+function closePDF() {
+  var pdfContainer = document.getElementById('pdf-container');
+  pdfContainer.style.display = 'none';
+}
+
+function extractFileId(url) {
+  var match = url.match(/\/file\/d\/(.+?)\//);
+  return match ? match[1] : null;
+}
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+      !function(w, d, s, ...args){
+        var div = d.createElement('div');
+        div.id = 'aichatbot';
+        d.body.appendChild(div);
+        w.chatbotConfig = args;
+      
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s);
+        j.defer = true;
+        j.type = 'module';
+        j.src = 'https://aichatbot.sendbird.com/index.js';
+        f.parentNode.insertBefore(j, f);
+      }(window, document, 'script', '461D5D41-1ECB-4152-975E-00AEFF10A8B8', 'onboarding_bot');
+      </script>
+
+    
+</body>
+
+</html> 

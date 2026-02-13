@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <title> </title>
+  <meta content="Sugarcane farming involves the cultivation of sugarcane, a tall perennial grass primarily grown for its sweet juice, which is used to produce sugar, ethanol, and various other products. The process typically includes land preparation, planting sugarcane stalks or setts, managing irrigation and fertilization, controlling weeds, pests, and diseases, and harvesting the mature sugarcane stalks. Sugarcane thrives in tropical and subtropical climates with abundant rainfall or irrigation, with major producers including Brazil, India, and China. Harvested sugarcane is processed in sugar mills or refineries to extract sugar and other valuable by-products. Sugarcane farming is vital for the sugar and biofuel industries, providing economic opportunities for farmers and contributing to global agricultural markets." name="description">
+  <meta content=" cultivation, sugarcane, perennial grass, sweet juice, sugar production, ethanol production, land preparation, planting, stalks, setts, irrigation, fertilization, weed control, pest management, disease control, harvesting, tropical climate, subtropical climate, rainfall, major producers, Brazil, India, China, sugar mills, refineries, biofuel, economic opportunities, agricultural markets." name="keywords">
+
+ <!-- Favicons -->
+ <link href="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" rel="icon">
+ <link href="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  
+  <style>
+    @media (max-width: 768px) {
+  .serch1234{
+    display: none;
+  }
+  
+    }
+  </style>
+  <!-- Template Main CSS File -->
+  <link href="style.css" rel="stylesheet">
+<style >@media (min-width: 1200px) {
+
+  #main,.sizea
+  #footer {
+    margin-left: 300px;
+  }
+}</style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: rgb(93, 180, 137);">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" alt="image">
+      </a>
+
+  
+    </div><!-- End Logo -->
+
+    <center class="serch1234">
+      <div>
+      <label for="searchInput"></label>
+  <input type="text" id="searchInput" style="border-radius: 20px;">
+      <button style="border-radius: 20px;" onclick="searchAndScroll()">🔍</button> </div></center>
+      <!-- search -->
+
+    
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+        
+          <div id="google_translate_element"></div>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              Today's Important Notifications.  
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Weather</h4>
+                <p>Cloudy</p>
+                <p>Rain Possibility</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Market</h4>
+                <p>All the markets are closed .</p>
+                <p>Today</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Prediction </h4>
+                <p>In this month prices of markets are increases  </p>
+                <p>For 15 days</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Government </h4>
+                <p>All the benefits schemes are open</p>
+                <p>Apply Now !!</p>
+              </div>
+            </li>
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " onclick="goBack()">
+          <i class="bi bi-grid"></i>
+          <span>HOME</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>CROPS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/barley">
+              <i class="bi bi-circle"></i><span>BARLEY(JOW)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/maize">
+              <i class="bi bi-circle"></i><span>MAIZE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/rice">
+              <i class="bi bi-circle"></i><span>RICE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/soybean">
+              <i class="bi bi-circle"></i><span>SOYBEAN</span>
+            </a>
+          </li>
+          <li>
+            <a href="/cotton">
+              <i class="bi bi-circle"></i><span>COTTON</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sugarcane">
+              <i class="bi bi-circle"></i><span>SUGARCANE</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>FRUITS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/grapes">
+              <i class="bi bi-circle"></i><span>GRAPES</span>
+            </a>
+          </li>
+          <li>
+            <a href="/pomegranate">
+              <i class="bi bi-circle"></i><span>POMEGRANATE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/banana">
+              <i class="bi bi-circle"></i><span>BANANA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mango">
+              <i class="bi bi-circle"></i><span>MANGO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/guava">
+              <i class="bi bi-circle"></i><span>GUAVA</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/watermelon">
+              <i class="bi bi-circle"></i><span>WATERMELON</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>FLOWERS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/rose">
+              <i class="bi bi-circle"></i><span>ROSE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/marigold">
+              <i class="bi bi-circle"></i><span>MARIGOLD</span>
+            </a>
+          </li>
+          <li>
+            <a href="/jasmine">
+              <i class="bi bi-circle"></i><span>JASMINE</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>VEGETABLES</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/brinjal">
+              <i class="bi bi-circle"></i><span>BRINJAL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/potato">
+              <i class="bi bi-circle"></i><span>POTATO</span>
+            </a>
+          </li>
+          <li>
+            <a href="/chilli">
+              <i class="bi bi-circle"></i><span>CHILLI</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/tomato">
+              <i class="bi bi-circle"></i><span>TOMATO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/spinach">
+              <i class="bi bi-circle"></i><span>SPINACH</span>
+            </a>
+          </li>
+          <li>
+            <a href="/carrot">
+              <i class="bi bi-circle"></i><span>CARROT</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>MEDICINAL PLANTS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/aloevera">
+              <i class="bi bi-circle"></i><span>ALOE VERA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/amla">
+              <i class="bi bi-circle"></i><span>AMLA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ashwagandha">
+              <i class="bi bi-circle"></i><span>ASHWAGANDHA</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+      
+
+      <li class="nav-heading">Pages</li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://ofrf.org/">
+          <i class="bi bi-card-list"></i>
+          <span>ORGANIC FARMING</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/home">
+          <i class="bi bi-card-list"></i>
+          <span>LEAF DISEASE DETECTION</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.accuweather.com/en/in/mh/maharashtra-weather">
+          <i class="bi bi-card-list"></i>
+          <span>WEATHER INFO</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.apnikheti.com/en/pn/govt-schemes">
+          <i class="bi bi-card-list"></i>
+          <span>GOVERNMENT SCHEMES</span>
+        </a>
+      </li>
+      
+
+
+
+  
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-register">
+          <i class="bi bi-card-list"></i>
+          <span>FEEDBACK</span>
+        </a>
+      </li>
+      
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://docs.google.com/forms/d/e/1FAIpQLScUzeRmbCPwJZXV1hd6tUBfSz2CNn_8rYjEg7fv-oo0-mXgzw/viewform?usp=sf_link">
+          <i class="bi bi-card-list"></i>
+          <span>YourDoubt</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <div id="main" class="main">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style >@media (min-width: 1200px) {
+
+      #main,.sizea
+      #footer {
+        margin-left: 300px;
+      }
+    }</style>
+    <style>
+      .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        overflow: hidden;
+      }
+    
+      .image-container img {
+        display: block;
+        width: 300px; /* Adjust as needed */
+        transition: transform 0.3s ease;
+      }
+    
+      .image-container:hover img {
+        transform: scale(5); /* Zoom effect */
+      }
+    
+      .zoom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        display: none;
+      }
+    
+      .image-container:hover .zoom-overlay {
+        display: block;
+      }
+
+      
+    </style>
+    
+
+    <div id="pdf-container">
+      <div id="pdf-viewer">
+        <button id="close-btn" onclick="closePDF()">Close</button>
+        <iframe id="pdf-iframe" src="" width="100%" height="100%"></iframe>
+      </div>
+    </div>
+     <!-- onclick="openVideo('')"-->
+     <div id="video-container" class="video-container">
+      <iframe id="video-iframe" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
+          <center><div class="close-button" onclick="closeVideo()">Close</div></center>
+    </div>
+    <nav class="navbar navbar-light " >
+      <div class="container-fluid" style="background-color: rgb(184, 247, 244); display: flex ; justify-content: center;text-align: center;" >
+        <h3>SUGARCANE</h3>
+      </div>
+    </nav>
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">SUGARCANE</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Content</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#GENERAL INFORMATION">GENERAL INFORMATION</a></li>
+          <li><a class="dropdown-item" href="#climet">CLIMATE</a></li>
+          <li><a class="dropdown-item" href="#FERTILIZER">FERTILIZER</a></li>
+          
+          <li><a class="dropdown-item" href="#PLANT PROTECTION">PLANT PROTECTION</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+
+
+
+<!-- image slider--> 
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="https://i.postimg.cc/jdjZbDb7/sugarcane1.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.postimg.cc/4xVtkGmc/slide2.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/4dmV09tf/slide3.webp" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+   
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 id="GENERAL INFORMATION">GENERAL INFORMATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container1">
+     
+        <img src="https://i.postimg.cc/3RmJWrQj/slide1.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+     <br><br>
+        <p>Sugarcane, Saccharum officinarum L. is a perennial gras. It belongs to bamboo family and it is indigenous to India. It is the main source of sugar, jaggery and khandsari. About two-thirds of the total sugarcane produced in India is consumed for making jaggery and khandsari and only one third of it goes to sugar factories. It also provides raw material for manufacturing alcohol. Brazil is largest producer of sugarcane followed by India, China, Thailand, Pakistan and Mexico. In India, Maharashtra is largest producer of sugar and it contributes about 34% of sugar in country followed by Uttar Pradesh.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('live/dC6H5-gWrbU?si=37Q0oWiOI-aYYK-i')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container1')" style="border: none;">Show more</button><br><br>
+
+
+
+
+    <div id="climet" class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 >CLIMATE</h4>
+    </div>
+    <br>
+    <div style="display: inline-flex; gap: 10px; justify-content: center; text-align: center; flex-wrap: wrap; ">
+
+      <div class="card" style="width: 14rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">20°C - 30°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Rainfall</h2>
+          <h6 class="card-subtitle mb-2 text-muted">75-150cm</h6>
+          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Sowing Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">20°C - 25°C</h6>        
+          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Harvesting Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">20-30°C</h6>          
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+  <br><br>
+  <nav class="navbar navbar-light " >
+    
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOIL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container2">
+      
+        <img src="https://i.postimg.cc/fWqgkc5K/sugarcane-sow.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+     <br><br>
+      <p>Well drained, deep, loamy soil with ground water table below 1.5-2 m from the soil surface with adequate water holding capacity is ideal for sugarcane cultivation. It can tolerate considerable degree of acidity and alkalinity so it can be grown on soil, ranging from 5 to 8.5. If soil is low in pH (less than 5) add lime in soil and for high pH (more than 9.5) do gypsum application.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('90-kml6Qz5U?si=4T1FQlmkIFBkqcca')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container2')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>POPULAR VARIETIES WITH THEIR YIELD</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container3">
+      
+        <img src="https://i.postimg.cc/W3H6pnjq/sugarcanevariety.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      
+      <p><b>CoJ 85:</b>It is early season variety. It is tolerant to red rot and frost. It is prone to lodging hence do proper earthing up and propping. Gives average yield of 306quintal/acre..
+
+        .</p>
+      <p><b>Co 118:</b>  Early season variety. The canes of this variety are medium thick, greenish yellow color. It is tolerant to red rot and frost. It performs well under high fertility condition with frequent irrigation. Gives average yield of 320 qtl/acre.
+        .</p>
+      <p><b>CoJ 64: </b> It is early season variety. It gives good germination, profuse tillering and good ratooner. It produces good quality of jaggery. It is highly susceptible to red rot. Gives average yield of 300 qtl/acre.
+        .</p>
+      <p><b>CoH 119: </b><p> Mid-season variety. It has tall thick greenish canes with prominent weather. It is tolerant to red rot and frost. It is an average ratooner. Gives average yield of 340Qtl/acre.
+    </p>
+        <b>Other States Variety</b>
+
+       <p> Cos 91230: Gives average yield of 280 qtl/acre.
+
+        Co Pant 90223: Gives average yield of 350 qtl/acre.
+        
+        CoH 92201: Early maturing variety, gives average yield of 300 qtl/acre.
+        
+        Cos 95255: Early maturing variety, gives average yield of 295 qtl/acre.
+        
+        CoS 94270: Gives average yield of 345 qtl/acre.
+        
+        CoH 119: Early maturing variety, gives average yield of 345 qtl/acre.
+        
+        Co 9814:  Early maturing variety, gives average yield of 320 qtl/acre.
+        
+        
+</p>
+
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('uLVpyq7C35k?si=L9m3vhojLyqRV4v1')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    
+      <button  id="toggleButton" onclick="toggleContent('container3')" style="border: none;">Show more</button>
+  </div>
+
+  
+  
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>LAND PREPARATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container4">
+      
+        <img src="https://i.postimg.cc/VLWyvrrL/sugarcane-landprep.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <br>
+      <p>Give two ploughings to land. First ploughing should be given at depth of 20-25 cm. Crush clods with suitable implements or machine.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('mMrFPEygo2s?si=78eErbGs_NTlZLAN')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container4')" style="border: none;">Show more</button>
+
+     </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOWING</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container5">
+      
+        <img src="https://i.postimg.cc/fWqgkc5K/sugarcane-sow.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      
+      <p>Time of sowing</p>
+      In Punjab, planting season of sugarcane is from September to October and February to March. Sugarcane takes generally one year to mature therefore called as Eksali.
+
+      
+        
+       <p>Spacing</p> 
+       Row spacing is ranges from 60-120 cm for sub-tropical regions.
+        
+        <br>
+        <p>Method of Sowing</p>
+       <p>Sow the sugarcane at depth of 3-4 cm and cover it with soil.
+
+
+       </p>
+
+     <p> Method of sowing
+
+A) For sowing use improved method of planting like deep furrow, trench method, paired row method or ring pit method.
+
+1) Dry planting in ridges and furrow: With the help of tractor drawn ridger, make ridges and furrows at distance of 90 cm. Plant sugarcane setts then cover it with soil. After then give light irrigation.
+ 
+2) Paired row planting: Make Trenches at 150 cm distance using trenches opener. Plant sugarcane in paired row using 30:30-90-30:30cm spacing. It gives higher yield as compared to ridges and furrow.
+ 
+3) Ring Pit method: Circular pits of 60 cm diameters are dug at depth of 30 cm with a tractor mounted digger. 60 cm gap is provided between adjacent pits. 2-3 ratoons can be taken. 25-50% higher yield can be obtained compared to ridge and furrow.
+ 
+B) Single budded set planting: Select healthy setts for plantation. Make furrows at distance of 75-90 cm. Place single budded setts. If only small size setts from top portion of cane are selected then they are planted at distance of 6"-9". Place eye of sett on upward direction to ensure proper and quick germination. Cover setts with soil and apply light irrigation.
+</p> 
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('faZqhBCR8Q4?si=Y2Zi_axVCKKZRP4t')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container5')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " id="FERTILIZER">
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>FERTILIZER</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container6">
+      
+        <img src="https://i.postimg.cc/rw9tfJdX/Sugarcane-Fertilizer.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+     <br><br>
+      <p>Soil testing after every three year is necessary to know actual need of fertilizer. Before sowing at time of last ploughing, add well decomposed cow dung@8ton or Vermicompost+ Ralligold@8-10kg or PSB@5-10kg per Acre.
+        At time of sowing apply Urea@66kg per acre. At development stage, apply second dose of Urea@66kg at the time of second irrigation. Apply third dose of Urea@66kg at time of fourth irrigation.
+        
+        In winter due to low temperature uptake of nutrient by crop become less and plant give yellow appearance. To recovered crop take spray of 19:19:19@100gm/15Ltr of water. In water scarcity situation spray of Urea+Potash@2.5kg/100Ltr is helpful for crop.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('w6Po9TP5VIM?si=vKQMJuXiUTQcmAgK')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container6')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>WEED CONTROL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container7">
+      
+        <img src="https://i.postimg.cc/MGQJWs1g/sugarcane-weedctrl.png" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <br>
+      <p>In sugarcane due to weed infestation about 12 to 72% yield loss is observed depending upon severity. Initial 60-120 days are critical for weed management. Therefore weed management practices should be adopt within 3-4 months after planting. For control of weeds, chemical is not only solution. Adopting mechanical as well as cultural practices gives effective solution.
+
+        1) Mechanical Measure: As sugarcane is widely space crop, weeding with hand or interculture operation can be easily carried out. Take 3-4 hoeing after every irrigation.
+        
+        2) Cultural Operations: It included change in cropping pattern, intercropping and trash mulching. Monocropping leads to heavy infestation of weed. Crop rotation with fodder or green manure crops suppress weeds. Also sugarcane is wider space crop so there is opportunity for weed to grow in large numbers. If sugarcane is intercrop with short duration crops then it will suppress the weed growth also give additional benefit. In trash mulching, mulch of 10-12cm thickness is provided in between cane row after emergence of cane. It will restrict the sunlight thus help to check weed growth. It also conserved soil moisture.
+        
+        3) Chemical: To control weeds, carry out pre-emergence weedicide application with Simazine or Atrazine@600-800 g/acre or Metribuzine@ 800 g/acre or Diuron@1- 1.2 kg/acre. Apply pre-emergence herbicides immediately after planting. Apply 2,4-D@250-300 g/acre as post-emergence herbicide for broad-spectrum weed control in sugarcane.
+         </p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('nnSY41N537o?si=lTNB4Xcbb7mSJi_D')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container7')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>IRRIGATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container8">
+      
+        <img src="https://i.postimg.cc/QMtk5Pfn/sugarcaneirrig.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <br>
+      <p>The number of irrigations required will depending upon soil type, water availability etc. The hot weather associated with dry winds and drought increases the water requirement of the crop. 
+
+        Apply first irrigation when 20-25% crops have germinated. In monsoon, apply irrigation depending upon rainfall intensity and frequency. In case of scanty rainfall apply irrigation with 10days interval. Afterwards increase irrigation intervals, i.e apply water with 20-25days interval. To conserved moisture in soil do mulching in between cane rows. Avoid water stress from April to June. Water stress during these days will reduce yield. Avoid water logging in standing field. Tillering stage and elongation or grand growth phase are critical for irrigation.
+        
+        Earthing: Soil between the furrows of canes, is taken with the help of spade and applied to the sides of the plants. It help to mix top dressed fertilizer well within the soil, also it help to support plant and prevent it from lodging.
+
+      </p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('Lctt_Mu3UNE?si=2GLN6ypZo1R4p4c4')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container8')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  
+
+  <br>
+  
+
+  <br id="PLANT PROTECTION">
+  
+  <nav class="navbar navbar-light "  >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>PLANT PROTECTION </h4>
+    </div>
+  </nav>
+  <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('ZyoSeMutHRY?si=daWQmut9EClwIJtL')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+  <div class="card">
+    <div class="container" id="container11">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/66m35PZp/dis1.png" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Pest and their control:
+        Early shoot borer: Attacked in germination stage upto internodes formations. Larva make holes in shoot below the ground level and then enter into it thus causes dead heart. It give offensive smell. It is mostly observed in light soil and in dry weather. Pest is active from March - June.
+        
+        Avoid late plantation. Apply Chlorpyriphos@1litres/acre with 100-150 litres of water over the setts placed on furrows with the help of rosecan. Remove dead heart infected plants. Give light irrigation and avoid drying of field.
+        </P>
+        
+        
+        
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container11')" style="border: none;">Show more</button>
+  </div>
+
+  
+  <div class="card">
+    <div class="container" id="container12">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/xC72YWZr/dis2.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>White Grub: These feed on root system and thus damage to crop. Entire drying up of stalks and easily dislodging of cane are main symptoms for white grub infestation. In initial stage infestation observed in patches and afterwards it spread on entire field.
+
+        The adult beetles emerge from the soil during June-July with the first showers of rain. They congregate on the nearby trees and feed on their leaves during night. The eggs are laid in the soil and the larvae (grubs) hatching from them eat away the rootlets or root hairs of the groundnut plants. To destroy beetles spray Imidacloprid@4-6ml/10Ltr of water on plants of nearby sugarcane plants.
+        For effective management of white grub. Plough the field and exposes the beetles resting in the soil. Do not delay crop sowing. Before sowing treat cane with Chlorpyriphos. Apply Phorate@4kg or carbofuran@13kg per acre in the soil at or before sowing. In heavily infested fields, flooding is to be done for 48 hrs. Do drenching of Clothianidin@40gm/acre with 400 Ltr of water using cane.</p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div>
+
+  
+  </nav>
+  <div class="card">
+    <div class="container" id="container13">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/3JhKRHR7/dis3.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Termites: Before sowing do cane treatment. Dip setts in imidacloprid solution@4ml/10Ltr for 2min or at time planting spray Chlorpyriphos@2litre/acre on setts. If infestation occur in standing crop, drench with Imidacloprid@60ml/150litre of water or Chlorpyriphos@1ltr/200Ltr of water..</p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container13')" style="border: none;">Show more</button>
+  </div>
+
+  
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container14">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/cHGzm0PL/dis4.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Pyrilla: Severe pest of North India. Adult suck leaf sap under the surface of leaves. It results in yellowing white spot and withering. They secretes honey like substance and attract sooty mould fungi, due to this leaves become blackish.
+
+        At regular interval, collect and destroy white-puffy egg masses. In severe infestation spray with Dimethoate or Acephate@ 1-1.5ml/Ltr of water.      
+      .</p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container14')" style="border: none;">Show more</button>
+  </div>
+
+
+  <div class="card">
+    <div class="container" id="container14">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/6QXVbq6g/dis5.jpg" alt="Image 2">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Root borer: Borer enter into root zone of shoot below ground. Infestation is high from July onward. Due to infestation yellowing of leaves from leaf apex to downwards along the margin is seen.
+
+        Before sowing do cane treatment with Chlorpyriphos. In dry field infestation is low so keep field dry and clean, avoid water logging condition in field. Carry out earthing operation at 90days. If infestation is observed in field, do drenching with Chlorpyriphos 20EC@1Ltr/acre with 100-150Ltr of water near the root zone or do granular application of Quinalphos@300ml/acre. Remove infected cane and destroyed it away from field.
+        
+        
+        </p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container14')" style="border: none;">Show more</button>
+  </div>
+<div class="cards" style="display: flex; justify-content: center; align-items: center;">
+  <div class="card" style="width: 18rem;" >
+    <img src="https://i.postimg.cc/sx9rp1zD/barleyferti.png" class="card-img-top" alt="..." style="height: 200px; ">
+    <div class="card-body">
+      <h5 class="card-title">Fertilizers</h5>
+      <p class="card-text">In order to buy the fertilizers that are required for Barley [Jow] crop just click on the below button . </p>
+      <a href="https://www.amazon.in/s?k=oraganic+fertilizer&adgrpid=70083026092&ext_vrnc=hi&gclid=CjwKCAiAloavBhBOEiwAbtAJO01QqW2nZVldoCKoqdzDhmW3Y2f1KpE_yqOurgDC0uZXcxzX2qbNeBoC1cUQAvD_BwE&hvadid=346110648193&hvdev=c&hvlocphy=1007783&hvnetw=g&hvqmt=b&hvrand=1820964948805974489&hvtargid=kwd-440009091036&hydadcr=12915_1932933&tag=googinhydr1-21&ref=pd_sl_8ekjl3lxx1_b" class="btn btn-primary">Click</a>
+    </div>
+  </div>
+    
+</div>
+
+</div>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>InfoCrop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+     
+      Designed by <a href="">InfoCrop.</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="main.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,pa,ml,or,as,kok,ne,sa,mni,sd,ks,doi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+
+
+    //zoom image 
+document.querySelectorAll('.image-container').forEach(function(container) {
+  container.addEventListener('mousemove', function(event) {
+    const img = container.querySelector('img');
+    const boundingRect = container.getBoundingClientRect();
+    const offsetX = event.clientX - boundingRect.left;
+    const offsetY = event.clientY - boundingRect.top;
+    const percentX = offsetX / boundingRect.width * 100;
+    const percentY = offsetY / boundingRect.height * 100;
+    img.style.transformOrigin = percentX + '% ' + percentY + '%';
+  });
+});
+
+    
+// images sliding 
+let slideIndex = 1;
+showSlide(slideIndex);
+
+function changeSlide(n) {
+  showSlide(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlide(slideIndex = n);
+}
+
+function showSlide(n) {
+  const slides = document.getElementsByClassName("slide");
+  const dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].classList.add("active");
+
+  setTimeout(() => {
+    changeSlide(1);
+  }, 10000); // Change slide every 5 seconds
+}
+
+
+//video slider 
+const videoWrapper = document.querySelector(".video-wrapper");
+const videoSlides = document.querySelectorAll(".video-slide");
+const points = document.querySelectorAll(".point");
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+
+let currentIndex = 0;
+
+// Function to slide to the given index
+function slideTo(index) {
+  videoWrapper.style.transform = `translateX(-${index * 100}%)`;
+  points.forEach((point, i) => {
+    point.classList.toggle("active", i === index);
+  });
+}
+
+// Function to slide left
+function slideLeft() {
+  currentIndex = (currentIndex - 1 + videoSlides.length) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Function to slide right
+function slideRight() {
+  currentIndex = (currentIndex + 1) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Navigate using arrow buttons
+arrowLeft.addEventListener("click", slideLeft);
+arrowRight.addEventListener("click", slideRight);
+
+// Navigate using points
+points.forEach((point, index) => {
+  point.addEventListener("click", () => slideTo(index));
+});
+
+// Auto slide every 5 seconds
+setInterval(slideRight, 60000);
+
+
+
+
+
+//youtube
+function openVideo(videoId) {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+  videoContainer.style.display = 'block';
+}
+
+function closeVideo() {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = '';
+  videoContainer.style.display = 'none';
+}
+
+//scrolling text
+function toggleContent(containerId) {
+  var container = document.getElementById(containerId);
+  var button = container.nextElementSibling; // Getting the button element next to the container
+  if (container.style.maxHeight) {
+    container.style.maxHeight = null;
+    button.textContent = 'Show Content';
+  } else {
+    container.style.maxHeight = container.scrollHeight + "px";
+    button.textContent = 'Hide Content';
+  } 
+}
+
+
+//serch
+function searchAndScroll() {
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  const headings = document.querySelectorAll('h4, p');
+  
+  let found = false;
+  for (const heading of headings) {
+  const headingText = heading.textContent.toLowerCase();
+  if (headingText.includes(searchText)) {
+  heading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  found = true;
+  break; } }
+  if (!found) {
+  alert('Information not Found.');
+}
+}
+
+//pdf
+function openPDF(url) {
+  var fileId = extractFileId(url);
+  var pdfViewer = document.getElementById('pdf-iframe');
+  var pdfContainer = document.getElementById('pdf-container');
+  var pdfURL = 'https://drive.google.com/file/d/' + fileId + '/preview';
+  
+  pdfViewer.src = pdfURL;
+  pdfContainer.style.display = 'block';
+}
+
+function closePDF() {
+  var pdfContainer = document.getElementById('pdf-container');
+  pdfContainer.style.display = 'none';
+}
+
+function extractFileId(url) {
+  var match = url.match(/\/file\/d\/(.+?)\//);
+  return match ? match[1] : null;
+}
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <script>
+      !function(w, d, s, ...args){
+        var div = d.createElement('div');
+        div.id = 'aichatbot';
+        d.body.appendChild(div);
+        w.chatbotConfig = args;
+      
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s);
+        j.defer = true;
+        j.type = 'module';
+        j.src = 'https://aichatbot.sendbird.com/index.js';
+        f.parentNode.insertBefore(j, f);
+      }(window, document, 'script', '461D5D41-1ECB-4152-975E-00AEFF10A8B8', 'onboarding_bot');
+      </script>
+    
+</body>
+
+</html>

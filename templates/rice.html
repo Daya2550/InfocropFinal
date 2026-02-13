@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <title> </title>
+  <meta content="Rice farming involves the cultivation of rice, a staple food crop for much of the world's population. The process typically includes land preparation, such as plowing and leveling fields, followed by planting rice seeds or seedlings in flooded paddies or upland fields. Managing water levels through irrigation or rainfall, controlling weeds, pests, and diseases, and applying fertilizers are essential aspects of rice farming. Depending on the variety and region, rice can be harvested by hand or machine when the grains are mature. Major rice-producing countries include China, India, Indonesia, and Bangladesh. Harvested rice grains undergo processing to remove husks and bran before being consumed as a primary food source for billions of people worldwide." name="description">
+  <meta content=" cultivation, rice, staple food, land preparation, planting, flooded paddies, upland fields, water management, irrigation, weed control, pest management, disease control, fertilizers, harvesting, hand harvesting, machine harvesting, major producers, China, India, Indonesia, Bangladesh, processing, husks, bran, food source.
+
+
+
+
+  " name="keywords">
+  <style>
+    @media (max-width: 768px) {
+  .serch1234{
+    display: none;
+  }
+  
+    }
+  </style>
+  <!-- Favicons -->
+  <link href="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" rel="icon">
+  <link href="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  
+
+  <!-- Template Main CSS File -->
+  <link href="style.css" rel="stylesheet">
+<style >@media (min-width: 1200px) {
+
+  #main,.sizea
+  #footer {
+    margin-left: 300px;
+  }
+}</style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: rgb(93, 180, 137);">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" alt="image">
+      </a>
+
+  
+    </div><!-- End Logo -->
+
+    <center class="serch1234">
+      <div>
+      <label for="searchInput"></label>
+  <input type="text" id="searchInput" style="border-radius: 20px;">
+      <button style="border-radius: 20px;" onclick="searchAndScroll()">🔍</button> </div></center>
+      <!-- search -->
+
+    
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+        
+          <div id="google_translate_element"></div>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              Today's Important Notifications.  
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Weather</h4>
+                <p>Cloudy</p>
+                <p>Rain Possibility</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Market</h4>
+                <p>All the markets are closed .</p>
+                <p>Today</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Prediction </h4>
+                <p>In this month prices of markets are increases  </p>
+                <p>For 15 days</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Government </h4>
+                <p>All the benefits schemes are open</p>
+                <p>Apply Now !!</p>
+              </div>
+            </li>
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " onclick="goBack()">
+          <i class="bi bi-grid"></i>
+          <span>HOME</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>CROPS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/barley">
+              <i class="bi bi-circle"></i><span>BARLEY(JOW)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/maize">
+              <i class="bi bi-circle"></i><span>MAIZE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/rice">
+              <i class="bi bi-circle"></i><span>RICE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/soybean">
+              <i class="bi bi-circle"></i><span>SOYBEAN</span>
+            </a>
+          </li>
+          <li>
+            <a href="/cotton">
+              <i class="bi bi-circle"></i><span>COTTON</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sugarcane">
+              <i class="bi bi-circle"></i><span>SUGARCANE</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>FRUITS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/grapes">
+              <i class="bi bi-circle"></i><span>GRAPES</span>
+            </a>
+          </li>
+          <li>
+            <a href="/pomegranate">
+              <i class="bi bi-circle"></i><span>POMEGRANATE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/banana">
+              <i class="bi bi-circle"></i><span>BANANA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mango">
+              <i class="bi bi-circle"></i><span>MANGO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/guava">
+              <i class="bi bi-circle"></i><span>GUAVA</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/watermelon">
+              <i class="bi bi-circle"></i><span>WATERMELON</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>FLOWERS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/rose">
+              <i class="bi bi-circle"></i><span>ROSE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/marigold">
+              <i class="bi bi-circle"></i><span>MARIGOLD</span>
+            </a>
+          </li>
+          <li>
+            <a href="/jasmine">
+              <i class="bi bi-circle"></i><span>JASMINE</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>VEGETABLES</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/brinjal">
+              <i class="bi bi-circle"></i><span>BRINJAL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/potato">
+              <i class="bi bi-circle"></i><span>POTATO</span>
+            </a>
+          </li>
+          <li>
+            <a href="/chilli">
+              <i class="bi bi-circle"></i><span>CHILLI</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/tomato">
+              <i class="bi bi-circle"></i><span>TOMATO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/spinach">
+              <i class="bi bi-circle"></i><span>SPINACH</span>
+            </a>
+          </li>
+          <li>
+            <a href="/carrot">
+              <i class="bi bi-circle"></i><span>CARROT</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>MEDICINAL PLANTS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/aloevera">
+              <i class="bi bi-circle"></i><span>ALOE VERA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/amla">
+              <i class="bi bi-circle"></i><span>AMLA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ashwagandha">
+              <i class="bi bi-circle"></i><span>ASHWAGANDHA</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-heading">Pages</li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://ofrf.org/">
+          <i class="bi bi-card-list"></i>
+          <span>ORGANIC FARMING</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/home">
+          <i class="bi bi-card-list"></i>
+          <span>LEAF DISEASE DETECTION</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.accuweather.com/en/in/mh/maharashtra-weather">
+          <i class="bi bi-card-list"></i>
+          <span>WEATHER INFO</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.apnikheti.com/en/pn/govt-schemes">
+          <i class="bi bi-card-list"></i>
+          <span>GOVERNMENT SCHEMES</span>
+        </a>
+      </li>
+      
+
+
+  
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-register">
+          <i class="bi bi-card-list"></i>
+          <span>FEEDBACK</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://docs.google.com/forms/d/e/1FAIpQLScUzeRmbCPwJZXV1hd6tUBfSz2CNn_8rYjEg7fv-oo0-mXgzw/viewform?usp=sf_link">
+          <i class="bi bi-card-list"></i>
+          <span>YourDoubt</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <div id="main" class="main">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style >@media (min-width: 1200px) {
+
+      #main,.sizea
+      #footer {
+        margin-left: 300px;
+      }
+    }</style>
+    <style>
+      .image-container {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        overflow: hidden;
+      }
+    
+      .image-container img {
+        display: block;
+        width: 300px; /* Adjust as needed */
+        transition: transform 0.3s ease;
+      }
+    
+      .image-container:hover img {
+        transform: scale(5); /* Zoom effect */
+      }
+    
+      .zoom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        display: none;
+      }
+    
+      .image-container:hover .zoom-overlay {
+        display: block;
+      }
+
+      
+    </style>
+    
+
+    <div id="pdf-container">
+      <div id="pdf-viewer">
+        <button id="close-btn" onclick="closePDF()">Close</button>
+        <iframe id="pdf-iframe" src="" width="100%" height="100%"></iframe>
+      </div>
+    </div>
+     <!-- onclick="openVideo('')"-->
+     <div id="video-container" class="video-container">
+      <iframe id="video-iframe" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
+          <center><div class="close-button" onclick="closeVideo()">Close</div></center>
+    </div>
+    <nav class="navbar navbar-light " >
+      <div class="container-fluid" style="background-color: rgb(184, 247, 244); display: flex ; justify-content: center;text-align: center;" >
+        <h3>RICE</h3>
+      </div>
+    </nav>
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">RICE</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Content</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#GENERAL INFORMATION">GENERAL INFORMATION</a></li>
+          <li><a class="dropdown-item" href="#climet">CLIMATE</a></li>
+          <li><a class="dropdown-item" href="#FERTILIZER">FERTILIZER</a></li>
+          
+          <li><a class="dropdown-item" href="#PLANT PROTECTION">PLANT PROTECTION</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+
+
+
+<!-- image slider--> 
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="https://i.postimg.cc/N0VMf4VV/pexels-ashutosh-sonwani-1509607.jpghttps://i.postimg.cc/N0VMf4VV/pexels-ashutosh-sonwani-1509607.jpghttps://i.postimg.cc/N0VMf4VV/pexels-ashutosh-sonwani-1509607.jpghttps://i.postimg.cc/N0VMf4VV/pexels-ashutosh-sonwani-1509607.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.postimg.cc/C1kFMVbB/SLIDE2.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/QCqh5k4j/SLIDE3.jpg" class="d-block w-100" alt="..." style="height:500px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+   
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 id="GENERAL INFORMATION">GENERAL INFORMATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container1">
+     
+        <img src="https://i.postimg.cc/cJZq783H/pexels-polina-tankilevitch-4110251.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+     <br><br>
+        <p>It is quite significant cereal after wheat, maize & rice. Barley is cultivated in summer season in temperate area while it is sown in winter seasons in tropical zones. In India it is planted in rabi season. It possesses excellent drought resistance capacity.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('pEa4invAoSk?si=UryuVl0ZsKDbbmua')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container1')" style="border: none;">Show more</button><br><br>
+
+
+
+
+    <div id="climet" class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4 >CLIMATE</h4>
+    </div>
+    <br>
+    <div style="display: inline-flex; gap: 10px; justify-content: center; text-align: center; flex-wrap: wrap; ">
+
+      <div class="card" style="width: 14rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">25°C - 30°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Rainfall</h2>
+          <h6 class="card-subtitle mb-2 text-muted">50-100cm</h6>
+          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Sowing Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">25°C - 30°C</h6>          
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; background-color: aqua;">
+        <div class="card-body">
+          <h2 class="card-title">Harvesting Temperature</h2>
+          <h6 class="card-subtitle mb-2 text-muted">30-35°C</h6>          
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+  <br><br>
+  <nav class="navbar navbar-light " >
+   
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOIL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container2">
+      
+        <img src="https://i.postimg.cc/pXn3gBYr/RICESOIL.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+     <br><br>
+      <p>Barley plants are cultivated on significant number of soil such as sodic, light & saline soil. Although, it gives good result in moderately heavy loam to sandy soils having neutral to saline response as well as moderate fertility. Acidic soils are not suitable for barley cultivation.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('7uE4A1XY5yg?si=8m4Os2jXa5D2xOy_')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button onclick="toggleContent('container2')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>POPULAR VARIETIES WITH THEIR YIELD</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container3">
+      
+        <img src="https://i.postimg.cc/BbPwfqFk/RICEVARIETY.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      
+      <p><b>PL 891:</b> It is a huskless variety. Sattu, Flakes. Dalia, flour can be made from this variety. It gives an average yield of 16.8qtl/acre.</p>
+      <p><b>DWRB 123:</b> It is suitable for making beer products. It gives an avergae yield of 19.4qtl/acre.</p>
+      <p><b>PL 419:</b> This variety suitable under rainfed condition. It has broad upright leaves. Plant height is 80 cm. Resistant to yellow rust and smuts has thin husked bold seeds. Matures in 130 days. Gives average yield of 14 qtl/acre.</p>
+      <p><b>PL 172:</b>PL 172: Suitable for throughout Punjab state under irrigated condition. It is six row semi dwarf variety. Resistant to lodging. It is suitable for malting. </p>
+      <p><b>PL 807:</b> Medium broad and upright leaves. It is highly resistive to lodging. Ears are dense and erect. Grains are of medium and light yellow color. It is resistant to brown rust, yellow rust and loose rust. Ready to harvest in 137 days. Give average yield of 17.2 qtl/acre.</p>
+      <p><b>DWRUB52:</b> This variety is having profuse tillering. Plant height is about 101 cm. Ears are dense, erect, arrow shaped and of medium size. It is resistant to brown rust, yellow rust and loose rust, covered smut and leaf blight disease. Give average yield of 17.3 qtl/acre.</p>
+     <p> <b>Other States Variety</b>
+
+        RD 2035, BCU 73, DWRUB 64, RD 2503
+        
+        PL 751, NARENDRA BARLEY 2, GETANJALI (K1149)</p>
+
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('WoBOzmrz4EE?si=32rUjMyFbA6MdEzh')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    
+      <button  id="toggleButton" onclick="toggleContent('container3')" style="border: none;">Show more</button>
+  </div>
+
+  
+  
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>LAND PREPARATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container4">
+      
+        <img src="https://i.postimg.cc/pLvxC7bR/LANDPREP.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <br>
+      <p>Carry out ploughing 2-3 times properly to make the land weed free. Before sowing crop land must be properly prepared smooth till fine tilth. Ploughing should be followed by 2-3 harrowing to conserved moisture in soil. The stubbles and roots of earlier crop should be hand-picked up and dash out of the ground as it attracts termites.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('qHIKRwYe3Cs?si=vMOoDsrtenIfiirA')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container4')" style="border: none;">Show more</button>
+
+     </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+   
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>SOWING</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container5">
+      
+        <img src="https://i.postimg.cc/Hs4FYkR1/RICESOWING.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      
+      <p>Time of sowing</p>
+        For optimum yield, complete sowing from 15 October to 15 November. If sowing get delayed yield will get declined.
+        
+       <p>Spacing</p> 
+        Use row to row spacing of 22.5 cm. In case of delay sowing, use spacing of 18-20 cm.
+         
+        <p>Sowing Depth</p>
+        Use depth of 3-5 cm for crop under irrigated conditions and 5-8 cm depth for rainfed conditions.
+        <br>
+        <p>Method of Sowing</p>
+       <p>For sowing use broadcasting and seed drill method.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('_sSl86SOfzo?si=IJsXLkZHlfWT8O2I')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container5')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " id="FERTILIZER">
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>FERTILIZER</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container6">
+      
+        <img src="https://i.postimg.cc/zf3QFSBq/RICEFERTI.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+     <br><br>
+      <p>Apply fertilizer dose of N:P:K@25:12:6 kg/acre in term of Urea@55 kg/acre, SSP@75 kg/acre and MOP@10 kg/acre.</p>
+
+       <p> Apply full dose of phosphorus and potash at time of sowing as a basal application whereas give nitrogen dose before giving pre-sowing irrigation.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('QnyyEmmuCvk?si=GevPOWp15GGXRIs1')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container6')" style="border: none;">Show more</button>
+  </div>
+
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>WEED CONTROL</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container7">
+      
+        <img src="https://i.postimg.cc/cHn5Vxwj/RICEWEEDCTRL.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <br>
+      <p>In initial stage of crop, weed control is necessary to obtained good crop growth along with good yield. Broad and narrow leaves are two major weeds in barley. To control broad leaf weed, apply post emergence weedicide 2,4-D@250 gm/100 Ltr of water per acre, 30-35 days after sowing.
+
+
+        To control narrow leaf weeds use Isoproturon 75%WP@500 gm/100 Ltr of water or Pendimethalin 30% EC@1.4 Ltr/100 ltr water for one acre.
+         </p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('46jIg6qIGNw?si=KHvWJw6p7oPvum4h')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container7')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  <nav class="navbar navbar-light " >
+    
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>IRRIGATION</h4>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container8">
+      
+        <img src="https://i.postimg.cc/qqHZrPG7/RICEIRRIGATION.jpg" alt="Image 2" style="float: left; height: 250px; width: 400px; margin: 5px;">
+        <div class="zoom-overlay"></div>
+      <br>
+      <p>For barley, two or three irrigation are required during its life cycle. Avoid water stress during jointing, booting and heading stage. Moisture stress at this stage will lead to loss in yield. To optimize yield, soil moisture levels should remain above 50% of available moisture in the active root zone from seeding to the soft dough stage.</p>
+
+        <p>Apply first irrigation at crown root initiation i.e 25 to 30 days after sowing. At panicle emergence stage applies second irrigation.</p>
+    </div>
+    <br>
+    <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+    <div style=" height: 30px; width: 30px; " >
+      <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+       style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+  <div style=" height: 30px; width: 30px;"  onclick="openVideo('MdSh9NmZtss?si=6XofvzEbzMxo7dRT')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+    <button  id="toggleButton" onclick="toggleContent('container8')" style="border: none;">Show more</button>
+  </div>
+
+  <br>
+  
+
+  <br>
+  
+
+  <br id="PLANT PROTECTION">
+  
+  <nav class="navbar navbar-light "  >
+   
+    <div class="container-fluid" style="background-color: rgb(72, 220, 114); display: flex ; justify-content: center;text-align: center;" >
+      <h4>PLANT PROTECTION </h4>
+    </div>
+  </nav>
+  <br>
+  <div style=" display: inline-flex; gap: 10px; justify-content: center;" >
+  <div style=" height: 30px; width: 30px; " >
+    <span onclick="openPDF('https://drive.google.com/file/d/1CY4on-Rnh4fBSOTP1LDIDMPAfQM-Kjyw/view?usp=drivesdk')"
+     style="color:rgb(76, 18, 177) ; font-size: 45px;" class="pdf-icon fas fa-file-pdf"></span></div>
+<div style=" height: 30px; width: 30px;"  onclick="openVideo('kDYvt_RGMPM?si=xHU8bx18q0w83hZ2')"> <span style="color:red ; font-size: 40px;" class="fab fa-youtube"></span></div>
+</div><br>
+  <div class="card">
+    <div class="container" id="container11">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/8c3csbjs/RICEDIS1.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Pest and their control:</p>
+        <p>
+            Root Weevil: The presence of root weevil can be detected by the root and leave damage of yield. These are white legless grub feeds mainly on root. Plant gives yellow appearance, growth gets stunted and few tillers are form.
+            If incidence is observed apply Carbaryl (4G)@10 kg either Phorate (10 G)@4 kg or Carbofuran (3 G) @10 kg per acre.</p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container11')" style="border: none;">Show more</button>
+  </div>
+
+  
+  <div class="card">
+    <div class="container" id="container12">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/MX2wh3n0/RICEDIS2.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <P>Plant Hoppers: These mainly occur in the irrigated wetland conditions or in rainfed areas. The presence of pest shows the browning of the yield, sooty moulds and honeydew present in bases where infected.
+
+If incidence is observed to control, spray with Dichlorvos @ 126 ml or 400 gm Carbaryl in 250 Ltr of water per acre or Imidacloprid @ 40 ml or Quinalphos 25 EC @ 400 ml or Chlorpyriphos @1 Ltr in 100 ltrs of water per acre.</P>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container12')" style="border: none;">Show more</button>
+  </div>
+
+  
+  </nav>
+  <div class="card">
+    <div class="container" id="container13">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/y8KgRvLS/RICEDIS3.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Leaf folder: This pest develops in high humidity and specifically found where rice is fertilized heavily. Larva fold the leaves and eat the plant tissue and produces white streaks.
+
+        Control: If infestation is observed spray crop with Cartap hydrochloride @ 170 gm or Triazophos @350 ml or Chlorpyriphos @1 Ltr in 100 Ltr of water per acre.</p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container13')" style="border: none;">Show more</button>
+  </div>
+
+  
+    </div>
+  </nav>
+  <div class="card">
+    <div class="container" id="container14">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/Xv7rHXSj/RICEDIS4.jpg" alt="Image 2" style="height: 200px; ">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Rice Hispa: It is serious pest in some districts. Larva create tunnel into leaves and thus destroyed leaves by producing white streaks on leaves.
+
+        If Infestation is observed in field, spray crop with Methyl Parathion@120 ml or Quinalphos 25 EC@400 ml or Chlorpyriphos @1 Ltr in 100 ltr of water per acre.</p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container14')" style="border: none;">Show more</button>
+  </div>
+
+
+  <div class="card">
+    <div class="container" id="container14">
+      <div class="image-container"  style="float: left;">
+        <img src="https://i.postimg.cc/dt2DJGJQ/RICEDIS5.jpg" alt="Image 2">
+        <div class="zoom-overlay"></div>
+      </div>
+      <p>Stem borer: Larva bore into the stem and causes dead heart. The old ones produce empty ear heads which turn white.
+
+        Control: If infestation is observed in field take spray of Cartap hydrochloride @ 170 gm or Triazophos @ 350 ml or Chlorpyriphos @ 1 Ltr per 100 Ltr of water.</p>
+        
+        
+        </p>
+    </div>
+    <button  id="toggleButton" onclick="toggleContent('container14')" style="border: none;">Show more</button>
+  </div>
+<div class="cards" style="display: flex; justify-content: center; align-items: center;">
+  <div class="card" style="width: 18rem;" >
+    <img src="https://i.postimg.cc/sx9rp1zD/barleyferti.png" class="card-img-top" alt="..." style="height: 200px; ">
+    <div class="card-body">
+      <h5 class="card-title">Fertilizers</h5>
+      <p class="card-text">In order to buy the fertilizers that are required for Barley [Jow] crop just click on the below button . </p>
+      <a href="https://www.amazon.in/s?k=oraganic+fertilizer&adgrpid=70083026092&ext_vrnc=hi&gclid=CjwKCAiAloavBhBOEiwAbtAJO01QqW2nZVldoCKoqdzDhmW3Y2f1KpE_yqOurgDC0uZXcxzX2qbNeBoC1cUQAvD_BwE&hvadid=346110648193&hvdev=c&hvlocphy=1007783&hvnetw=g&hvqmt=b&hvrand=1820964948805974489&hvtargid=kwd-440009091036&hydadcr=12915_1932933&tag=googinhydr1-21&ref=pd_sl_8ekjl3lxx1_b" class="btn btn-primary">Click</a>
+    </div>
+  </div>
+    
+</div>
+
+</div>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>InfoCrop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+     
+      Designed by <a href="">InfoCrop.</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="main.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,pa,ml,or,as,kok,ne,sa,mni,sd,ks,doi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+
+
+    //zoom image 
+document.querySelectorAll('.image-container').forEach(function(container) {
+  container.addEventListener('mousemove', function(event) {
+    const img = container.querySelector('img');
+    const boundingRect = container.getBoundingClientRect();
+    const offsetX = event.clientX - boundingRect.left;
+    const offsetY = event.clientY - boundingRect.top;
+    const percentX = offsetX / boundingRect.width * 100;
+    const percentY = offsetY / boundingRect.height * 100;
+    img.style.transformOrigin = percentX + '% ' + percentY + '%';
+  });
+});
+
+    
+// images sliding 
+let slideIndex = 1;
+showSlide(slideIndex);
+
+function changeSlide(n) {
+  showSlide(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlide(slideIndex = n);
+}
+
+function showSlide(n) {
+  const slides = document.getElementsByClassName("slide");
+  const dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].classList.add("active");
+
+  setTimeout(() => {
+    changeSlide(1);
+  }, 10000); // Change slide every 5 seconds
+}
+
+
+//video slider 
+const videoWrapper = document.querySelector(".video-wrapper");
+const videoSlides = document.querySelectorAll(".video-slide");
+const points = document.querySelectorAll(".point");
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+
+let currentIndex = 0;
+
+// Function to slide to the given index
+function slideTo(index) {
+  videoWrapper.style.transform = `translateX(-${index * 100}%)`;
+  points.forEach((point, i) => {
+    point.classList.toggle("active", i === index);
+  });
+}
+
+// Function to slide left
+function slideLeft() {
+  currentIndex = (currentIndex - 1 + videoSlides.length) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Function to slide right
+function slideRight() {
+  currentIndex = (currentIndex + 1) % videoSlides.length;
+  slideTo(currentIndex);
+}
+
+// Navigate using arrow buttons
+arrowLeft.addEventListener("click", slideLeft);
+arrowRight.addEventListener("click", slideRight);
+
+// Navigate using points
+points.forEach((point, index) => {
+  point.addEventListener("click", () => slideTo(index));
+});
+
+// Auto slide every 5 seconds
+setInterval(slideRight, 60000);
+
+
+
+
+
+//youtube
+function openVideo(videoId) {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+  videoContainer.style.display = 'block';
+}
+
+function closeVideo() {
+  const videoContainer = document.getElementById('video-container');
+  const videoIframe = document.getElementById('video-iframe');
+  videoIframe.src = '';
+  videoContainer.style.display = 'none';
+}
+
+//scrolling text
+function toggleContent(containerId) {
+  var container = document.getElementById(containerId);
+  var button = container.nextElementSibling; // Getting the button element next to the container
+  if (container.style.maxHeight) {
+    container.style.maxHeight = null;
+    button.textContent = 'Show Content';
+  } else {
+    container.style.maxHeight = container.scrollHeight + "px";
+    button.textContent = 'Hide Content';
+  } 
+}
+
+
+//serch
+function searchAndScroll() {
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  const headings = document.querySelectorAll('h4, p');
+  
+  let found = false;
+  for (const heading of headings) {
+  const headingText = heading.textContent.toLowerCase();
+  if (headingText.includes(searchText)) {
+  heading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  found = true;
+  break; } }
+  if (!found) {
+  alert('Information not Found.');
+}
+}
+
+//pdf
+function openPDF(url) {
+  var fileId = extractFileId(url);
+  var pdfViewer = document.getElementById('pdf-iframe');
+  var pdfContainer = document.getElementById('pdf-container');
+  var pdfURL = 'https://drive.google.com/file/d/' + fileId + '/preview';
+  
+  pdfViewer.src = pdfURL;
+  pdfContainer.style.display = 'block';
+}
+
+function closePDF() {
+  var pdfContainer = document.getElementById('pdf-container');
+  pdfContainer.style.display = 'none';
+}
+
+function extractFileId(url) {
+  var match = url.match(/\/file\/d\/(.+?)\//);
+  return match ? match[1] : null;
+}
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <script>
+      !function(w, d, s, ...args){
+        var div = d.createElement('div');
+        div.id = 'aichatbot';
+        d.body.appendChild(div);
+        w.chatbotConfig = args;
+      
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s);
+        j.defer = true;
+        j.type = 'module';
+        j.src = 'https://aichatbot.sendbird.com/index.js';
+        f.parentNode.insertBefore(j, f);
+      }(window, document, 'script', '461D5D41-1ECB-4152-975E-00AEFF10A8B8', 'onboarding_bot');
+      </script>
+    
+</body>
+
+</html>

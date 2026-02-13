@@ -1,0 +1,449 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="header" style="margin-bottom: 2rem;">
+        <h1>Farmer Dashboard</h1>
+    </div>
+
+    <div class="grid-container" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; height: 75vh;">
+        
+        <!-- Sidebar: History & Profile -->
+        <div class="sidebar" style="background-color: #2d2d2d; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
+            
+            <!-- User Profile Summary -->
+            <div style="padding: 1rem; border-bottom: 1px solid #3d3d3d; background: #353535;">
+                <h4 style="margin: 0;">{{ current_user.name }} {{ current_user.surname }}</h4>
+                <small style="color: var(--text-muted);">{{ current_user.phone }}</small>
+            </div>
+
+            <!-- New Request Button -->
+            <div style="padding: 1rem;">
+                <button id="newRequestBtn" class="btn" style="width: 100%; justify-content: center;"><i class="fas fa-plus"></i> New Support Chat</button>
+            </div>
+
+            <!-- Request List -->
+            <div style="flex: 1; overflow-y: auto; padding: 0 1rem 1rem 1rem;">
+                <h5 style="color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Your Requests</h5>
+                <ul id="requestList" style="list-style: none; padding: 0;">
+                    <!-- Populated by JS -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat-container" id="chatContainer" style="display: none; height: 100%; background: #2d2d2d; border-radius: 8px; overflow: hidden; flex-direction: column;">
+            
+            <!-- Chat Header -->
+            <div class="chat-header" style="padding: 1rem; border-bottom: 1px solid #3d3d3d; display: flex; justify-content: space-between; align-items: center; background: #353535;">
+                <div>
+                    <h3 style="margin: 0;">Support Chat <span id="reqIdDisplay" style="color: var(--primary-color); font-size: 1rem;"></span></h3>
+                    <small id="reqStatusDisplay" class="badge" style="font-size: 0.7rem;">Loading...</small>
+                </div>
+                <button id="markSolvedBtn" class="btn" onclick="markAsSolved()" style="background-color: var(--secondary-color); font-size: 0.9rem; display: none;">
+                    <i class="fas fa-check-circle"></i> Mark as Solved
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chatMessages" style="flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8rem;">
+                <!-- Messages will appear here -->
+            </div>
+            
+            <!-- Chat Input -->
+            <div class="chat-input-area" id="chatInputArea" style="padding: 1rem; border-top: 1px solid #3d3d3d; background: #353535;">
+                <!-- File Preview Area -->
+                <div id="filePreview" style="display: none; padding: 0.5rem; background: #2d2d2d; border-radius: 8px; margin-bottom: 0.5rem; border-left: 3px solid var(--primary-color);">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-file" style="color: var(--primary-color);"></i>
+                            <span id="fileName" style="font-size: 0.9rem;"></span>
+                            <span id="fileSize" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+                        </div>
+                        <button onclick="clearFile()" style="background: transparent; border: none; color: #e74c3c; cursor: pointer; padding: 0.2rem 0.5rem;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Input Row -->
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <input type="file" id="fileInput" style="display: none;" accept=".png,.jpg,.jpeg,.gif,.pdf,.doc,.docx,.txt">
+                    <button class="btn" onclick="$('#fileInput').click()" style="background: #6c757d; padding: 0.8rem;" title="Attach file">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input type="text" id="msgInput" placeholder="Type your message..." style="flex: 1; padding: 0.8rem; border-radius: 25px; border: 1px solid #4d4d4d; background-color: #2d2d2d; color: var(--text-color); outline: none;">
+                    <button class="btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Reopen Prompt (for closed chats) -->
+            <div id="reopenPrompt" style="display: none; padding: 1.5rem; background: linear-gradient(135deg, #353535 0%, #2d2d2d 100%); text-align: center; border-top: 1px solid #3d3d3d;">
+                <div style="background: #3d3d3d; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--secondary-color); margin-bottom: 1rem;">
+                    <i class="fas fa-info-circle" style="color: var(--secondary-color); margin-right: 0.5rem;"></i>
+                    <strong>This request is closed.</strong>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0 0 0; font-size: 0.9rem;">Need more help? You can reopen this request anytime by sending a new message below.</p>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <input type="text" id="reopenMsgInput" placeholder="Describe your new issue to reopen this request..." style="flex: 1; padding: 0.8rem; border-radius: 25px; border: 1px solid #4d4d4d; background-color: #2d2d2d; color: var(--text-color); outline: none;">
+                    <button class="btn" onclick="sendReopenMessage()" style="background: var(--primary-color); padding: 0.8rem 1.5rem;">
+                        <i class="fas fa-redo"></i> Reopen Request
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); background: #2d2d2d; border-radius: 8px;">
+            <i class="fas fa-comments" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <h3>Select a request to view chat</h3>
+            <p>Or create a new one to get help.</p>
+        </div>
+
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background: #2d2d2d; padding: 2rem; border-radius: 12px; width: 450px; color: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">
+                <i class="fas fa-star" style="margin-right: 0.5rem;"></i>How was your experience?
+            </h3>
+            
+            <form id="feedbackForm">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Rating</label>
+                    <div id="starRating" style="display: flex; gap: 0.5rem; font-size: 2rem; cursor: pointer;">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <input type="hidden" id="ratingValue" value="0">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Comments (Optional)</label>
+                    <textarea id="feedbackComments" rows="4" placeholder="Tell us about your experience..." style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #4d4d4d; background-color: #3d3d3d; color: var(--text-color); resize: vertical; font-family: inherit;"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn" onclick="closeFeedbackModal()" style="background: #6c757d;">Cancel</button>
+                    <button type="button" class="btn" onclick="submitFeedback()" style="background: var(--secondary-color);">
+                        <i class="fas fa-check"></i> Submit & Close Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let currentRequestId = null;
+    let pollInterval = null;
+
+    $(document).ready(function() {
+        loadHistory();
+        
+        $('#newRequestBtn').click(createRequest);
+        
+        // Enter key to send
+        $('#msgInput').on('keypress', function(e) {
+            if(e.which === 13) sendMessage();
+        });
+        $('#reopenMsgInput').on('keypress', function(e) {
+            if(e.which === 13) sendReopenMessage();
+        });
+    });
+
+    function loadHistory() {
+        $.get('/api/farmer/history', function(data) {
+            $('#requestList').empty();
+            if (data.requests.length === 0) {
+                 $('#requestList').append('<li style="padding: 1rem; text-align: center; color: var(--text-muted);">No requests yet.</li>');
+            } else {
+                data.requests.forEach(req => {
+                    let statusColor = '#7f8c8d';
+                    if (req.status === 'active') statusColor = 'var(--primary-color)';
+                    if (req.status === 'closed') statusColor = 'var(--secondary-color)';
+                    if (req.status === 'pending') statusColor = '#f39c12';
+                    if (req.status === 'draft') statusColor = '#95a5a6';
+
+                    $('#requestList').append(`
+                        <li onclick="loadChat(${req.id})" style="padding: 1rem; border-bottom: 1px solid #3d3d3d; cursor: pointer; transition: background 0.2s; display: flex; flex-direction: column; gap: 4px;" onmouseover="this.style.background='#3d3d3d'" onmouseout="this.style.background='transparent'">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <strong style="color: white;">Request #${req.id}</strong>
+                                <span class="badge" style="background: ${statusColor}; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px;">${req.status.toUpperCase()}</span>
+                            </div>
+                            <small style="color: var(--text-muted);">Date: ${req.created_at}</small>
+                        </li>
+                    `);
+                });
+            }
+        });
+    }
+
+    function createRequest() {
+        $.post('/api/create_request', function(data) {
+            if(data.request_id) {
+                loadHistory(); // Refresh list to show new draft
+                loadChat(data.request_id); // Open it immediately
+            } else if (data.message) {
+               // Handle "You already have an active request" case
+               alert(data.message);
+               if(data.request_id) loadChat(data.request_id);
+            }
+        });
+    }
+
+    function loadChat(reqId) {
+        currentRequestId = reqId;
+        $('#emptyState').hide();
+        $('#chatContainer').css('display', 'flex');
+        
+        // Clear previous polling
+        if (pollInterval) clearInterval(pollInterval);
+
+        // Initial Load
+        fetchMessages();
+        pollInterval = setInterval(fetchMessages, 3000);
+    }
+
+    function fetchMessages() {
+        if(!currentRequestId) return;
+        $.get(`/api/request/${currentRequestId}/messages`, function(data) {
+            $('#reqIdDisplay').text('#' + currentRequestId);
+            
+            // Status Badge
+            const status = data.status;
+            let statusColor = '#7f8c8d';
+            if (status === 'active') statusColor = 'var(--primary-color)';
+            if (status === 'closed') statusColor = 'var(--secondary-color)';
+            if (status === 'pending') statusColor = '#f39c12';
+            
+            $('#reqStatusDisplay').text(status.toUpperCase());
+            $('#reqStatusDisplay').css('background', statusColor);
+
+            // Messages
+            $('#chatMessages').empty();
+            if (data.messages.length === 0) {
+                 $('#chatMessages').append('<div style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Start the conversation...</div>');
+            } else {
+                data.messages.forEach(msg => {
+                    const type = msg.is_me ? 'sent' : 'received';
+                    let messageContent = msg.message || '';
+                    
+                    // Add file attachment if present
+                    if (msg.file_path && msg.file_name) {
+                        const fileIcon = getFileIcon(msg.file_name);
+                        messageContent += `<div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 4px; display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i class="${fileIcon}" style="color: var(--primary-color);"></i>
+                            <a href="/${msg.file_path}" target="_blank" style="color: var(--text-color); text-decoration: none; font-size: 0.9rem;">${msg.file_name}</a>
+                        </div>`;
+                    }
+                    
+                    const html = `<div class="message ${type}">
+                                    <small style="opacity: 0.7; font-size: 0.7rem; margin-bottom: 2px; display: block;">${msg.sender}</small>
+                                    ${messageContent}
+                                  </div>`;
+                    $('#chatMessages').append(html);
+                });
+            }
+            
+            // Scroll to bottom logic (simple)
+            // const chatDiv = document.getElementById("chatMessages");
+            // chatDiv.scrollTop = chatDiv.scrollHeight;
+
+            // UI State based on Status
+            if(status === 'closed') {
+                $('#chatInputArea').hide();
+                $('#reopenPrompt').show();
+                $('#markSolvedBtn').hide();
+            } else {
+                $('#chatInputArea').show();
+                $('#reopenPrompt').hide();
+                $('#markSolvedBtn').show();
+            }
+        });
+    }
+
+    function sendMessage() {
+        const txt = $('#msgInput').val();
+        const fileInput = document.getElementById('fileInput');
+        const hasFile = fileInput.files.length > 0;
+        
+        if(!txt && !hasFile) return;
+        
+        send(txt);
+    }
+    
+    function sendReopenMessage() {
+         const txt = $('#reopenMsgInput').val();
+         if(!txt) return;
+         sendText(txt);
+    }
+
+    function send(message) {
+        const fileInput = document.getElementById('fileInput');
+        const hasFile = fileInput.files.length > 0;
+        
+        if (hasFile) {
+            // Use FormData for file upload
+            const formData = new FormData();
+            if (message) formData.append('message', message);
+            formData.append('file', fileInput.files[0]);
+            
+            $.ajax({
+                url: `/api/request/${currentRequestId}/send`,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function() {
+                    $('#msgInput').val('');
+                    clearFile();
+                    loadHistory();
+                    fetchMessages();
+                }
+            });
+        } else {
+            // Regular text message
+            sendText(message);
+        }
+    }
+    
+    function sendText(message) {
+        $.ajax({
+            url: `/api/request/${currentRequestId}/send`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ message: message }),
+            success: function() {
+                $('#msgInput').val('');
+                $('#reopenMsgInput').val('');
+                loadHistory();
+                fetchMessages();
+            }
+        });
+    }
+
+    function markAsSolved() {
+        // Show feedback modal instead of immediately closing
+        $('#feedbackModal').css('display', 'flex');
+        // Reset form
+        $('#ratingValue').val('0');
+        $('#feedbackComments').val('');
+        $('#starRating i').removeClass('fas').addClass('far').css('color', '');
+    }
+
+    // Star rating interaction
+    $(document).ready(function() {
+        $('#starRating i').hover(
+            function() {
+                const rating = $(this).data('rating');
+                $('#starRating i').each(function(index) {
+                    if (index < rating) {
+                        $(this).removeClass('far').addClass('fas').css('color', '#f39c12');
+                    } else {
+                        $(this).removeClass('fas').addClass('far').css('color', '');
+                    }
+                });
+            }
+        );
+
+        $('#starRating').mouseleave(function() {
+            const currentRating = $('#ratingValue').val();
+            $('#starRating i').each(function(index) {
+                if (index < currentRating) {
+                    $(this).removeClass('far').addClass('fas').css('color', '#f39c12');
+                } else {
+                    $(this).removeClass('fas').addClass('far').css('color', '');
+                }
+            });
+        });
+
+        $('#starRating i').click(function() {
+            const rating = $(this).data('rating');
+            $('#ratingValue').val(rating);
+            
+            $('#starRating i').each(function(index) {
+                if (index < rating) {
+                    $(this).removeClass('far').addClass('fas').css('color', '#f39c12');
+                } else {
+                    $(this).removeClass('fas').addClass('far').css('color', '');
+                }
+            });
+        });
+        
+        // File handling functions
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'txt': 'fas fa-file-alt',
+                'png': 'fas fa-file-image',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'gif': 'fas fa-file-image'
+            };
+            return iconMap[ext] || 'fas fa-file';
+        }
+        window.getFileIcon = getFileIcon;
+        
+        function clearFile() {
+            $('#fileInput').val('');
+            $('#filePreview').hide();
+        }
+        window.clearFile = clearFile;
+        
+        // File input change handler
+        $('#fileInput').change(function() {
+            const file = this.files[0];
+            if (file) {
+                const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                $('#fileName').text(file.name);
+                $('#fileSize').text(`(${sizeMB} MB)`);
+                $('#filePreview').show();
+            }
+        });
+    });
+
+    function closeFeedbackModal() {
+        $('#feedbackModal').css('display', 'none');
+    }
+
+    function submitFeedback() {
+        const rating = parseInt($('#ratingValue').val());
+        const comments = $('#feedbackComments').val();
+
+        if (rating === 0) {
+            alert('Please provide a rating before submitting.');
+            return;
+        }
+
+        $.ajax({
+            url: `/api/request/${currentRequestId}/feedback`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                rating: rating,
+                comments: comments
+            }),
+            success: function() {
+                closeFeedbackModal();
+                alert('Thank you for your feedback! The request has been closed.');
+                loadHistory();
+                fetchMessages();
+            },
+            error: function(xhr) {
+                alert('Error submitting feedback: ' + (xhr.responseJSON ? xhr.responseJSON.error : 'Unknown error'));
+            }
+        });
+    }
+</script>
+{% endblock %}

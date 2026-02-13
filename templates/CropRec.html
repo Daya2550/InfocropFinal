@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}" />
+
+
+<div class="background-animation"></div>
+
+<div class="crop-page-container">
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-icon">🌾</div>
+        <h1 class="header-title">Crop Recommendation System</h1>
+        <p class="header-subtitle">AI-Powered Agricultural Intelligence</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Input Form -->
+        <div class="card form-card">
+            <h2 class="card-title">Enter Soil & Weather Data</h2>
+            <form id="cropForm" class="crop-form">
+                <div class="form-grid">
+                    <!-- Soil Nutrients -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <span class="section-icon">🧪</span>
+                            Soil Nutrients
+                        </h3>
+
+                        <div class="input-group">
+                            <label for="nitrogen" class="input-label">
+                                Nitrogen (N)
+                                <span class="range-hint">0-150</span>
+                            </label>
+                            <input type="number" id="nitrogen" name="nitrogen" class="input-field" placeholder="e.g., 90" min="0" max="150" step="0.1" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="phosphorus" class="input-label">
+                                Phosphorus (P)
+                                <span class="range-hint">0-150</span>
+                            </label>
+                            <input type="number" id="phosphorus" name="phosphorus" class="input-field" placeholder="e.g., 42" min="0" max="150" step="0.1" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="potassium" class="input-label">
+                                Potassium (K)
+                                <span class="range-hint">0-150</span>
+                            </label>
+                            <input type="number" id="potassium" name="potassium" class="input-field" placeholder="e.g., 43" min="0" max="150" step="0.1" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ph" class="input-label">
+                                pH Value
+                                <span class="range-hint">0-14</span>
+                            </label>
+                            <input type="number" id="ph" name="ph" class="input-field" placeholder="e.g., 6.5" min="0" max="14" step="0.1" required />
+                        </div>
+                    </div>
+
+                    <!-- Weather Conditions -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <span class="section-icon">🌤️</span>
+                            Weather Conditions
+                        </h3>
+
+                        <div class="input-group">
+                            <label for="temperature" class="input-label">
+                                Temperature (°C)
+                                <span class="range-hint">0-60</span>
+                            </label>
+                            <input type="number" id="temperature" name="temperature" class="input-field" placeholder="e.g., 20.8" min="0" max="60" step="0.1" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="humidity" class="input-label">
+                                Humidity (%)
+                                <span class="range-hint">0-100</span>
+                            </label>
+                            <input type="number" id="humidity" name="humidity" class="input-field" placeholder="e.g., 82" min="0" max="100" step="0.1" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="rainfall" class="input-label">
+                                Rainfall (mm)
+                                <span class="range-hint">0-500</span>
+                            </label>
+                            <input type="number" id="rainfall" name="rainfall" class="input-field" placeholder="e.g., 202.9" min="0" max="500" step="0.1" required />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <span class="btn-text">Get Recommendation</span>
+                        <span class="btn-icon">🚀</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn">
+                        <span class="btn-text">Reset</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="card result-card" id="resultCard" style="display: none;">
+            <div class="result-content">
+                <div class="result-icon" id="resultIcon">✨</div>
+                <h2 class="result-title" id="resultTitle">Recommended Crop</h2>
+                <div class="crop-name" id="cropName"></div>
+
+                <div class="ensemble-info">
+                    <div class="confidence-container">
+                        <span class="confidence-label">Average Confidence:</span>
+                        <span class="confidence-value" id="confidenceValue"></span>
+                    </div>
+                    <div class="ensemble-info">
+                        <span class="agreement-badge" id="agreementBadge">
+                            Agreement: <span id="agreementValue"></span>
+                            <span id="voteCount"></span>
+                        </span>
+                        <span class="tie-breaker-badge" id="tieBreakerBadge" style="display: none;">
+                            ⚖️ Tie-Breaker Decision
+                        </span>
+                    </div>
+                </div>
+
+                <div class="individual-models" id="individualModels">
+                    <h3 class="models-title">Individual Model Predictions:</h3>
+                    <div class="models-grid" id="modelsGrid"></div>
+                </div>
+
+                <div class="warnings-container" id="warningsContainer" style="display: none;">
+                    <h3 class="warnings-title">⚠️ Important Considerations:</h3>
+                    <ul class="warnings-list" id="warningsList"></ul>
+                </div>
+
+                <div class="explanation-section" id="explanationSection">
+                    <h3 class="explanation-title">🎯 Why This Crop?</h3>
+                    <div class="reasoning-list" id="reasoningList"></div>
+                </div>
+
+                <div class="factors-section" id="factorsSection">
+                    <h3 class="factors-title">📊 Top Influencing Factors:</h3>
+                    <div class="factors-grid" id="factorsGrid"></div>
+                </div>
+
+                <div class="requirements-section" id="requirementsSection">
+                    <h3 class="requirements-title">🌱 Crop Requirements:</h3>
+                    <div class="crop-description" id="cropDescription"></div>
+                    <div class="growing-conditions">
+                        <h4 class="conditions-subtitle">Growing Conditions:</h4>
+                        <ul class="conditions-list" id="conditionsList"></ul>
+                    </div>
+                    <div class="crop-metadata">
+                        <div class="metadata-item"><strong>Season:</strong> <span id="cropSeason"></span></div>
+                        <div class="metadata-item"><strong>Water:</strong> <span id="cropWater"></span></div>
+                        <div class="metadata-item"><strong>Climate:</strong> <span id="cropClimate"></span></div>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn btn-primary" id="downloadReportBtn" style="margin-right: 10px;">
+                        📄 Download PDF Report
+                    </button>
+                    <button class="btn btn-secondary" id="newPredictionBtn">
+                        Make Another Prediction
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="card error-card" id="errorCard" style="display: none">
+            <div class="error-content">
+                <div class="error-icon">⚠️</div>
+                <h3 class="error-title">Validation Error</h3>
+                <p class="error-message" id="errorMessage"></p>
+                <button class="btn btn-secondary btn-small" id="closeErrorBtn">
+                    Close
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Powered by Machine Learning • Random Forest Classifier</p>
+        <p class="footer-small">Helping farmers make data-driven decisions 🌱</p>
+    </footer>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/script1.js') }}"></script>
+{% endblock %}

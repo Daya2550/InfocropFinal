@@ -1,0 +1,9 @@
+database Name : farmer_chat_db 
+config.py chaange the config of the database . 
+
+admin 
+username : admin 
+pass : admin123
+
+
+to run the app.py file .

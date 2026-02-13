@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Slider</title>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+  /* CSS for styling */
+  .slider-container {
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .video-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .video-slide {
+    min-width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .slider-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .nav-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="slider-container">
+  <div class="video-slider">
+    <div class="video-slide">
+      <div class="video-wrapper">
+        <iframe width="60%" height="315" src="https://www.youtube.com/embed/OTXeY0-Bhx8?si=bLzR_IWavw357P9W" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="video-slide">
+      <div class="video-wrapper">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/9_Q4RBTd3ws?si=gJnG9KWpo92R2gJ-" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="video-slide">
+        <div class="video-wrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/zaDHkJLF84s?si=Bvt4Z-fXCE6-FN-X" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    <div class="video-slide">
+        <div class="video-wrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/D6Xo62U8KwA?si=oX0GvTjfzhKcOzX3" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-slide">
+        <div class="video-wrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/EDCbvrm7G0o?si=wzfyz_TvRceHNlz4" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-slide">
+        <div class="video-wrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/76pwmQ1KZBU?si=K5IjDkqL4BNt6zxG" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      
+    <!-- Add more video slides here as needed -->
+  </div>
+  <div class="slider-nav">
+    <button class="nav-button" onclick="prevSlide()">Previous</button>
+    <button class="nav-button" onclick="nextSlide()">Next</button>
+  </div>
+</div>
+
+<script>
+  // JavaScript for slider functionality
+  const slider = document.querySelector('.video-slider');
+  const slides = document.querySelectorAll('.video-slide');
+  let slideIndex = 0;
+
+  function showSlides() {
+    slides.forEach((slide, index) => {
+      if (index === slideIndex) {
+        slide.style.display = 'block';
+      } else {
+        slide.style.display = 'none';
+      }
+    });
+  }
+
+  function nextSlide() {
+    slideIndex++;
+    if (slideIndex >= slides.length) {
+      slideIndex = 0;
+    }
+    showSlides();
+  }
+
+  function prevSlide() {
+    slideIndex--;
+    if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+    }
+    showSlides();
+  }
+
+  showSlides();
+</script>
+
+</body>
+</html>

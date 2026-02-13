@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>CS Agent Dashboard</h1>
+    
+    <div class="grid-container" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; margin-top: 2rem;">
+        
+        <!-- Sidebar: Queue & Active -->
+        <div class="sidebar">
+            <div class="card" style="margin-bottom: 2rem;">
+                <ul style="list-style: none; padding: 0; display: flex; border-bottom: 1px solid #3d3d3d;">
+                    <li id="tab-queue" style="padding: 1rem; cursor: pointer; flex-grow: 1; text-align: center;" onclick="showTab('queue')">Pending <span id="pendingCount" class="badge" style="background: var(--danger-color); padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">0</span></li>
+                    <li id="tab-active" style="padding: 1rem; cursor: pointer; flex-grow: 1; text-align: center;" onclick="showTab('active')">Active</li>
+                    <li id="tab-history" style="padding: 1rem; cursor: pointer; flex-grow: 1; text-align: center;" onclick="showTab('history')">History</li>
+                </ul>
+
+                <div id="queue-content" class="tab-content" style="margin-top: 1rem;">
+                    <ul id="pendingQueueList" style="list-style: none; margin-top: 1rem;">
+                        <!-- Pending items populated by JS -->
+                    </ul>
+                </div>
+
+                <div id="active-content" class="tab-content" style="margin-top: 1rem; display: none;">
+                    <ul id="myActiveList" style="list-style: none; margin-top: 1rem;">
+                        <!-- Active items populated by JS -->
+                    </ul>
+                </div>
+
+                <div id="history-content" class="tab-content" style="margin-top: 1rem; display: none;">
+                    <ul id="myHistoryList" style="list-style: none; margin-top: 1rem;">
+                        <!-- History items populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat-container" style="height: 75vh;">
+            <div class="chat-main" style="width: 100%;">
+                <div class="chat-header" style="padding: 1rem; border-bottom: 1px solid #3d3d3d; display: flex; justify-content: space-between;">
+                    <div>
+                        <h3>Chatting with: <span id="chatReceiverName">Select a Chat</span></h3>
+                        <small>Request ID: <span id="chatReqId">-</span></small>
+                    </div>
+                    <div>
+                        <button id="transferBtn" class="btn" style="background-color: var(--secondary-color);">Transfer</button>
+                        <button id="releaseBtn" class="btn" style="background-color: #e67e22;">Release to Queue</button>
+                    </div>
+                </div>
+                <div class="chat-messages">
+                    <div class="message received">Hi, I need help with the irrigation info.</div>
+                    <div class="message sent">Sure, what seems to be the problem?</div>
+                </div>
+                <div class="chat-input-area">
+                    <!-- File Preview Area -->
+                    <div id="csFilePreview" style="display: none; padding: 0.5rem; background: #2d2d2d; border-radius: 8px; margin-bottom: 0.5rem; border-left: 3px solid var(--primary-color);">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-file" style="color: var(--primary-color);"></i>
+                                <span id="csFileName" style="font-size: 0.9rem;"></span>
+                                <span id="csFileSize" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+                            </div>
+                            <button onclick="clearCSFile()" style="background: transparent; border: none; color: #e74c3c; cursor: pointer; padding: 0.2rem 0.5rem;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Input Row -->
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="file" id="csFileInput" style="display: none;" accept=".png,.jpg,.jpeg,.gif,.pdf,.doc,.docx,.txt">
+                        <button class="btn" onclick="$('#csFileInput').click()" style="background: #6c757d; padding: 0.8rem;" title="Attach file">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <input type="text" id="csMsgInput" placeholder="Type your reply...">
+                        <button class="btn" onclick="sendCSMessage()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let currentChatId = null;
+
+    function acceptRequest(reqId) {
+        $.post(`/api/request/${reqId}/accept`, function(data) {
+            updateQueue();
+            showTab('active'); 
+        }).fail(function(xhr) {
+            alert('Error accepting request: ' + (xhr.responseJSON ? xhr.responseJSON.error : 'Unknown error'));
+        });
+    }
+
+    function loadChat(reqId, farmerName) {
+        currentChatId = reqId;
+        if (reqId) {
+            $('#chatReceiverName').text(farmerName);
+            $('#chatReqId').text('#' + reqId);
+            loadCSMessages();
+        } else {
+            $('#chatReceiverName').text('Select a Chat');
+            $('#chatReqId').text('-');
+            $('.chat-messages').empty();
+        }
+    }
+
+    function loadCSMessages() {
+        if(!currentChatId) return;
+        $.get(`/api/request/${currentChatId}/messages`, function(data) {
+            $('.chat-messages').empty();
+            data.messages.forEach(msg => {
+                const type = msg.is_me ? 'sent' : 'received';
+                let messageContent = msg.message || '';
+                
+                // Add file attachment if present
+                if (msg.file_path && msg.file_name) {
+                    const fileIcon = getCSFileIcon(msg.file_name);
+                    messageContent += `<div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 4px; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="${fileIcon}" style="color: var(--primary-color);"></i>
+                        <a href="/${msg.file_path}" target="_blank" style="color: var(--text-color); text-decoration: none; font-size: 0.9rem;">${msg.file_name}</a>
+                    </div>`;
+                }
+                
+                const html = `<div class="message ${type}">
+                                <small>${msg.sender}</small><br>
+                                ${messageContent}
+                              </div>`;
+                $('.chat-messages').append(html);
+            });
+             // Scroll
+            const chatDiv = document.querySelector(".chat-messages");
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        });
+    }
+
+    function sendCSMessage() {
+        const txt = $('#csMsgInput').val();
+        const fileInput = document.getElementById('csFileInput');
+        const hasFile = fileInput && fileInput.files.length > 0;
+        
+        if(!txt && !hasFile) return;
+        if(!currentChatId) { alert('No active request selected'); return; }
+        
+        if (hasFile) {
+            // Use FormData for file upload
+            const formData = new FormData();
+            if (txt) formData.append('message', txt);
+            formData.append('file', fileInput.files[0]);
+            
+            $.ajax({
+                url: `/api/request/${currentChatId}/send`,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function() {
+                    $('#csMsgInput').val('');
+                    clearCSFile();
+                    loadCSMessages();
+                }
+            });
+        } else {
+            // Regular text message
+            $.ajax({
+                url: `/api/request/${currentChatId}/send`,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ message: txt }),
+                success: function() {
+                    $('#csMsgInput').val('');
+                    loadCSMessages();
+                }
+            });
+        }
+    }
+    
+    function showTab(tab) {
+        // Remove active class from all tabs
+        $('#tab-queue, #tab-active, #tab-history').css('border-bottom', '1px solid #3d3d3d');
+        $('#tab-queue, #tab-active, #tab-history').css('font-weight', 'normal');
+
+        // Hide all content sections
+        $('#queue-content, #active-content, #history-content').hide();
+
+        // Show the selected tab content and apply active style
+        if(tab === 'queue') {
+            $('#queue-content').show();
+            $('#tab-queue').css('border-bottom', '2px solid var(--primary-color)');
+            $('#tab-queue').css('font-weight', 'bold');
+        } else if (tab === 'active') {
+            $('#active-content').show();
+            $('#tab-active').css('border-bottom', '2px solid var(--primary-color)');
+            $('#tab-active').css('font-weight', 'bold');
+        } else if (tab === 'history') {
+            $('#history-content').show();
+            $('#tab-history').css('border-bottom', '2px solid var(--primary-color)');
+            $('#tab-history').css('font-weight', 'bold');
+        }
+    }
+
+    function updateQueue() {
+        $.get('/api/queue', function(data) {
+            // Update Queue (Pending)
+            $('#pendingQueueList').empty();
+            if(data.pending.length === 0) {
+                 $('#pendingQueueList').append('<li style="padding:0.8rem; color: #7f8c8d;">No pending requests</li>');
+            } else {
+                data.pending.forEach(req => {
+                    let statusBadge = req.status === 'transferred' ? '<span class="badge" style="background: #e67e22; padding: 1px 4px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">Transferred</span>' : '';
+                    $('#pendingQueueList').append(`
+                        <li style="padding: 0.8rem; border-bottom: 1px solid #3d3d3d; display: flex; justify-content: space-between;">
+                            <span>
+                                ${req.farmer} 
+                                ${statusBadge}
+                                <br><small style="color: #7f8c8d;">(${req.time})</small>
+                            </span>
+                            <button class="btn" onclick="acceptRequest(${req.id})" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">Accept</button>
+                        </li>
+                    `);
+                });
+            }
+            $('#pendingCount').text(data.pending.length);
+
+            // Update Active Chats List
+            $('#myActiveList').empty();
+            if(data.active.length === 0) {
+                $('#myActiveList').append('<li style="padding:0.8rem; color: #7f8c8d;">No active requests</li>');
+            } else {
+                data.active.forEach(req => {
+                    $('#myActiveList').append(`
+                        <li onclick="loadChat(${req.id}, '${req.farmer}')" style="padding: 1rem; border-bottom: 1px solid #3d3d3d; cursor: pointer; background: ${currentChatId === req.id ? '#3d3d3d' : 'transparent'}">
+                            <strong>${req.farmer}</strong><br>
+                            <small>#${req.id}</small>
+                        </li>
+                    `);
+                });
+            }
+            
+            // Update History List
+            $('#myHistoryList').empty();
+             if(data.closed && data.closed.length > 0) {
+                data.closed.forEach(req => {
+                    $('#myHistoryList').append(`
+                        <li style="padding: 1rem; border-bottom: 1px solid #3d3d3d; display: flex; justify-content: space-between;">
+                            <span>#${req.id} - ${req.farmer}</span>
+                            <span style="color: #7f8c8d;">Closed: ${req.closed_at}</span>
+                        </li>
+                    `);
+                });
+            } else {
+                 $('#myHistoryList').append('<li style="padding:1rem; color: #7f8c8d;">No closed requests found.</li>');
+            }
+        });
+    }
+
+    // Polling active chat and lists
+    setInterval(function() {
+        loadCSMessages();
+        updateQueue();
+    }, 3000);
+
+    // Initial Load of Queue
+    $(document).ready(function() {
+        updateQueue();
+        showTab('queue'); // Set initial tab
+        
+        // File handling functions for CS
+        function getCSFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'txt': 'fas fa-file-alt',
+                'png': 'fas fa-file-image',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'gif': 'fas fa-file-image'
+            };
+            return iconMap[ext] || 'fas fa-file';
+        }
+        window.getCSFileIcon = getCSFileIcon;
+        
+        function clearCSFile() {
+            $('#csFileInput').val('');
+            $('#csFilePreview').hide();
+        }
+        window.clearCSFile = clearCSFile;
+        
+        // File input change handler
+        $('#csFileInput').change(function() {
+            const file = this.files[0];
+            if (file) {
+                const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                $('#csFileName').text(file.name);
+                $('#csFileSize').text(`(${sizeMB} MB)`);
+                $('#csFilePreview').show();
+            }
+        });
+
+        // Button Actions
+        $('#transferBtn').click(function() {
+            if(!currentChatId) return;
+            if(confirm('Transfer this request back to queue?')) {
+                $.post(`/api/request/${currentChatId}/transfer`, function() {
+                    loadChat(null);
+                    updateQueue();
+                    showTab('queue'); // Go back to pending/queue tab
+                });
+            }
+        });
+
+        $('#releaseBtn').click(function() {
+            if(!currentChatId) return;
+            if(!confirm('Release this request back to the queue?')) return;
+            
+            $.post(`/api/request/${currentChatId}/transfer`, function() {
+                alert('Request Released to Queue');
+                loadChat(null); // Clear current chat
+                updateQueue();
+                showTab('queue'); // Go back to pending/queue tab
+            }).fail(function() {
+                alert('Error releasing request');
+            });
+        });
+    });
+</script>
+{% endblock %}

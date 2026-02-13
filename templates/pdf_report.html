@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Report #{{ request.id }}</title>
+    <style>
+        @page { size: A4; margin: 1cm; }
+        body { font-family: Helvetica, sans-serif; font-size: 12px; line-height: 1.5; }
+        .header { text-align: center; border-bottom: 2px solid #2ecc71; padding-bottom: 10px; margin-bottom: 20px; }
+        .section { margin-bottom: 20px; }
+        .section-title { font-size: 14px; font-weight: bold; color: #27ae60; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px; }
+        .info-table { width: 100%; border-collapse: collapse; }
+        .info-table td { padding: 5px; vertical-align: top; }
+        .label { font-weight: bold; width: 120px; }
+        .message-box { padding: 10px; border: 1px solid #eee; margin-bottom: 5px; background-color: #f9f9f9; }
+        .sender-farmer { color: #2980b9; font-weight: bold; }
+        .sender-cs { color: #e67e22; font-weight: bold; }
+        .timestamp { float: right; color: #7f8c8d; font-size: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Support Request Report</h1>
+        <p>Generated on: {{ generated_at }}</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Request Details</div>
+        <table class="info-table">
+            <tr><td class="label">Request ID:</td><td>#{{ request.id }}</td></tr>
+            <tr><td class="label">Token:</td><td>{{ request.token }}</td></tr>
+            <tr><td class="label">Status:</td><td>{{ request.status|upper }}</td></tr>
+            <tr><td class="label">Created At:</td><td>{{ request.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td></tr>
+            <tr><td class="label">Closed At:</td><td>{{ request.closed_at.strftime('%Y-%m-%d %H:%M:%S') if request.closed_at else 'N/A' }}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Farmer Profile</div>
+        <table class="info-table">
+            <tr><td class="label">Name:</td><td>{{ request.farmer.name }} {{ request.farmer.surname }}</td></tr>
+            <tr><td class="label">Username:</td><td>{{ request.farmer.username }}</td></tr>
+            <tr><td class="label">Phone:</td><td>{{ request.farmer.phone }}</td></tr>
+            <tr><td class="label">Email:</td><td>{{ request.farmer.email }}</td></tr>
+            <tr><td class="label">Address:</td><td>{{ request.farmer.address }}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Support Agent</div>
+        <table class="info-table">
+            <tr><td class="label">Assigned Agent:</td><td>{{ request.cs_agent.username if request.cs_agent else 'Unassigned' }}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Chat History</div>
+        {% for msg in request.messages %}
+        <div class="message-box">
+            <span class="{{ 'sender-farmer' if msg.sender.role == 'farmer' else 'sender-cs' }}">
+                {{ msg.sender.username }} ({{ msg.sender.role|upper }})
+            </span>
+            <span class="timestamp">{{ msg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+            <div style="margin-top: 5px;">
+                {{ msg.message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

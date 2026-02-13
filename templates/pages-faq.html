@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <title> </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" rel="icon">
+  <link href="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  
+
+  <!-- Template Main CSS File -->
+  <link href="style.css" rel="stylesheet">
+<style >@media (min-width: 1200px) {
+
+  #main,
+  #footer {
+    margin-left: 0px;
+  }
+}</style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: rgb(93, 180, 137);">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="https://i.postimg.cc/DzwTwpxx/Infocrop-removebg.png" alt="image">
+      </a>
+
+            <img class="bi bi-list toggle-sidebar-btn" src="https://i.postimg.cc/NMsVxDZT/MENU-removebg-preview.png" style="height: 50px;width:50px ;">
+
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" >
+        <input id="searchInput" type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i onclick="searchAndScroll()" class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+        
+          <div id="google_translate_element"></div>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              Today's Important Notifications.  
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Weather</h4>
+                <p>Cloudy</p>
+                <p>Rain Possibility</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Market</h4>
+                <p>All the markets are closed .</p>
+                <p>Today</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Prediction </h4>
+                <p>In this month prices of markets are increases  </p>
+                <p>For 15 days</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Government </h4>
+                <p>All the benefits schemes are open</p>
+                <p>Apply Now !!</p>
+              </div>
+            </li>
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " onclick="goBack()">
+          <i class="bi bi-grid"></i>
+          <span>HOME</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>CROPS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/barley">
+              <i class="bi bi-circle"></i><span>BARLEY(JOW)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/maize">
+              <i class="bi bi-circle"></i><span>MAIZE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/rice">
+              <i class="bi bi-circle"></i><span>RICE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/soybean">
+              <i class="bi bi-circle"></i><span>SOYBEAN</span>
+            </a>
+          </li>
+          <li>
+            <a href="/cotton">
+              <i class="bi bi-circle"></i><span>COTTON</span>
+            </a>
+          </li>
+          <li>
+            <a href="/sugarcane">
+              <i class="bi bi-circle"></i><span>SUGARCANE</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>FRUITS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/grapes">
+              <i class="bi bi-circle"></i><span>GRAPES</span>
+            </a>
+          </li>
+          <li>
+            <a href="/pomegranate">
+              <i class="bi bi-circle"></i><span>POMEGRANATE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/banana">
+              <i class="bi bi-circle"></i><span>BANANA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mango">
+              <i class="bi bi-circle"></i><span>MANGO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/guava">
+              <i class="bi bi-circle"></i><span>GUAVA</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/watermelon">
+              <i class="bi bi-circle"></i><span>WATERMELON</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>FLOWERS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/rose">
+              <i class="bi bi-circle"></i><span>ROSE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/marigold">
+              <i class="bi bi-circle"></i><span>MARIGOLD</span>
+            </a>
+          </li>
+          <li>
+            <a href="/jasmine">
+              <i class="bi bi-circle"></i><span>JASMINE</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>VEGETABLES</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/brinjal">
+              <i class="bi bi-circle"></i><span>BRINJAL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/potato">
+              <i class="bi bi-circle"></i><span>POTATO</span>
+            </a>
+          </li>
+          <li>
+            <a href="/chilli">
+              <i class="bi bi-circle"></i><span>CHILLI</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/tomato">
+              <i class="bi bi-circle"></i><span>TOMATO</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/spinach">
+              <i class="bi bi-circle"></i><span>SPINACH</span>
+            </a>
+          </li>
+          <li>
+            <a href="/carrot">
+              <i class="bi bi-circle"></i><span>CARROT</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>MEDICINAL PLANTS</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/aloevera">
+              <i class="bi bi-circle"></i><span>ALOE VERA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/amla">
+              <i class="bi bi-circle"></i><span>AMLA</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ashwagandha">
+              <i class="bi bi-circle"></i><span>ASHWAGANDHA</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+      
+      <li class="nav-heading">Pages</li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://ofrf.org/">
+          <i class="bi bi-card-list"></i>
+          <span>ORGANIC FARMING</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/home">
+          <i class="bi bi-card-list"></i>
+          <span>LEAF DISEASE DETECTION</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.accuweather.com/en/in/mh/maharashtra-weather">
+          <i class="bi bi-card-list"></i>
+          <span>WEATHER INFO</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://www.apnikheti.com/en/pn/govt-schemes">
+          <i class="bi bi-card-list"></i>
+          <span>GOVERNMENT SCHEMES</span>
+        </a>
+      </li>
+      
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-faq">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-contact">
+          <i class="bi bi-envelope"></i>
+          <span>CONTACT</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/pages-register">
+          <i class="bi bi-card-list"></i>
+          <span>FEEDBACK</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://docs.google.com/forms/d/e/1FAIpQLScUzeRmbCPwJZXV1hd6tUBfSz2CNn_8rYjEg7fv-oo0-mXgzw/viewform?usp=sf_link">
+          <i class="bi bi-card-list"></i>
+          <span>YourDoubt</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <div id="main" class="main">
+    <center>
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a onclick="goBack()">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <div style="width: 1000px; ">
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Frequently Asked Questions</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a onclick="goBack()">Home</a></li>
+              <li class="breadcrumb-item">Pages</li>
+              <li class="breadcrumb-item active">Frequently Asked Questions</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+    
+        <section class="section faq">
+          <div class="row">
+            <div class="col-lg-6">
+    
+              <div class="card basic">
+                <div class="card-body">
+                  <h5 class="card-title">Basic Questions</h5>
+    
+                  <div>
+                    <h6>1. What are cash crops?</h6>
+                    <p>Cash crops are crops that are grown primarily for sale, rather than for subsistence. These crops are cultivated with the intention of generating profit for the farmer.</p>
+                  </div>
+    
+                  <div class="pt-2">
+                    <h6>2. What is the difference between organic and conventional farming?</h6>
+                    <p> Organic farming involves growing crops without synthetic pesticides, fertilizers, or genetically modified organisms (GMOs). Conventional farming, on the other hand, utilizes synthetic inputs to maximize yield and control pests and diseases.</p>
+                  </div>
+    
+                  <div class="pt-2">
+                    <h6>3. How do I prevent pests and diseases in my crops?</h6>
+                    <p>There are several methods to prevent pests and diseases, including crop rotation, using pest-resistant crop varieties, practicing good sanitation, and employing natural predators or organic pesticides.</p>
+                  </div>
+    
+                </div>
+              </div>
+    
+              <!-- F.A.Q Group 1 -->
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Crop Plantation Related Questions</h5>
+    
+                  <div class="accordion accordion-flush" id="faq-group-1">
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsOne-1" type="button" data-bs-toggle="collapse">
+                          When is the best time to plant crops?
+                        </button>
+                      </h2>
+                      <div id="faqsOne-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                        <div class="accordion-body">
+                          The best time to plant crops depends on factors such as the type of crop, local climate, and soil conditions. In general, most crops are planted in the spring after the last frost date or in the fall for winter crops.
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsOne-2" type="button" data-bs-toggle="collapse">
+                          How often should I water my crops?
+                        </button>
+                      </h2>
+                      <div id="faqsOne-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                        <div class="accordion-body">
+                          The frequency of watering crops depends on factors such as soil type, weather conditions, and crop stage. In general, it's essential to provide consistent moisture to crops, especially during periods of active growth. However, it's crucial not to overwater, as this can lead to waterlogging and root rot.
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsOne-3" type="button" data-bs-toggle="collapse">
+                          How do I protect my crops from adverse weather conditions?
+                        </button>
+                      </h2>
+                      <div id="faqsOne-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                        <div class="accordion-body">
+                          There are several strategies for protecting crops from adverse weather conditions, such as frost, drought, or excessive rainfall. These include using row covers or tunnels, employing irrigation systems, planting windbreaks, and selecting crop varieties adapted to local climate conditions. 
+                        </div>
+                      </div>
+                    </div>
+    
+                    
+    
+                    
+    
+                  </div>
+    
+                </div>
+              </div><!-- End F.A.Q Group 1 -->
+    
+            </div>
+    
+            <div class="col-lg-6">
+    
+              <!-- F.A.Q Group 2 -->
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Crop Disease Related Questions </h5>
+    
+                  <div class="accordion accordion-flush" id="faq-group-2">
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsTwo-1" type="button" data-bs-toggle="collapse">
+                          What causes crop diseases?
+                        </button>
+                      </h2>
+                      <div id="faqsTwo-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                        <div class="accordion-body">
+                          Crop diseases can be caused by various factors, including fungi, bacteria, viruses, nematodes, and environmental stressors.
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsTwo-2" type="button" data-bs-toggle="collapse">
+                          How can I identify crop diseases?
+                        </button>
+                      </h2>
+                      <div id="faqsTwo-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                        <div class="accordion-body">
+                          Crop diseases can manifest in various ways, including leaf spots, wilting, stunted growth, discoloration, and abnormal lesions. Consultation with agricultural experts or diagnostic laboratories can aid in accurate identification.
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsTwo-3" type="button" data-bs-toggle="collapse">
+                          What are some common methods for controlling crop diseases?
+                        </button>
+                      </h2>
+                      <div id="faqsTwo-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                        <div class="accordion-body">
+                          Common methods for controlling crop diseases include crop rotation, planting disease-resistant varieties, practicing good sanitation, applying fungicides or bactericides, and promoting overall plant health through proper nutrition and irrigation.
+                        </div>
+                      </div>
+                    </div>
+    
+                    
+    
+                    
+    
+                  </div>
+    
+                </div>
+              </div><!-- End F.A.Q Group 2 -->
+    
+              <!-- F.A.Q Group 3 -->
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Market Growth-Reated Questions </h5>
+    
+                  <div class="accordion accordion-flush" id="faq-group-3">
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsThree-1" type="button" data-bs-toggle="collapse">
+                          What factors contribute to market growth in the agriculture sector?
+                        </button>
+                      </h2>
+                      <div id="faqsThree-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                        <div class="accordion-body">
+                          Market growth in the agriculture sector is influenced by factors such as technological advancements, changes in consumer preferences, government policies, global trade dynamics, and environmental conditions.
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsThree-2" type="button" data-bs-toggle="collapse">
+                          How do government policies impact market growth in agriculture?
+                        </button>
+                      </h2>
+                      <div id="faqsThree-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                        <div class="accordion-body">
+                          Government policies, such as subsidies, trade agreements, regulations, and agricultural support programs, can significantly influence market dynamics and investment decisions in the agriculture sector, ultimately impacting market growth.
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-target="#faqsThree-3" type="button" data-bs-toggle="collapse">
+                          How does technological innovation drive market growth in agriculture?
+                        </button>
+                      </h2>
+                      <div id="faqsThree-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                        <div class="accordion-body">
+                          Technological innovation in agriculture, such as precision farming, genetic engineering, and advanced machinery, increases productivity, efficiency, and yield, thereby contributing to market growth by meeting the growing demand for food and agricultural products.
+                        </div>
+                      </div>
+                    </div>
+    
+                    
+    
+                    
+    
+                  </div>
+    
+                </div>
+              </div><!-- End F.A.Q Group 3 -->
+    
+            </div>
+    
+          </div></div>
+        </section></center>
+    
+
+ 
+  </div>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>InfoCrop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+     
+      Designed by <a href="">InfoCrop.</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="main.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'mr,hi,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+    
+</body>
+
+</html>

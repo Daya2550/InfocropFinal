@@ -1,0 +1,16 @@
+flask
+Flask-SQLAlchemy
+PyMySQL
+xhtml2pdf
+python-dotenv
+werkzeug
+joblib
+torch
+torchvision
+pandas
+numpy
+pillow
+opencv-python
+scikit-learn
+
+
