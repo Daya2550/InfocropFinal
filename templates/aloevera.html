@@ -167,17 +167,27 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " onclick="goBack()">
+        <a class="nav-link " href="/">
           <i class="bi bi-grid"></i>
           <span>HOME</span>
         </a>
       </li><!-- End Dashboard Nav -->
+
+      {% if current_user.is_authenticated and current_user.role == 'farmer' %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url_for('index') }}">
+          <i class="bi bi-person-badge"></i>
+          <span>FARMER PANEL (CHAT)</span>
+        </a>
+      </li>
+      {% endif %}
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>CROPS</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
 
           <li>
             <a href="/barley">
@@ -338,14 +348,25 @@
           </li>
         </ul>
       </li><!-- End Icons Nav -->
-      
+
       <li class="nav-heading">Pages</li>
-
-
       <li class="nav-item">
-        <a class="nav-link collapsed" href="https://ofrf.org/">
+        <a class="nav-link collapsed" href="/WhetherPrediction">
           <i class="bi bi-card-list"></i>
-          <span>ORGANIC FARMING</span>
+          <span>Weather Forecast</span>
+        </a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="/dashboard">
+          <i class="bi bi-card-list"></i>
+          <span>Customer Support</span>
+        </a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link collapsed" href="/CropRec">
+          <i class="bi bi-card-list"></i>
+          <span>Crop Recommendation</span>
         </a>
       </li>
       <li class="nav-item">
@@ -355,9 +376,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="https://www.accuweather.com/en/in/mh/maharashtra-weather">
+        <a class="nav-link collapsed" href="/PricePrediction">
           <i class="bi bi-card-list"></i>
-          <span>WEATHER INFO</span>
+          <span>Market Place</span>
         </a>
       </li>
 
@@ -385,6 +406,7 @@
           <span>YourDoubt</span>
         </a>
       </li>
+      
       
 
     </ul>

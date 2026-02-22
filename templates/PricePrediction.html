@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Price Prediction AI | InfoCrop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='PricePrediction.css') }}">
+    <style>
+      .ic-nav { background: linear-gradient(135deg,#042908,#0a5c12); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 9999; box-shadow: 0 2px 14px rgba(0,0,0,0.3); font-family: 'Inter', sans-serif; }
+      .ic-nav .brand { color: #fff; text-decoration: none; font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+      .ic-nav ul { display: flex; align-items: center; gap: 3px; list-style: none; margin: 0; padding: 0; }
+      .ic-nav ul a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 5px 10px; border-radius: 6px; transition: background 0.2s; white-space: nowrap; }
+      .ic-nav ul a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+      .ic-nav .nav-home-btn { color: #fff; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); text-decoration: none; font-size: 0.83rem; padding: 5px 14px; border-radius: 20px; transition: background 0.2s; }
+      .ic-nav .nav-home-btn:hover { background: rgba(255,255,255,0.25); }
+      .ic-breadcrumb { background: #f0f7f0; border-bottom: 1px solid #c8e6c9; padding: 7px 22px; font-size: 0.81rem; color: #555; display: flex; align-items: center; gap: 6px; }
+      .ic-breadcrumb a { color: #2e7d32; text-decoration: none; font-weight: 500; }
+      .ic-breadcrumb a:hover { text-decoration: underline; }
+      @media (max-width: 720px) { .ic-nav ul { display: none; } }
+    </style>
+</head>
+<body>
+    <!-- InfoCrop Navigation -->
+    <nav class="ic-nav">
+      <a href="/" class="brand">🌿 InfoCrop</a>
+      <ul>
+        <li><a href="/">🏠 Home</a></li>
+        <li><a href="/home">🍃 Disease Detection</a></li>
+        <li><a href="/CropRec">🌾 Crop Rec</a></li>
+        <li><a href="/PricePrediction">📈 Market Price</a></li>
+        <li><a href="/WhetherPrediction">🌤️ Weather AI</a></li>
+        <li><a href="https://www.apnikheti.com/en/pn/govt-schemes" target="_blank">📋 Gov Schemes</a></li>
+      </ul>
+      <a href="/" class="nav-home-btn">⬅ Home</a>
+    </nav>
+    <!-- Breadcrumb -->
+    <div class="ic-breadcrumb">
+      <a href="/">🏠 Home</a> <span style="color:#aaa;">›</span> <span>📈 Market Price Prediction</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🌾 Crop Price Prediction AI</h1>
+            <p>Predict market prices with machine learning precision.</p>
+        </header>
+
+
+        {% if error %}
+        <div class="alert error">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        {% if prediction %}
+
+        <!-- ───────────── PREDICTION RESULT DASHBOARD ───────────── -->
+        <style>
+          .result-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
+          @media(max-width:700px){ .result-dashboard { grid-template-columns: 1fr; } }
+
+          .res-card { background: #fff; border-radius: 16px; padding: 26px; box-shadow: 0 4px 24px rgba(0,0,0,0.09); border: 1.5px solid #e0f2e0; position: relative; overflow: hidden; }
+          .res-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+          .res-card.ml-card::before  { background: linear-gradient(90deg, #1565c0, #42a5f5); }
+          .res-card.ai-card::before  { background: linear-gradient(90deg, #1b5e20, #66bb6a); }
+          .res-card.best-card::before{ background: linear-gradient(90deg, #6a1b9a, #ab47bc); }
+
+          .res-card h3 { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin: 0 0 14px; }
+          .ml-card  h3 { color: #1565c0; }
+          .ai-card  h3 { color: #1b5e20; }
+          .best-card h3{ color: #6a1b9a; }
+
+          .price-big { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px; margin: 4px 0; }
+          .ml-card  .price-big { color: #1565c0; }
+          .ai-card  .price-big { color: #1b5e20; }
+          .best-card .price-big{ color: #6a1b9a; }
+          .price-sub { font-size: 0.78rem; color: #888; margin-bottom: 14px; }
+
+          .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.73rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+          .badge-blue   { background: #e3f2fd; color: #1565c0; }
+          .badge-green  { background: #e8f5e9; color: #1b5e20; }
+          .badge-orange { background: #fff3e0; color: #e65100; }
+          .badge-red    { background: #fce4ec; color: #b71c1c; }
+          .badge-purple { background: #f3e5f5; color: #6a1b9a; }
+
+          .divider { border: none; border-top: 1px solid #eee; margin: 14px 0; }
+
+          .analysis-text { font-size: 0.87rem; line-height: 1.6; color: #444; margin: 12px 0; }
+          .range-label { font-size: 0.75rem; color: #888; margin-bottom: 4px; }
+          .range-bar-wrap { background: #f0f7f0; border-radius: 8px; padding: 10px 14px; margin: 10px 0; }
+          .range-num { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; }
+          .range-num .lo { color: #e65100; }
+          .range-num .hi { color: #1b5e20; }
+          .range-bar { height: 6px; background: linear-gradient(90deg, #ff8a65, #66bb6a); border-radius: 3px; margin: 6px 0; }
+
+          .factor-list { list-style: none; padding: 0; margin: 10px 0 0; }
+          .factor-list li { display: flex; align-items: flex-start; gap: 7px; font-size: 0.82rem; color: #444; padding: 4px 0; border-bottom: 1px dashed #eee; }
+          .factor-list li:last-child { border-bottom: none; }
+          .factor-list li::before { content: '•'; color: #2e7d32; font-size: 1.1rem; line-height: 1; flex-shrink: 0; }
+
+          .verdict-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+          .trend-badge { font-size: 0.78rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+          .trend-inc  { background: #e8f5e9; color: #1b5e20; }
+          .trend-dec  { background: #fce4ec; color: #b71c1c; }
+          .trend-sta  { background: #fff3e0; color: #e65100; }
+
+          .best-panel { grid-column: 1 / -1; text-align: center; }
+          .best-panel .price-big { font-size: 3.2rem; }
+          .best-note { font-size: 0.8rem; color: #888; margin: 6px 0 0; }
+
+          .action-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+          .btn-predict-again { display: inline-flex; align-items: center; gap: 6px; background: #2e7d32; color: #fff; font-weight: 700; font-size: 0.9rem; padding: 11px 28px; border-radius: 25px; text-decoration: none; transition: background 0.2s; }
+          .btn-predict-again:hover { background: #1b5e20; }
+        </style>
+
+        <div class="result-dashboard">
+
+          <!-- ── ML Prediction Card ── -->
+          <div class="res-card ml-card">
+            <h3>🤖 ML Model Prediction</h3>
+            <div class="price-big">₹{{ ml_price if ml_price else prediction }}</div>
+            <div class="price-sub">per quintal · Random Forest · 31 features</div>
+
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="badge badge-blue">📊 Dataset: 10,000 rows</span>
+              <span class="badge badge-blue">✅ R² Score: 99.7%</span>
+            </div>
+
+            <hr class="divider">
+
+            <div style="font-size:0.82rem; color:#555;">
+              <strong>Auto-Detected Price Trend:</strong>
+              {% if price_trend == 'Increasing' %}
+                <span class="trend-badge trend-inc">📈 Increasing</span>
+              {% elif price_trend == 'Decreasing' %}
+                <span class="trend-badge trend-dec">📉 Decreasing</span>
+              {% else %}
+                <span class="trend-badge trend-sta">➡️ Stable</span>
+              {% endif %}
+            </div>
+
+            <div style="margin-top:10px; font-size:0.82rem; color:#555;">
+              <strong>Crop:</strong> {{ crop_name }} &nbsp;|&nbsp;
+              <strong>Season:</strong> {{ season }}<br>
+              <strong>State:</strong> {{ state }}
+            </div>
+          </div>
+
+          <!-- ── Gemini AI Card ── -->
+          {% if gemini_analysis %}
+          <div class="res-card ai-card">
+            <h3>🌿 Gemini AI Market Analysis</h3>
+
+            <!-- Confidence badge -->
+            {% if gemini_confidence == 'HIGH' %}
+              <span class="badge badge-green">🟢 HIGH Confidence</span>
+            {% elif gemini_confidence == 'MEDIUM' %}
+              <span class="badge badge-orange">🟡 MEDIUM Confidence</span>
+            {% elif gemini_confidence == 'LOW' %}
+              <span class="badge badge-red">🔴 LOW Confidence</span>
+            {% endif %}
+
+            <!-- ML Verdict -->
+            {% if gemini_verdict %}
+            <div style="margin-top:8px;">
+              {% if gemini_verdict == 'ACCURATE' %}
+                <span class="badge badge-green">✅ ML Prediction: Accurate</span>
+              {% elif gemini_verdict == 'SLIGHTLY_HIGH' %}
+                <span class="badge badge-orange">⚠️ ML Slightly High</span>
+              {% elif gemini_verdict == 'SLIGHTLY_LOW' %}
+                <span class="badge badge-orange">⚠️ ML Slightly Low</span>
+              {% else %}
+                <span class="badge badge-red">❗ Significantly Different</span>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            <hr class="divider">
+            <p class="analysis-text">{{ gemini_analysis }}</p>
+
+            <!-- Price range -->
+            {% if gemini_min and gemini_max %}
+            <div class="range-bar-wrap">
+              <div class="range-label">Gemini Estimated Range</div>
+              <div class="range-num">
+                <span class="lo">₹{{ gemini_min }}</span>
+                <span class="hi">₹{{ gemini_max }}</span>
+              </div>
+              <div class="range-bar"></div>
+              <div style="font-size:0.72rem; color:#888; text-align:center;">Market price corridor per quintal</div>
+            </div>
+            {% endif %}
+
+            <!-- Key factors -->
+            {% if gemini_factors %}
+            <div style="font-size:0.78rem; font-weight:700; color:#1b5e20; margin:10px 0 4px;">KEY MARKET FACTORS</div>
+            <ul class="factor-list">
+              {% for f in gemini_factors %}
+              <li>{{ f }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+
+          <!-- ── Best Estimate (full-width bottom) ── -->
+          <div class="res-card best-card best-panel">
+            <h3>⭐ Best Combined Estimate</h3>
+            <div class="price-big">₹{{ prediction }}</div>
+            <div class="price-sub">
+              Blended: 60% ML model + 40% Gemini AI market intelligence &nbsp;|&nbsp; per quintal
+            </div>
+            <div class="best-note">
+              This combines your dataset-trained model with real-time market knowledge from Gemini AI for the most accurate estimate.
+            </div>
+          </div>
+
+          {% else %}
+          <!-- ── No Gemini (fallback: just show ML result) ── -->
+          <div class="res-card best-card">
+            <h3>⭐ Predicted Price</h3>
+            <div class="price-big">₹{{ prediction }}</div>
+            <div class="price-sub">Based on 31 market features · per quintal</div>
+            <div style="margin-top:10px;">
+              <span class="badge badge-purple">📊 Clean Dataset · R² 99.7%</span>
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+
+        <div class="action-row">
+          <a href="/PricePrediction" class="btn-predict-again">🔄 Predict Another</a>
+        </div>
+
+        {% else %}
+
+        <form action="/predict" method="POST" class="prediction-form">
+            <div class="form-grid">
+                <!-- 
+                Refined Inputs:
+                Date, Crop, State, District, Market, Season, Previous Price, 
+                Market Arrival, Rainfall, Max Temp, Min Temp, Humidity, Festival 
+                -->
+                
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Crop Name</label>
+                    <select name="crop" required>
+                        <option value="Select">Select Crop</option>
+                        <option value="Wheat">Wheat</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Onion">Onion</option>
+                        <option value="Potato">Potato</option>
+                        <option value="Tomato">Tomato</option>
+                    </select>
+                </div>
+
+<!-- Replaced text inputs with selects -->
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="manual-entry-toggle">
+                    <label for="manual-entry-toggle" style="display:inline; font-weight:normal;">Can't find your location? Enter Manually</label>
+                </div>
+
+                <div class="form-group">
+                    <label>State</label>
+                    <select name="state" id="state" required>
+                        <option value="">Select State</option>
+                        <!-- Populated by JS -->
+                    </select>
+                    <input type="text" name="state" id="state-input" style="display:none;" disabled placeholder="Enter State (e.g. Punjab)" required>
+                </div>
+
+                <div class="form-group">
+                    <label>District</label>
+                    <select name="district" id="district" required>
+                        <option value="">Select District</option>
+                    </select>
+                    <input type="text" name="district" id="district-input" style="display:none;" disabled placeholder="Enter District" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Market Name</label>
+                    <select name="market" id="market" required>
+                         <option value="">Select Market</option>
+                    </select>
+                    <input type="text" name="market" id="market-input" style="display:none;" disabled placeholder="Enter Market" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Season</label>
+                    <select name="season" required>
+                        <option value="Rabi">Rabi</option>
+                        <option value="Kharif">Kharif</option>
+                        <option value="Zaid">Zaid</option>
+                    </select>
+                </div>
+
+                <!-- Price Insights -->
+                <h3 style="grid-column: 1 / -1; margin-top: 15px; font-size: 1.1em; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px;">Price Trends <span style="color:#e74c3c;font-size:0.8em;">(required)</span></h3>
+                <div class="form-group">
+                    <label>Previous Day Price (₹/Q) <span style="color:#e74c3c">*</span></label>
+                    <input type="number" step="0.01" min="1" name="prev_price" placeholder="e.g. 2100" required>
+                </div>
+                <div class="form-group">
+                    <label>Prev 7 Days Avg (₹/Q) <span style="color:#e74c3c">*</span></label>
+                    <input type="number" step="0.01" min="1" name="prev_7_price" placeholder="e.g. 2050" required>
+                </div>
+                <div class="form-group">
+                    <label>Prev 30 Days Avg (₹/Q) <span style="color:#e74c3c">*</span></label>
+                    <input type="number" step="0.01" min="1" name="prev_30_price" placeholder="e.g. 2000" required>
+                </div>
+
+
+                <!-- Supply & Production -->
+                <h3 style="grid-column: 1 / -1; margin-top: 15px; font-size: 1.1em; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px;">Supply & Production</h3>
+                <div class="form-group">
+                    <label>Production (Tonnes)</label>
+                    <input type="number" step="0.1" name="production" placeholder="e.g. 5000">
+                </div>
+                <div class="form-group">
+                    <label>Yield (Tonnes/Hectare)</label>
+                    <input type="number" step="0.01" name="yield_hectare" placeholder="e.g. 3.5">
+                </div>
+                <div class="form-group">
+                    <label>Market Arrival (Tonnes)</label>
+                    <input type="number" step="0.01" name="arrival" placeholder="e.g. 1300">
+                </div>
+                <div class="form-group">
+                    <label>Stock Available (Tonnes)</label>
+                    <input type="number" step="0.1" name="stock" placeholder="e.g. 200">
+                </div>
+
+                <!-- Market Economics -->
+                <h3 style="grid-column: 1 / -1; margin-top: 15px; font-size: 1.1em; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px;">Market Economics</h3>
+                <div class="form-group">
+                    <label>Min Price (₹/Q)</label>
+                    <input type="number" step="0.01" name="min_price" placeholder="Min">
+                </div>
+                <div class="form-group">
+                    <label>Max Price (₹/Q)</label>
+                    <input type="number" step="0.01" name="max_price" placeholder="Max">
+                </div>
+                <div class="form-group">
+                    <label>Modal Price (₹/Q)</label>
+                    <input type="number" step="0.01" name="modal_price" placeholder="Modal">
+                </div>
+                <div class="form-group">
+                    <label>Buyers Count</label>
+                    <input type="number" name="buyers" placeholder="e.g. 50">
+                </div>
+                <div class="form-group">
+                    <label>Demand Index</label>
+                    <input type="number" step="0.1" name="demand_index" placeholder="e.g. 100">
+                </div>
+                <div class="form-group">
+                    <label>Fuel Price (₹/L)</label>
+                    <input type="number" step="0.01" name="fuel_price" placeholder="e.g. 96">
+                </div>
+                <div class="form-group">
+                    <label>Transport Cost (₹/Ton)</label>
+                    <input type="number" step="0.01" name="transport_cost" placeholder="e.g. 500">
+                </div>
+                <div class="form-group">
+                    <label>Inflation Rate (%)</label>
+                    <input type="number" step="0.01" name="inflation" placeholder="e.g. 5.5">
+                </div>
+
+                <!-- Environmental -->
+                <h3 style="grid-column: 1 / -1; margin-top: 15px; font-size: 1.1em; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px;">Environmental</h3>
+                <div class="form-group">
+                    <label>Rainfall (mm)</label>
+                    <input type="number" step="any" name="rainfall" value="14" placeholder="e.g. 12">
+                </div>
+                <div class="form-group">
+                    <label>Max Temp (°C)</label>
+                    <input type="number" step="any" name="temp_max" value="28" placeholder="e.g. 32">
+                </div>
+                <div class="form-group">
+                    <label>Min Temp (°C)</label>
+                    <input type="number" step="any" name="temp_min" value="17" placeholder="e.g. 20">
+                </div>
+                <div class="form-group">
+                    <label>Humidity (%)</label>
+                    <input type="number" step="any" name="humidity" value="49" placeholder="e.g. 70">
+                </div>
+                <div class="form-group">
+                    <label>Soil Moisture (%)</label>
+                    <input type="number" step="any" name="soil_moisture" placeholder="e.g. 45">
+                </div>
+
+                <!-- Other -->
+                <h3 style="grid-column: 1 / -1; margin-top: 15px; font-size: 1.1em; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px;">Other Factors</h3>
+                <div class="form-group">
+                    <label>Harvest Season?</label>
+                    <select name="harvest_season" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Festival?</label>
+                    <select name="festival" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn primary">Predict Price 🔮</button>
+        </form>
+        {% endif %}
+        <div style="text-align:center; padding: 20px 0 10px; color: #888; font-size: 0.85rem;">
+          <a href="/" style="color: #2e7d32; font-weight: 500; text-decoration: none;">← Back to InfoCrop Home</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.prediction-form');
+            if (!form) return;
+
+            const stateSelect = document.getElementById('state');
+            const districtSelect = document.getElementById('district');
+            const marketSelect = document.getElementById('market');
+            
+            const stateInput = document.getElementById('state-input');
+            const districtInput = document.getElementById('district-input');
+            const marketInput = document.getElementById('market-input');
+            const manualToggle = document.getElementById('manual-entry-toggle');
+
+            let locationData = {};
+
+            // Toggle logic
+            if (manualToggle) {
+                manualToggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Manual Mode
+                        toggleField(stateSelect, stateInput);
+                        toggleField(districtSelect, districtInput);
+                        toggleField(marketSelect, marketInput);
+                    } else {
+                        // Dropdown Mode
+                        toggleField(stateInput, stateSelect);
+                        toggleField(districtInput, districtSelect);
+                        toggleField(marketInput, marketSelect);
+                    }
+                });
+            }
+
+            function toggleField(hide, show) {
+                hide.style.display = 'none';
+                hide.disabled = true;
+                hide.removeAttribute('required'); // Remove required when hidden
+                show.style.display = 'block';
+                show.disabled = false;
+                show.setAttribute('required', 'required'); // Add required when shown
+            }
+
+            // Fetch location hierarchy
+            fetch('/get_locations')
+                .then(response => response.json())
+                .then(data => {
+                    locationData = data;
+                    populateStates();
+                })
+                .catch(err => {
+                    console.error("Error loading locations:", err);
+                    // If error, maybe auto-enable manual mode?
+                    // manualToggle.checked = true; 
+                    // manualToggle.dispatchEvent(new Event('change'));
+                });
+
+            function populateStates() {
+                stateSelect.innerHTML = '<option value="">Select State</option>';
+                if (!locationData || Object.keys(locationData).length === 0) {
+                     console.warn("No location data found.");
+                     return;
+                }
+                Object.keys(locationData).sort().forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateSelect.appendChild(option);
+                });
+            }
+
+            stateSelect.addEventListener('change', function() {
+                const state = this.value;
+                districtSelect.innerHTML = '<option value="">Select District</option>';
+                marketSelect.innerHTML = '<option value="">Select Market</option>';
+                // Removed disabled toggle to allow required validation to work
+
+                if (state !== '' && locationData[state]) {
+                    Object.keys(locationData[state]).sort().forEach(dist => {
+                        const option = document.createElement('option');
+                        option.value = dist;
+                        option.textContent = dist;
+                        districtSelect.appendChild(option);
+                    });
+                }
+                fetchAverages();
+            });
+
+            districtSelect.addEventListener('change', function() {
+                const state = stateSelect.value;
+                const district = this.value;
+                marketSelect.innerHTML = '<option value="">Select Market</option>';
+
+                if (state !== '' && district !== '' && locationData[state][district]) {
+                    locationData[state][district].sort().forEach(mkt => {
+                        const option = document.createElement('option');
+                        option.value = mkt;
+                        option.textContent = mkt;
+                        marketSelect.appendChild(option);
+                    });
+                }
+                // No fetchAverages here usually needed unless district specific averages (currently app uses state/market)
+            });
+
+            marketSelect.addEventListener('change', fetchAverages);
+
+            // ... Existing Smart Input Logic ...
+            const inputs = {
+                crop: form.querySelector('[name="crop"]'),
+                state: stateSelect, // Note: This checks the select only for averages currently
+                market: marketSelect,
+                season: form.querySelector('[name="season"]')
+            };
+
+            const targets = {
+                prev_price: form.querySelector('[name="prev_price"]'),
+                arrival: form.querySelector('[name="arrival"]'),
+                rainfall: form.querySelector('[name="rainfall"]'),
+                temp_max: form.querySelector('[name="temp_max"]'),
+                temp_min: form.querySelector('[name="temp_min"]'),
+                humidity: form.querySelector('[name="humidity"]')
+            };
+
+            function fetchAverages() {
+                // If manual mode, maybe skip averages or try to use input values?
+                // For now, let's stick to dropdowns triggering it, or manual inputs on blur
+                
+                let stateVal, marketVal;
+                
+                if (manualToggle && manualToggle.checked) {
+                    stateVal = stateInput.value;
+                    marketVal = marketInput.value;
+                } else {
+                    stateVal = inputs.state.value;
+                    marketVal = inputs.market.value;
+                }
+
+                const data = {
+                    crop: inputs.crop.value,
+                    state: stateVal,
+                    market: marketVal,
+                    season: inputs.season.value
+                };
+
+                // Only fetch if at least crop and state are selected/entered
+                if (data.crop === 'Select' || !data.state) return;
+
+                fetch('/get_averages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.error) return;
+                    
+                    if (targets.prev_price) targets.prev_price.value = result.prev_price || '';
+                    if (targets.arrival) targets.arrival.value = result.arrival || '';
+                    if (targets.rainfall) targets.rainfall.value = result.rainfall || '';
+                    if (targets.temp_max) targets.temp_max.value = result.temp_max || '';
+                    if (targets.temp_min) targets.temp_min.value = result.temp_min || '';
+                    if (targets.humidity) targets.humidity.value = result.humidity || '';
+                })
+                .catch(error => console.error('Error fetching averages:', error));
+            }
+
+            inputs.crop.addEventListener('change', fetchAverages);
+            inputs.season.addEventListener('change', fetchAverages);
+            
+            // Add listeners for manual inputs/toggle to trigger averages too
+            if(manualToggle) {
+                 manualToggle.addEventListener('change', fetchAverages);
+            }
+            if(stateInput) stateInput.addEventListener('blur', fetchAverages);
+            if(marketInput) marketInput.addEventListener('blur', fetchAverages);
+        });
+    </script>
+
+</body>
+</html>

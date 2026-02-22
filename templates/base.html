@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Farmer Support Dashboard</title>
+    <title>{% block title %}InfoCrop — Farmer Support{% endblock %}</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -12,26 +12,80 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styl.css') }}"
     />
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styl.css') }}">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <style>
+      /* ---- InfoCrop Top NavBar (base.html) ---- */
+      .ic-topnav {
+        background: linear-gradient(135deg, #042908 0%, #05380b 60%, #0a5c12 100%);
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        box-shadow: 0 2px 14px rgba(0,0,0,0.3);
+      }
+      .ic-topnav .brand {
+        display: flex; align-items: center; gap: 9px;
+        text-decoration: none; color: #fff;
+        font-size: 1.25rem; font-weight: 700;
+      }
+      .ic-topnav .navlinks {
+        display: flex; align-items: center; gap: 2px;
+        list-style: none; margin: 0; padding: 0;
+      }
+      .ic-topnav .navlinks a {
+        color: rgba(255,255,255,0.82); text-decoration: none;
+        font-size: 0.86rem; font-weight: 500;
+        padding: 6px 11px; border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+        display: flex; align-items: center; gap: 4px;
+      }
+      .ic-topnav .navlinks a:hover { background: rgba(255,255,255,0.14); color: #fff; }
+      .ic-topnav .nav-right { display: flex; align-items: center; gap: 8px; }
+      .ic-topnav .nav-right a {
+        color: rgba(255,255,255,0.85); text-decoration: none;
+        font-size: 0.85rem; padding: 6px 13px;
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 20px; transition: background 0.2s;
+      }
+      .ic-topnav .nav-right a:hover { background: rgba(255,255,255,0.18); color: #fff; }
+      .ic-topnav .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+      .ic-topnav .nav-toggle span { width: 22px; height: 2px; background: #fff; border-radius: 2px; display: block; }
+      @media (max-width: 768px) {
+        .ic-topnav .navlinks { display: none; position: absolute; top: 58px; left: 0; right: 0; background: #042908; flex-direction: column; padding: 8px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .ic-topnav .navlinks.open { display: flex; }
+        .ic-topnav .navlinks a { padding: 12px 20px; border-radius: 0; font-size: 0.95rem; }
+        .ic-topnav .nav-toggle { display: flex; }
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="logo"><i class="fas fa-leaf"></i> AgriSupport</div>
-      <div class="nav-links">
-        <a href="/">Home</a>
+    <!-- ===== InfoCrop Top Navigation ===== -->
+    <nav class="ic-topnav">
+      <a href="/" class="brand">🌿 InfoCrop</a>
+      <ul class="navlinks" id="baseNavLinks">
+        <li><a href="/"><span>🏠</span> Home</a></li>
+        <li><a href="/home"><span>🍃</span> Disease Detection</a></li>
+        <li><a href="/CropRec"><span>🌾</span> Crop Rec</a></li>
+        <li><a href="/PricePrediction"><span>📈</span> Market Price</a></li>
+        <li><a href="/WhetherPrediction"><span>🌤️</span> Weather AI</a></li>
+        <li><a href="/dashboard"><span>🛎️</span> Support</a></li>
+      </ul>
+      <div class="nav-right">
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('index') }}">Dashboard</a>
-        <span>Welcome, {{ current_user.username }}</span>
-        <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+        <span style="color:rgba(255,255,255,0.7);font-size:0.82rem;">👤 {{ current_user.username }}</span>
+        <a href="{{ url_for('logout') }}">Logout</a>
         {% else %}
         <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('register') }}" style="background:rgba(255,255,255,0.15);">Register</a>
         {% endif %}
+        <button class="nav-toggle" id="baseNavToggle"><span></span><span></span><span></span></button>
       </div>
     </nav>
 
@@ -42,10 +96,24 @@
         <div class="alert">{{ message }}</div>
         {% endfor %}
       </div>
-      {% endif %} {% endwith %} {% block content %}{% endblock %}
+      {% endif %} {% endwith %}
+      {% block content %}{% endblock %}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      (function() {
+        var btn = document.getElementById('baseNavToggle');
+        var links = document.getElementById('baseNavLinks');
+        if (btn && links) {
+          btn.addEventListener('click', function() { links.classList.toggle('open'); });
+        }
+        var cur = window.location.pathname;
+        (links ? links.querySelectorAll('a') : []).forEach(function(a) {
+          if (a.getAttribute('href') === cur) a.style.background = 'rgba(255,255,255,0.2)';
+        });
+      })();
+    </script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

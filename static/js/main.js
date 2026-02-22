@@ -384,4 +384,94 @@ function searchAndScroll() {
 function goBack() {
   window.history.back();
 }
- 
+
+/* =====================================================
+   InfoCrop Top Navigation Bar — Auto-injected
+   Runs on all crop/plant info pages that load main.js
+   ===================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  var NAV_H = 52;  // height of ic-topbar
+
+  // ---- 1. Inject font ----
+  var fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap';
+  document.head.appendChild(fontLink);
+
+  // ---- 2. Inject static CSS (navbar styles only) ----
+  var css = document.createElement('style');
+  css.id = 'ic-nav-style';
+  css.textContent =
+    '#ic-topbar{' +
+      'position:relative;top:0;left:0;right:0;z-index:99999;' +
+      'height:' + NAV_H + 'px;width:100%;' +
+      'background:linear-gradient(135deg,#042908,#05380b 60%,#0a5c12);' +
+      'display:flex;align-items:center;justify-content:space-between;' +
+      'padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,.4);' +
+      'font-family:Outfit,system-ui,sans-serif;flex-shrink:0;' +
+    '}' +
+    '#ic-topbar a.ic-brand{' +
+      'color:#fff;text-decoration:none;font-size:1.05rem;font-weight:700;' +
+      'display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;' +
+    '}' +
+    '#ic-topbar ul{' +
+      'display:flex;align-items:center;gap:2px;' +
+      'list-style:none;margin:0;padding:0;' +
+    '}' +
+    '#ic-topbar ul a{' +
+      'color:rgba(255,255,255,.85);text-decoration:none;' +
+      'font-size:.82rem;font-weight:500;padding:5px 9px;' +
+      'border-radius:6px;transition:background .18s;white-space:nowrap;display:block;' +
+    '}' +
+    '#ic-topbar ul a:hover{background:rgba(255,255,255,.18);color:#fff;}' +
+    '#ic-topbar a.ic-home-btn{' +
+      'color:#fff;text-decoration:none;background:rgba(255,255,255,.15);' +
+      'border:1px solid rgba(255,255,255,.3);font-size:.8rem;' +
+      'padding:5px 14px;border-radius:18px;transition:background .18s;' +
+      'white-space:nowrap;flex-shrink:0;' +
+    '}' +
+    '#ic-topbar a.ic-home-btn:hover{background:rgba(255,255,255,.25);}' +
+    /* Header: FIXED at top:0 — always visible */
+    '#header.header,#header.header.fixed-top{' +
+      'position:fixed !important;' +
+      'top:0 !important;' +
+      'left:0 !important;' +
+      'right:0 !important;' +
+      'width:100% !important;' +
+      'height:60px !important;' +
+      'z-index:997 !important;' +
+    '}' +
+    /* Sidebar: fixed, starts right below the fixed header */
+    '#sidebar.sidebar{' +
+      'position:fixed !important;' +
+      'top:60px !important;' +
+      'bottom:0 !important;' +
+    '}' +
+    /* Main: offset down past fixed header only */
+    '#main{' +
+      'margin-top:60px !important;' +
+      'padding:20px 30px !important;' +
+    '}' +
+    '@media(max-width:820px){#ic-topbar ul{display:none;}}';
+  document.head.appendChild(css);
+
+  // ---- 3. Inject HTML ----
+  var nav = document.createElement('div');
+  nav.id = 'ic-topbar';
+  nav.innerHTML =
+    '<a href="/" class="ic-brand">&#127807; InfoCrop</a>' +
+    '<ul>' +
+      '<li><a href="/">&#127968; Home</a></li>' +
+      '<li><a href="/home">&#127811; Disease Detection</a></li>' +
+      '<li><a href="/CropRec">&#127806; Crop Rec</a></li>' +
+      '<li><a href="/PricePrediction">&#128200; Market Price</a></li>' +
+      '<li><a href="/WhetherPrediction">&#9925; Weather AI</a></li>' +
+      '<li><a href="https://www.apnikheti.com/en/pn/govt-schemes" target="_blank">&#128203; Gov Schemes</a></li>' +
+    '</ul>' +
+    '<a href="/" class="ic-home-btn">&#8592; Home</a>';
+
+  document.body.insertBefore(nav, document.body.firstChild);
+});
+
+
+

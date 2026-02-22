@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌱 Farm Planner AI – InfoCrop</title>
+  <meta name="description" content="10-stage AI-powered farm planning wizard for Indian farmers. Get real-time crop, soil, market, and weather guidance powered by Gemini AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='FarmPlanner.css') }}">
+</head>
+<body>
+
+<!-- ──────────── NAVBAR ──────────────────────────────────── -->
+<nav class="fp-nav">
+  <a href="/" class="brand">🌿 InfoCrop</a>
+  <span class="title-center">🌱 Farm Planner AI</span>
+  <a href="/" class="nav-btn">⬅ Home</a>
+</nav>
+
+<!-- ──────────── BREADCRUMB ──────────────────────────────── -->
+<div class="fp-breadcrumb">
+  <a href="/">🏠 Home</a>
+  <span style="color:#aaa">›</span>
+  <span>🌱 Farm Planner AI</span>
+  {% if stage %}
+  <span style="color:#aaa">›</span>
+  <span>{{ stage.emoji }} Stage {{ stage.num }}: {{ stage.title }}</span>
+  {% elif show_report %}
+  <span style="color:#aaa">›</span>
+  <span>📄 Farm Plan Report</span>
+  {% endif %}
+</div>
+
+<!-- ──────────── LOADING OVERLAY ─────────────────────────── -->
+<div class="fp-loading" id="loadingOverlay">
+  <div class="spinner"></div>
+  <h3>🌿 Gemini AI is analysing...</h3>
+  <p>Getting real-time agricultural guidance for your farm. This may take 10-20 seconds.</p>
+</div>
+
+<!-- ──────────── MAIN WRAPPER ─────────────────────────────── -->
+<div class="fp-wrapper">
+
+  <!-- PAGE HEADER -->
+  {% if not show_report %}
+  <div class="fp-header">
+    <h1>🌱 Farm Planner AI</h1>
+    <p>Complete 10-stage guidance powered by Gemini AI — from crop selection to profit planning.</p>
+    <span class="badge-ai">✨ Powered by Gemini 2.0 Flash &nbsp;|&nbsp; Real-time market data</span>
+  </div>
+  {% endif %}
+
+  <!-- ──────────── PROGRESS BAR ────────────────────────────── -->
+  <div class="fp-progress" role="navigation" aria-label="Stage progress">
+    {% for s in stages %}
+    <div class="fp-step
+      {% if s.num in completed %}done
+      {% elif stage and s.num == stage.num %}active
+      {% endif %}">
+      <div class="fp-step-circle">
+        {% if s.num in completed %}
+          ✓
+        {% else %}
+          {{ s.emoji }}
+        {% endif %}
+      </div>
+      <div class="fp-step-label">{{ s.title }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       REPORT VIEW (after stage 10)
+       ══════════════════════════════════════════════════════ -->
+  {% if show_report %}
+  <div class="fp-report">
+    <div class="fp-report-header">
+      <div style="font-size:3rem;margin-bottom:8px;">🌾</div>
+      <h2>Your Farm Plan is Ready!</h2>
+      <p>Complete 10-stage AI analysis for {{ farm_data.get('farmer_name','Your Farm') }} · {{ farm_data.get('city','N/A') }}, {{ farm_data.get('state','N/A') }}</p>
+    </div>
+
+    <!-- Summary strip -->
+    <div class="fp-report-summary">
+      <div class="fp-report-summary-item">
+        <div class="val">{{ farm_data.get('confirmed_crop', farm_data.get('crop_recommendation_TOP_CROP', '—')) }}</div>
+        <div class="lbl">Recommended Crop</div>
+      </div>
+      <div class="fp-report-summary-item">
+        <div class="val">{{ farm_data.get('land_area','—') }} Acres</div>
+        <div class="lbl">Land Area</div>
+      </div>
+      <div class="fp-report-summary-item">
+        <div class="val">₹{{ farm_data.get('budget','—') }}</div>
+        <div class="lbl">Total Budget</div>
+      </div>
+      <div class="fp-report-summary-item">
+        <div class="val">{{ farm_data.get('season','—') }}</div>
+        <div class="lbl">Season</div>
+      </div>
+      <div class="fp-report-summary-item">
+        <div class="val">{{ farm_data.get('sowing_date','—') }}</div>
+        <div class="lbl">Sowing Date</div>
+      </div>
+      <div class="fp-report-summary-item">
+        <div class="val">{{ farm_data.get('harvest_month','—') }}</div>
+        <div class="lbl">Harvest Month</div>
+      </div>
+    </div>
+
+    <!-- Stage sections (collapsible) -->
+    <div class="fp-report-body">
+      {% for s in stages %}
+      {% set gkey = 'gemini_' + s.gemini_key %}
+      <div class="fp-stage-section">
+        <div class="fp-stage-section-header" onclick="toggleSection(this)">
+          <span style="font-size:1.5rem">{{ s.emoji }}</span>
+          <h3>Stage {{ s.num }}: {{ s.title }}</h3>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="fp-stage-section-body {% if loop.first %}open{% endif %}">
+
+          <!-- Farmer inputs summary -->
+          <table class="fp-inputs-table">
+            <thead><tr><th>Field</th><th>Your Input</th></tr></thead>
+            <tbody>
+            {% for field in s.fields %}
+            {% set val = farm_data.get(field.name, '') %}
+            {% if val and val not in ('Select','') %}
+            <tr><td>{{ field.label }}</td><td>{{ val }}</td></tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+
+          <!-- AI guidance -->
+          {% if farm_data.get(gkey) %}
+          <div style="font-size:.85rem;font-weight:700;color:#1b5e20;margin-bottom:8px;">🤖 Gemini AI Guidance:</div>
+          <div class="fp-report-ai fp-ai-body">
+            {{ farm_data.get(gkey)|render_ai_html|safe }}
+          </div>
+          {% else %}
+          <p style="color:#aaa;font-size:.85rem;">No AI guidance for this stage.</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Action bar -->
+    <div class="fp-action-bar">
+      <a href="{{ url_for('farm_planner.download_pdf') }}" class="fp-btn-download">
+        📥 Download PDF Farm Plan
+      </a>
+      <a href="{{ url_for('farm_planner.restart') }}" class="fp-btn-restart">
+        🔄 Start New Plan
+      </a>
+      <a href="/" class="fp-btn-restart" style="background:linear-gradient(135deg,#37474f,#546e7a);">
+        🏠 Back to InfoCrop
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       STAGE WIZARD FORM
+       ══════════════════════════════════════════════════════ -->
+  {% elif stage %}
+  <div class="fp-content">
+
+    <!-- LEFT: Stage Form -->
+    <div class="fp-stage-card">
+      <div class="fp-stage-header">
+        <div class="fp-stage-tag">
+          Stage {{ stage.num }} of {{ total_stages }}
+          &nbsp;·&nbsp;
+          {{ stage.title }}
+        </div>
+        <h2>{{ stage.emoji }} {{ stage.title }}</h2>
+        <p>{{ stage.subtitle }}</p>
+      </div>
+
+      <div class="fp-stage-body">
+        <form action="{{ url_for('farm_planner.process_stage', stage_num=stage.num) }}" method="POST" id="stageForm">
+
+          <div class="fp-form-grid">
+            {% for field in stage.fields %}
+            <div class="fp-field {% if field.type == 'text' and loop.index0 == 0 %}full-width{% endif %}">
+              <label for="{{ field.name }}">
+                {{ field.label }}
+                {% if field.required %}<span class="req"> *</span>{% endif %}
+              </label>
+
+              {% if field.type == 'select' %}
+              <select name="{{ field.name }}" id="{{ field.name }}"
+                {% if field.required %}required{% endif %}>
+                <option value="">Select…</option>
+                {% for opt in field.options %}
+                <option value="{{ opt }}"
+                  {% if farm_data.get(field.name) == opt %}selected{% endif %}>
+                  {{ opt }}
+                </option>
+                {% endfor %}
+              </select>
+
+              {% elif field.type == 'date' %}
+              <input type="date" name="{{ field.name }}" id="{{ field.name }}"
+                value="{{ farm_data.get(field.name, '') }}"
+                {% if field.required %}required{% endif %}>
+
+              {% elif field.type == 'number' %}
+              <input type="number" name="{{ field.name }}" id="{{ field.name }}"
+                placeholder="{{ field.get('placeholder','') }}"
+                value="{{ farm_data.get(field.name, '') }}"
+                min="{{ field.get('min','') }}"
+                max="{{ field.get('max','') }}"
+                step="{{ field.get('step','any') }}"
+                {% if field.required %}required{% endif %}>
+
+              {% else %}
+              <input type="text" name="{{ field.name }}" id="{{ field.name }}"
+                placeholder="{{ field.get('placeholder','') }}"
+                value="{{ farm_data.get(field.name, '') }}"
+                {% if field.required %}required{% endif %}>
+              {% endif %}
+
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Stage tip -->
+          <div style="background:#f0f7f0;border-radius:8px;padding:12px 16px;margin-top:20px;font-size:.82rem;color:#555;border-left:3px solid #43a047;">
+            💡 <strong>Tip:</strong>
+            {% if stage.num == 1 %}Fill accurate details — Gemini AI uses these to recommend the best crop for your specific land.
+            {% elif stage.num == 2 %}You can confirm the AI-recommended crop from Stage 1 or enter your own preferred crop.
+            {% elif stage.num == 3 %}If you don't know soil test values, enter "Unknown" — Gemini will recommend a soil test.
+            {% elif stage.num == 4 %}Drip irrigation can reduce water use by 40-50%. Gemini will check subsidy eligibility.
+            {% elif stage.num == 5 %}Gemini uses IMD seasonal forecasts and historical climate data for {{ farm_data.get('state','your state') }}.
+            {% elif stage.num == 6 %}Mention any disease you've seen before — Gemini will give preventive spray schedule.
+            {% elif stage.num == 7 %}Enter your nearest APMC mandi. Gemini will show current prices and best selling window.
+            {% elif stage.num == 8 %}Gemini creates a week-by-week activity calendar based on your sowing and harvest dates.
+            {% elif stage.num == 9 %}Post-harvest losses in India average 20-30%. Proper storage advice can save crores.
+            {% elif stage.num == 10 %}This is the final stage. Your complete farm plan PDF will be ready after this!
+            {% endif %}
+          </div>
+
+          <div class="fp-submit-row">
+            <span class="fp-stage-counter">
+              {% if stage.num == 10 %}🎯 Last stage — Final step!
+              {% else %}{{ 10 - stage.num }} more stage{{ 's' if 10 - stage.num != 1 else '' }} after this
+              {% endif %}
+            </span>
+            <button type="submit" class="fp-btn-next" id="submitBtn">
+              {% if stage.num == 10 %}
+                🎉 Generate Farm Plan <span class="arrow">→</span>
+              {% else %}
+                Get AI Guidance &amp; Next Stage <span class="arrow">→</span>
+              {% endif %}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- RIGHT: Gemini AI Guidance Panel -->
+    <div class="fp-ai-panel">
+      <div class="fp-ai-header">
+        <span style="font-size:1.2rem">🤖</span>
+        <h3>Gemini AI Guidance</h3>
+        {% if prev_gemini %}
+        <div class="pulse-dot"></div>
+        <span class="fp-ai-stage-tag">
+          {% if prev_stage %}{{ prev_stage.emoji }} Stage {{ prev_stage.num }}{% endif %}
+        </span>
+        {% endif %}
+      </div>
+
+      <div class="fp-ai-body" id="aiBody">
+        {% if prev_gemini %}
+          {{ prev_gemini|render_ai_html|safe }}
+        {% else %}
+        <div class="fp-ai-empty">
+          <div class="icon">🌱</div>
+          <p>Fill in Stage 1 and Gemini AI will analyse your farm details in real-time.</p>
+          <p style="margin-top:8px;font-size:.78rem;color:#bbb;">Powered by Google Gemini 2.0 Flash with current Indian agricultural data.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div><!-- /.fp-content -->
+  {% endif %}
+
+</div><!-- /.fp-wrapper -->
+
+<script>
+// ── Form submit → show loading overlay ──────────────────
+const form = document.getElementById('stageForm');
+const overlay = document.getElementById('loadingOverlay');
+if (form && overlay) {
+  form.addEventListener('submit', function(e) {
+    // Quick validation before showing loader
+    const invalid = form.querySelectorAll(':invalid');
+    if (invalid.length === 0) {
+      overlay.classList.add('show');
+    }
+  });
+}
+
+// ── Collapsible report sections ──────────────────────────
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  header.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+// ── Auto-scroll AI panel to top on new content ───────────
+const aiBody = document.getElementById('aiBody');
+if (aiBody) aiBody.scrollTop = 0;
+
+// ── Smooth scroll to result card on page load ─────────────
+window.addEventListener('load', () => {
+  const reportEl = document.querySelector('.fp-report');
+  if (reportEl) { setTimeout(() => reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200); }
+  const aiPanel = document.querySelector('.fp-ai-panel');
+  if (aiPanel && aiPanel.querySelector('.fp-ai-body')?.innerHTML?.trim() && !aiPanel.querySelector('.fp-ai-empty')) {
+    aiPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+});
+</script>
+
+</body>
+</html>

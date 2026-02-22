@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Weather &amp; Crop Assistant | InfoCrop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='whetherprediction.css') }}" />
+  <style>
+    /* ===== Reset body layout so navbar sits full-width ===== */
+    body {
+      display: block !important;
+      padding: 0 !important;
+      background-color: #e8f5e9;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ===== InfoCrop Navbar ===== */
+    .ic-nav {
+      background: linear-gradient(135deg, #042908 0%, #0a5c12 100%);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .ic-nav .brand {
+      color: #fff; text-decoration: none;
+      font-size: 1.25rem; font-weight: 700;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .ic-nav ul {
+      display: flex; align-items: center; gap: 2px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .ic-nav ul a {
+      color: rgba(255,255,255,0.82); text-decoration: none;
+      font-size: 0.86rem; font-weight: 500;
+      padding: 6px 11px; border-radius: 6px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .ic-nav ul a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .ic-nav .nav-home-btn {
+      color: #fff; text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.85rem; padding: 6px 16px;
+      border-radius: 20px; transition: background 0.2s;
+    }
+    .ic-nav .nav-home-btn:hover { background: rgba(255,255,255,0.25); }
+
+    /* ===== Breadcrumb ===== */
+    .ic-breadcrumb {
+      background: #f0faf0;
+      border-bottom: 1px solid #c8e6c9;
+      padding: 8px 28px;
+      font-size: 0.82rem; color: #555;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ic-breadcrumb a { color: #2e7d32; text-decoration: none; font-weight: 500; }
+    .ic-breadcrumb a:hover { text-decoration: underline; }
+
+    /* ===== Page body layout ===== */
+    .page-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+      min-height: calc(100vh - 58px);
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 720px) {
+      .ic-nav ul { display: none; }
+      .page-wrapper { padding: 1.2rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== InfoCrop Navigation ===== -->
+  <nav class="ic-nav">
+    <a href="/" class="brand">🌿 InfoCrop</a>
+    <ul>
+      <li><a href="/">🏠 Home</a></li>
+      <li><a href="/home">🍃 Disease Detection</a></li>
+      <li><a href="/CropRec">🌾 Crop Rec</a></li>
+      <li><a href="/PricePrediction">📈 Market Price</a></li>
+      <li><a href="/WhetherPrediction">🌤️ Weather AI</a></li>
+      <li><a href="https://www.apnikheti.com/en/pn/govt-schemes" target="_blank">📋 Gov Schemes</a></li>
+    </ul>
+    <a href="/" class="nav-home-btn">⬅ Home</a>
+  </nav>
+
+  <!-- ===== Breadcrumb ===== -->
+  <div class="ic-breadcrumb">
+    <a href="/">🏠 Home</a>
+    <span style="color:#aaa;">›</span>
+    <span>🌤️ AI Weather Forecast</span>
+  </div>
+
+  <!-- ===== Main Content ===== -->
+  <div class="page-wrapper">
+    <div class="container">
+      <header>
+        <h1>AI Crop &amp; Weather Assistant</h1>
+        <p>Get personalized weather forecasts and crop advice powered by Gemini AI</p>
+      </header>
+
+      <main>
+        <form id="weatherForm">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="e.g., Nashik" required />
+          </div>
+
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="e.g., Maharashtra" required />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="crop">Crop</label>
+              <input type="text" id="crop" name="crop" placeholder="e.g., Grapes" required />
+            </div>
+            <div class="form-group">
+              <label for="season">Season</label>
+              <select id="season" name="season" required>
+                <option value="" disabled selected>Select Season</option>
+                <option value="Kharif">Kharif (Monsoon)</option>
+                <option value="Rabi">Rabi (Winter)</option>
+                <option value="Zaid">Zaid (Summer)</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="extra_info">Extra Information (Optional)</label>
+            <textarea id="extra_info" name="extra_info" rows="3"
+              placeholder="Any specific concerns? e.g., 'Recent heavy rains'"></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn">
+            <span class="btn-text">Get AI Advice</span>
+            <span class="loader"></span>
+          </button>
+        </form>
+
+        <div id="resultContainer" class="hidden">
+          <h2>🤖 AI Analysis</h2>
+          <div id="apiResponse" class="markdown-body"></div>
+        </div>
+      </main>
+
+      <footer>
+        <p>Powered by InfoCrop &bull; Gemini AI</p>
+        <p style="margin-top: 8px;">
+          <a href="/" style="color: #2e7d32; font-weight: 500; text-decoration: none;">← Back to Home</a>
+        </p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="{{ url_for('static', filename='whetherprediction.js') }}"></script>
+</body>
+</html>

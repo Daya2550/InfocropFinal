@@ -1,0 +1,200 @@
+<!-- ======= InfoCrop Shared Navigation Bar ======= -->
+<!-- Include this in standalone pages that don't extend base.html or base1.html -->
+<!-- Usage: {% include '_navbar.html' %} -->
+
+<style>
+  .infocrop-navbar {
+    background: linear-gradient(135deg, #042908 0%, #05380b 60%, #0a5c12 100%);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+  }
+
+  .infocrop-navbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .infocrop-navbar .brand-icon {
+    font-size: 1.6rem;
+  }
+
+  .infocrop-navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .infocrop-navbar .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .infocrop-navbar .nav-links a:hover,
+  .infocrop-navbar .nav-links a.active {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  .infocrop-navbar .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .infocrop-navbar .btn-home {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .infocrop-navbar .btn-home:hover {
+    background: rgba(255,255,255,0.28);
+    transform: translateY(-1px);
+    color: #fff;
+  }
+
+  .infocrop-navbar .breadcrumb-bar {
+    background: rgba(5,56,11,0.08);
+    border-bottom: 1px solid rgba(4,41,8,0.12);
+    padding: 7px 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #555;
+  }
+
+  .infocrop-navbar-wrap .breadcrumb-bar a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .infocrop-navbar-wrap .breadcrumb-bar a:hover { text-decoration: underline; }
+  .infocrop-navbar-wrap .breadcrumb-bar .sep { color: #999; }
+
+  /* Hamburger for mobile */
+  .infocrop-navbar .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .infocrop-navbar .nav-toggle span {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    .infocrop-navbar { padding: 0 14px; }
+    .infocrop-navbar .nav-toggle { display: flex; }
+    .infocrop-navbar .nav-links {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: #042908;
+      flex-direction: column;
+      padding: 10px 0;
+      gap: 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .infocrop-navbar .nav-links.open { display: flex; }
+    .infocrop-navbar .nav-links a {
+      padding: 12px 20px;
+      border-radius: 0;
+      font-size: 0.95rem;
+    }
+    .infocrop-navbar .btn-home { display: none; }
+  }
+</style>
+
+<div class="infocrop-navbar-wrap">
+  <nav class="infocrop-navbar">
+    <!-- Brand -->
+    <a href="/" class="brand">
+      <span class="brand-icon">🌿</span>
+      InfoCrop
+    </a>
+
+    <!-- Center Nav Links -->
+    <ul class="nav-links" id="infocropNavLinks">
+      <li><a href="/"><span>🏠</span> Home</a></li>
+      <li><a href="/home"><span>🍃</span> Disease Detection</a></li>
+      <li><a href="/CropRec"><span>🌾</span> Crop Rec</a></li>
+      <li><a href="/PricePrediction"><span>📈</span> Market Price</a></li>
+      <li><a href="/WhetherPrediction"><span>🌤️</span> Weather AI</a></li>
+      <li><a href="https://www.apnikheti.com/en/pn/govt-schemes" target="_blank"><span>📋</span> Gov Schemes</a></li>
+    </ul>
+
+    <!-- Right Buttons + Hamburger -->
+    <div class="nav-right">
+      <a href="/" class="btn-home">⬅ Home</a>
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<script>
+  (function() {
+    var btn = document.getElementById('navToggleBtn');
+    var links = document.getElementById('infocropNavLinks');
+    if (btn && links) {
+      btn.addEventListener('click', function() {
+        links.classList.toggle('open');
+      });
+    }
+
+    // Highlight active link
+    var current = window.location.pathname;
+    var anchors = links ? links.querySelectorAll('a') : [];
+    anchors.forEach(function(a) {
+      if (a.getAttribute('href') === current) {
+        a.classList.add('active');
+      }
+    });
+  })();
+</script>

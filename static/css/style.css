@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 @media (max-width: 900px) {
   .serch1234{
@@ -1545,3 +1546,287 @@ video {
     }
   }
 
+
+/* ============================================================
+   InfoCrop — Modern UI/UX Overrides for Crop Info Pages
+   Appended to preserve old code while improving aesthetics
+   ============================================================ */
+
+/* ---- Google Fonts upgrade ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ---- Base typography ---- */
+body {
+  font-family: 'Outfit', 'Open Sans', sans-serif !important;
+  background: linear-gradient(160deg, #f0faf2 0%, #e8f5e9 100%) !important;
+  color: #2d3a2e !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Nunito', sans-serif !important;
+}
+
+/* ---- Layout: fixed green header at top:0 ----
+   ic-topbar  : position:relative — scrolls with page (visible on load, gone on scroll)
+   #header    : position:fixed top:0 — always visible
+   #sidebar   : position:fixed top:60px — below fixed header
+   #main      : margin-top:60px — content clears the fixed header
+   ---------------------------------------- */
+
+#header.header,
+#header.header.fixed-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 60px !important;
+  background: linear-gradient(90deg, #5db489 0%, #3a9e6e 100%) !important;
+  box-shadow: 0 2px 16px rgba(0,80,30,0.18) !important;
+  z-index: 997 !important;
+}
+
+#sidebar {
+  position: fixed !important;
+  top: 60px !important;
+  bottom: 0 !important;
+  background: linear-gradient(180deg, #e8f5e9 0%, #d4edda 100%) !important;
+  border-right: 2px solid #c3e6cb !important;
+  box-shadow: 3px 0 18px rgba(0,80,30,0.08) !important;
+}
+
+#main {
+  margin-top: 60px !important;
+  padding: 20px 30px !important;
+}
+
+/* ---- Sidebar nav improvements ---- */
+.sidebar-nav .nav-link {
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #1a5c2e !important;
+  background: rgba(255,255,255,0.7) !important;
+  margin-bottom: 3px !important;
+  transition: all 0.2s !important;
+  border: 1px solid transparent !important;
+}
+
+.sidebar-nav .nav-link:hover {
+  background: #fff !important;
+  color: #0a4d20 !important;
+  border-color: #a8d5b5 !important;
+  box-shadow: 0 2px 8px rgba(0,80,30,0.1) !important;
+  transform: translateX(3px);
+}
+
+.sidebar-nav .nav-link.collapsed {
+  color: #2e6b45 !important;
+  background: rgba(255,255,255,0.5) !important;
+}
+
+.sidebar-nav .nav-link i {
+  color: #2e7d32 !important;
+}
+
+.sidebar-nav .nav-content a {
+  color: #2e5a35 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  padding: 8px 0 8px 36px !important;
+  transition: all 0.2s !important;
+}
+
+.sidebar-nav .nav-content a:hover {
+  color: #1b5e20 !important;
+  background: rgba(255,255,255,0.6) !important;
+  padding-left: 42px !important;
+}
+
+.sidebar-nav .nav-heading {
+  color: #33691e !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+}
+
+/* ---- Section header banners (green nav strips) ---- */
+.navbar.navbar-light {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 18px 0 0 0 !important;
+}
+
+.navbar.navbar-light .container-fluid {
+  background: linear-gradient(90deg, #2e7d32 0%, #388e3c 60%, #43a047 100%) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 3px 12px rgba(46,125,50,0.25) !important;
+  padding: 12px 24px !important;
+  justify-content: flex-start !important;
+}
+
+.navbar.navbar-light .container-fluid h3,
+.navbar.navbar-light .container-fluid h4 {
+  color: #fff !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+}
+
+/* ---- Content section cards ---- */
+.card {
+  border-radius: 14px !important;
+  box-shadow: 0 4px 20px rgba(0,60,20,0.09) !important;
+  border: 1px solid #e8f5e9 !important;
+  background: #fff !important;
+  margin-bottom: 18px !important;
+  overflow: hidden !important;
+  transition: box-shadow 0.2s !important;
+}
+
+.card:hover {
+  box-shadow: 0 8px 28px rgba(0,60,20,0.14) !important;
+}
+
+.card .container {
+  padding: 20px 22px !important;
+  font-size: 0.95rem !important;
+  color: #37474f !important;
+  line-height: 1.75 !important;
+}
+
+.card img[style*="float: left"] {
+  border-radius: 10px !important;
+  margin: 4px 18px 10px 0 !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.12) !important;
+}
+
+/* ---- Climate data cards ---- */
+div[style*="inline-flex"][style*="justify-content: center"] > .card {
+  border-radius: 14px !important;
+  border: none !important;
+  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%) !important;
+  box-shadow: 0 4px 14px rgba(0,150,136,0.15) !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  min-width: 160px !important;
+}
+
+div[style*="inline-flex"][style*="justify-content: center"] > .card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 22px rgba(0,150,136,0.22) !important;
+}
+
+div[style*="inline-flex"][style*="justify-content: center"] > .card .card-title {
+  color: #00695c !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  padding: 14px 0 4px !important;
+}
+
+div[style*="inline-flex"][style*="justify-content: center"] > .card .card-subtitle {
+  color: #004d40 !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+}
+
+/* ---- Show More button ---- */
+button[onclick*="toggleContent"] {
+  background: linear-gradient(90deg, #2e7d32, #43a047) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 7px 22px !important;
+  font-size: 0.83rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: opacity 0.2s, transform 0.15s !important;
+  letter-spacing: 0.3px !important;
+}
+
+button[onclick*="toggleContent"]:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ---- PDF / YouTube icon strip ---- */
+div[style*="inline-flex"][style*="gap: 10px"][style*="justify-content: center"] {
+  margin: 14px 0 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+}
+
+/* ---- Image carousel ---- */
+#carouselExampleInterval img {
+  border-radius: 0 0 10px 10px !important;
+  object-fit: cover !important;
+}
+
+/* ---- Bootstrap nav tabs strip ---- */
+.nav.nav-tabs {
+  border-bottom: 2px solid #c8e6c9 !important;
+  background: #f9fff9 !important;
+  padding: 0 12px !important;
+  border-radius: 8px 8px 0 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.nav-tabs .nav-link.active {
+  color: #2e7d32 !important;
+  border-color: #2e7d32 #2e7d32 #fff !important;
+  font-weight: 700 !important;
+}
+
+.nav-tabs .nav-link {
+  color: #555 !important;
+  font-weight: 500 !important;
+  font-size: 0.92rem !important;
+  border-radius: 8px 8px 0 0 !important;
+  padding: 8px 18px !important;
+  transition: color 0.2s !important;
+}
+
+/* ---- Page title bar (BARLEY [JOW]) ---- */
+.navbar.navbar-light > .container-fluid[style*="background-color: rgb(184, 247, 244)"] {
+  background: linear-gradient(90deg, #00838f, #006064) !important;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.navbar.navbar-light > .container-fluid[style*="background-color: rgb(184, 247, 244)"] h3 {
+  color: #fff !important;
+}
+
+/* ---- Paragraph text polish ---- */
+#main p {
+  font-size: 0.95rem !important;
+  line-height: 1.8 !important;
+  color: #37474f !important;
+  margin-bottom: 12px !important;
+}
+
+#main p b, #main p strong {
+  color: #1b5e20 !important;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f0faf2; }
+::-webkit-scrollbar-thumb { background: #a5d6a7; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #66bb6a; }
+
+/* ---- Responsive fixes ---- */
+@media (max-width: 767px) {
+  #header { height: 52px !important; }
+  #sidebar { top: 104px !important; }
+  .card img[style*="float: left"] {
+    float: none !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 0 14px 0 !important;
+  }
+}
